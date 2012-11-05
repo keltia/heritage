@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
 
   def index
     @stories = Story.all
@@ -12,6 +12,21 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+  end
+
+  def edit
+    @story = current_user.stories.find(params[:id])
+  end
+
+  def update
+    @story = current_user.stories.find(params[:id])
+    if @story.update_attributes(params[:story])
+      flash[:notice] = "Story was saved"
+      redirect_to :action => 'show'
+    else
+      flash.now[:alert] = "Can't save the story" 
+      render :action => 'edit'
+    end
   end
 
   def create

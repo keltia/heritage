@@ -53,6 +53,7 @@ end
 gem 'mysql2'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'flash_cookie_session'
 gem "will_paginate"
 gem 'aasm'
 gem 'rainbow'

@@ -1,4 +1,8 @@
 Heritage::Application.routes.draw do
+  get "photos/create"
+
+  get "photos/destroy"
+
   devise_for :users
 
   # The priority is based upon order of creation:
@@ -59,7 +63,9 @@ Heritage::Application.routes.draw do
     resources :emails do as_routes end
   end
 
-  resources :stories
+  resources :stories do
+    resources :photos, :only => [:create, :destroy]
+  end
 
   root :to => "stories#index"
 
