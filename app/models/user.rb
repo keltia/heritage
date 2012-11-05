@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :stories
   has_many :photos
+  has_many :emails
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

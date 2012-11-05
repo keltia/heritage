@@ -57,3 +57,5 @@ gem 'devise'
 gem "active_scaffold"
 gem 'wirble'
 gem 'activerecord-mysql2-adapter'
+gem "twitter-bootstrap-rails"
+gem 'less-rails'
