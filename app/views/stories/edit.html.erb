@@ -1,7 +1,32 @@
 <% key = Rails.application.config.session_options[:key] %>
 
+<%= content_for :head_script do %>
+<script type="text/javascript">
+		$(document).ready(function() {
+			// Handler for .ready() called.
+				$("#sortable" ).sortable({ 
+					revert: true,
+					stop: function(e,ui) {
+						$.ajax({
+							data: $('#sortable').sortable('serialize'),
+							type: 'POST',
+							url: '<%= sort_story_path(@story) %>',
+							success: function () {
+							// it worked!  
+							},
+							error: function (response) {
+							// we had an error
+							}
+						});
+						
+					}
+					
+					});
+				$("#sortable").disableSelection();
+		});
+</script>
+<% end %>
 <%= content_for :scripts do %>
-
 <script type="text/javascript">
     var upload_params = {
 			'<%= key %>' : '<%= cookies[key] %>',
@@ -22,12 +47,14 @@
         $('#photos').append(data);
       }
     });
-</script>
-
+	</script>
 <% end %>
 
 <div id="photos">
-<%= render :partial => 'photos/photo', :collection => @story.photos %>
+	<ul id="sortable">
+		<%= render :partial => 'photos/photo', :collection => @story.photos %>
+	</ul>
+	<div style="clear: both;"></div>
 </div>
 
 <% unless @story.new_record? %>

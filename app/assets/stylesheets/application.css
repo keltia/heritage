@@ -13,3 +13,16 @@
  *= require active_scaffold
  *= require formtastic
  */
+
+#sortable {
+  float: left;
+  width: 800px;
+  margin: border 1px black;
+}
+#sortable li {
+  list-style-type: none;
+  float: left;
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  width: 100px;
+}

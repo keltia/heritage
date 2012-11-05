@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :sort]
 
   def index
     @stories = Story.all
@@ -16,6 +16,15 @@ class StoriesController < ApplicationController
 
   def edit
     @story = current_user.stories.find(params[:id])
+  end
+
+  def sort
+    @story = current_user.stories.find(params[:id])
+    @story.photos.each do |photo|
+      photo.position = params[:sortable].index(photo.id.to_s)
+      photo.save
+    end
+    render :status => '200', :text => "OK"
   end
 
   def update

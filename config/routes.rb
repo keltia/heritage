@@ -65,6 +65,9 @@ Heritage::Application.routes.draw do
 
   resources :stories do
     resources :photos, :only => [:create, :destroy]
+    member do
+      post :sort
+    end
   end
 
   root :to => "stories#index"
