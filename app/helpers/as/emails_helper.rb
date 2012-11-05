@@ -1,0 +1,2 @@
+module As::EmailsHelper
+end

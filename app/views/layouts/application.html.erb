@@ -8,10 +8,29 @@
 </head>
 <body>
 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/">Heritage</a>
+				<div class="nav-collapse">
+					<%# tabs %>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<%= yield %>
+	<div class="container">
+		<%= render :partial => 'shared/top_links' %>
+
+		<p>
+		<%= current_user.email if current_user %>
+		</p>
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+
+		<%= yield %>
+	</div>
 
 </body>
 </html>

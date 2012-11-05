@@ -52,7 +52,16 @@ Heritage::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  root :to => "home#index"
+  namespace :as do |sd|
+    resources :photos do as_routes end
+    resources :users do as_routes end
+    resources :stories do as_routes end
+    resources :emails do as_routes end
+  end
+
+  resources :stories
+
+  root :to => "stories#index"
 
   # See how all your routes lay out with "rake routes"
 

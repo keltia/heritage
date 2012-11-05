@@ -1,0 +1,11 @@
+class CreateUrls < ActiveRecord::Migration
+  def change
+    create_table :urls do |t|
+      t.string :url
+      t.string :name
+      t.integer :user_id
+    end
+
+    add_index :urls, :user_id
+  end
+end
