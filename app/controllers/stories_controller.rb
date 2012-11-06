@@ -19,10 +19,13 @@ class StoriesController < ApplicationController
   end
 
   def sort
-    @story = current_user.stories.find(params[:id])
-    @story.photos.each do |photo|
-      photo.position = params[:sortable].index(photo.id.to_s)
-      photo.save
+    @story = current_user.stories.find(params[:id], :include => [:photos])
+
+    Photo.transaction do
+      @story.photos.each do |photo|
+        photo.position = params[:sortable].index(photo.id.to_s)
+        photo.save
+      end
     end
     render :status => '200', :text => "OK"
   end

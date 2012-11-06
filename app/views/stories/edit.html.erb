@@ -44,12 +44,22 @@
       'formData'       : upload_params,
       'auto'           : true,
       'onUploadSuccess' : function(file, data, response) {
-        $('#photos').append(data);
+        $('#sortable').append(data);
       }
     });
 	</script>
 <% end %>
 
+<h1>Description</h1>
+<p>
+<%= @story.title %>
+</p>
+
+<p>
+<%= @story.description %>
+</p>
+
+<h1>Photos</h1>
 <div id="photos">
 	<ul id="sortable">
 		<%= render :partial => 'photos/photo', :collection => @story.photos %>
