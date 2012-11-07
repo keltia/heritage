@@ -76,6 +76,10 @@ Heritage::Application.routes.draw do
     end
   end
 
+  constraints :subdomain => "admin" do
+    root :to => "admin#index"
+  end
+
   root :to => "photographers#index"
 
   # See how all your routes lay out with "rake routes"

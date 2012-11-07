@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107034508) do
+ActiveRecord::Schema.define(:version => 20121107075729) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20121107034508) do
     t.datetime "updated_at",                             :null => false
     t.string   "name"
     t.text     "description"
+    t.string   "facebook_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

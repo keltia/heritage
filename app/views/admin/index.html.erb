@@ -1,11 +1,6 @@
-<div id="about">
-	<p>
-	<%= @photographer.name %>
-	</p>
 
-	<p>
-	<%= @photographer.description %>
-	</p>
+<div id="frontstory">
+	<%= image_tag @stories.first.photos.first.image_url(:web) %>
 </div>
 
 <div id="photos">

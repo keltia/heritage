@@ -13,7 +13,13 @@
 <% end %>
 
 <% if @story.photos.any? %>
-<div id="example">
+
+	<div id="story">
+	<h1><%= @story.title %></h1>
+	<p>
+	<%= @story.description %>
+	</p>
+	<div id="example" style="height: <%= @story.max_photo_height + 100 %>px;">
 	<div id="slides">
 		<div class="slides_container" style="height: <%= @story.max_photo_height %>px;">
 			<% @story.photos.each do |photo| %>
@@ -21,8 +27,9 @@
 			<% end %>
 		</div>
 
-		<a href="#" class="prev"><img src="/assets/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-		<a href="#" class="next"><img src="/assets/images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+		<a href="#" class="prev" style="top: <%= @story.max_photo_height / 2 - 20 %>px;"><img src="/assets/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+		<a href="#" class="next" style="top: <%= @story.max_photo_height / 2 - 20 %>px;"><img src="/assets/images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
 	</div>
+</div>
 </div>
 <% end %>
