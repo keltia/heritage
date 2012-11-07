@@ -14,6 +14,17 @@ class PhotoUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
+  process :store_geometry
+  def store_geometry
+    if @file
+      img = ::Magick::Image::read(@file.file).first
+      if model
+        model.width = img.columns
+        model.height = img.rows
+      end
+    end
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -38,6 +49,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :thumb do
     process :resize_to_fill => [150, 150]
+  end
+
+  version :web do
+    process :resize_to_fit => [800, 800]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

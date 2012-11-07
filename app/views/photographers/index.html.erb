@@ -1,0 +1,6 @@
+
+<ul>
+	<% @photographers.each do |photographer| %>
+		<li><%= link_to photographer.email, photographer_url(photographer) %></li>
+	<% end %>
+</ul>

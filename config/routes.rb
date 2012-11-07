@@ -70,7 +70,13 @@ Heritage::Application.routes.draw do
     end
   end
 
-  root :to => "stories#index"
+  resources :photographers do
+    member do
+      post :sort
+    end
+  end
+
+  root :to => "photographers#index"
 
   # See how all your routes lay out with "rake routes"
 

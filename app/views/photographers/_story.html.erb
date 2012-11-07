@@ -1,0 +1,9 @@
+<li class="ui-state-default" id="sortable_<%= story.id %>">
+<a href="<%= edit_story_path(story) %>">
+	<% if story.photos.any? && story.photos.first.image? %>
+		<%= image_tag story.photos.first.image_url(:thumb) %>
+	<% else %>
+		No Photos
+	<% end %>
+</a>
+</li>

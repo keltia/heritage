@@ -50,22 +50,26 @@
 	</script>
 <% end %>
 
-<h1>Description</h1>
-<p>
-<%= @story.title %>
-</p>
+<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
+	<%= f.inputs :name => "Story information" do %>
+		<%= f.input :title %>
+		<%= f.input :description %>
+	<% end %>
 
-<p>
-<%= @story.description %>
-</p>
+	<%= f.actions do %>
+		<%= f.action :submit, :as => :button %>
+		<%= f.action :cancel, :as => :link %>
+	<% end %>
 
-<h1>Photos</h1>
-<div id="photos">
-	<ul id="sortable">
-		<%= render :partial => 'photos/photo', :collection => @story.photos %>
-	</ul>
-	<div style="clear: both;"></div>
-</div>
+	<%= f.inputs :name => "Photos" do %>
+		<div id="photos">
+			<ul id="sortable">
+				<%= render :partial => 'photos/photo', :collection => @story.photos %>
+			</ul>
+			<div style="clear: both;"></div>
+		</div>
+	<% end %>
+<% end %>
 
 <% unless @story.new_record? %>
 	<%= fields_for Photo.new do |f| %>

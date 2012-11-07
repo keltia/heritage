@@ -1,7 +1,28 @@
-<p>
-<%= @story.title %>
-</p>
+<%= content_for :head_script do %>
+	<%= stylesheet_link_tag "/stylesheets/global" %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				$('#slides').slides({
+					preload: true,
+					preloadImage: '/assets/images/loading.gif',
+					hoverPause: true
+					});
+		});
 
-<p>
-<%= @story.description %>
-</p>
+	</script>
+<% end %>
+
+<% if @story.photos.any? %>
+<div id="example">
+	<div id="slides">
+		<div class="slides_container" style="height: <%= @story.max_photo_height %>px;">
+			<% @story.photos.each do |photo| %>
+				<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
+			<% end %>
+		</div>
+
+		<a href="#" class="prev"><img src="/assets/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+		<a href="#" class="next"><img src="/assets/images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+	</div>
+</div>
+<% end %>

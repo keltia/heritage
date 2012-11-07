@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105052122) do
+ActiveRecord::Schema.define(:version => 20121107034508) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20121105052122) do
     t.integer  "position",   :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.integer  "width"
+    t.integer  "height"
   end
 
   add_index "photos", ["story_id"], :name => "index_photos_on_story_id"
@@ -38,8 +40,9 @@ ActiveRecord::Schema.define(:version => 20121105052122) do
     t.text     "description"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "position",    :default => 0
   end
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
@@ -69,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20121105052122) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
+    t.text     "description"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

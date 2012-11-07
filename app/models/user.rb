@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :stories
-  has_many :photos
+  has_many :stories, :order => "position", :dependent => :destroy
+  has_many :photos, :dependent => :destroy
   has_many :emails
+
+  def to_label
+    self.email
+  end
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -10,5 +14,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+    :name, :description
 end

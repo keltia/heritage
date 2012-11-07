@@ -3,11 +3,13 @@ class StoriesController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :sort]
 
   def index
-    @stories = Story.all
+    @stories = Story.all(:order => 'id DESC')
   end
 
   def show
-    @story = Story.find(params[:id])
+    @story = Story.find(params[:id], :include => [:photos])
+
+    render :layout => "story"
   end
 
   def new
@@ -45,7 +47,7 @@ class StoriesController < ApplicationController
     @story = Story.new(params[:story])
     @story.user = current_user
     if @story.save
-      redirect_to :action => :show, :id => @story.id
+      redirect_to :action => :edit, :id => @story.id
     else
       render :new
     end
