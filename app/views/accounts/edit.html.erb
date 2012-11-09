@@ -27,6 +27,11 @@
 </script>
 <% end %>
 
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<%= render :partial => 'lefttabs' %>
+				</ul>
+				<div class="tab-content">
 <%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
 	<%= f.inputs :name => "Your information" do %>
 		<%= f.input :name, :input_html => { :size => 40 } %>

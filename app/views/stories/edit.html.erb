@@ -52,29 +52,44 @@
 	</script>
 <% end %>
 
-<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
-	<%= f.inputs :name => "Story information" do %>
-		<%= f.input :title %>
-		<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
-	<% end %>
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Story information</a></li>
+					<li class=""><a href="#tab2" data-toggle="tab">Story Photos (<%= @story.photos.count %>)</a></li>
+					<li><%= link_to "Public link", story_path(@story) %></li>
+				</ul>
+				<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
 
-	<%= f.actions do %>
-		<%= f.action :submit, :as => :button, :button_html => { :class => "btn btn-primary" } %>
-		<%= link_to "Cancel", story_path(@story), :class => "btn" %>
-	<% end %>
+				<div class="tab-content">
 
-	<%= f.inputs :name => "Photos" do %>
-		<div id="photos">
-			<ul id="sortable">
-				<%= render :partial => 'photos/photo', :collection => @story.photos %>
-			</ul>
-			<div style="clear: both;"></div>
-		</div>
-	<% end %>
-<% end %>
+					<div id="tab1" class="tab-pane active">
+							<%= f.inputs :name => "Story information" do %>
+								<%= f.input :title, :input_html => { :class => 'input-xxlarge'}  %>
+								<%= f.input :description, :input_html => { :class => 'autogrow input-xxlarge', :rows => 10, :cols => 40 } %>
+							<% end %>
 
-<% unless @story.new_record? %>
-	<%= fields_for Photo.new do |f| %>
-		<%= f.file_field :image, :rel => story_photos_path(@story) %>
-	<% end %>
-<% end %>
+							<%= f.actions do %>
+								<%= f.action :submit, :as => :button, :button_html => { :class => "btn btn-primary" } %>
+								<%= link_to "Cancel", story_path(@story), :class => "btn" %>
+							<% end %>
+					</div>
+
+					<div id="tab2" class="tab-pane">
+						<%= f.inputs :name => "Story Photos" do %>
+							<div id="photos">
+								<ul id="sortable">
+									<%= render :partial => 'photos/photo', :collection => @story.photos %>
+								</ul>
+								<div style="clear: both;"></div>
+							</div>
+							<% unless @story.new_record? %>
+								<%= fields_for Photo.new do |f| %>
+									<%= f.file_field :image, :rel => story_photos_path(@story) %>
+								<% end %>
+							<% end %>
+						<% end %>
+					</div>
+			</div>
+
+		<% end %>
+</div>

@@ -65,18 +65,7 @@
     </div>
 
     <div class="container" style="padding-top: 60px;">
-			<div class="tabbable tabs-left">
-				<ul class="nav nav-tabs">
-					<%= nav_link("Your information", edit_account_path) %>
-					<%= nav_link("Your social Medias", social_medias_account_path) %>
-					<%= nav_link("Your Website", website_account_path) %>
-					<li class=""><a href="#tab2" data-toggle="tab">Your Stories</a></li>
-					<li class=""><a href="#tab2" data-toggle="tab">Your Audience</a></li>
-				</ul>
-				<div class="tab-content">
-					<%= yield %>
-				</div>
-			</div>
+			<%= yield %>
 
       <footer>
         <p>&copy; Fabien Penso 2012</p>

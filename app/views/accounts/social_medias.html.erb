@@ -27,20 +27,22 @@
 </script>
 <% end %>
 
-<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
-	<%= f.inputs :name => "Your social medias" do %>
-		<%= f.input 'facebook_url', :label => "Facebook page", 
-			:hint => "This is used for the like button at the bottom of your stories", 
-			:input_html => { :class => "input-xxlarge" } %>
-	<% end %>
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<%= render :partial => 'lefttabs' %>
+				</ul>
+				<div class="tab-content">
+					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
+						<%= f.inputs :name => "Your social medias" do %>
+							<%= f.input 'facebook_url', :label => "Facebook page", 
+								:hint => "This is used for the like button at the bottom of your stories", 
+								:input_html => { :class => "input-xxlarge" } %>
+							<% end %>
 
-	<%= f.actions do %>
-		<%= f.action :submit, :as => :button, :label => "Save", 
-			:button_html => { :class => "btn btn-primary btn-large" } %>
-	<% end %>
-
-<% end %>
-
-	</div>
-</div>
-
+							<%= f.actions do %>
+								<%= f.action :submit, :as => :button, :label => "Save", 
+									:button_html => { :class => "btn btn-primary btn-large" } %>
+							<% end %>
+					<% end %>
+				</div>
+			</div>
