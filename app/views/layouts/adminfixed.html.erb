@@ -31,9 +31,12 @@
           <a class="brand" href="/">Heritage</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li class="active"><%= link_to "Home", "/"  %></li>
+							<%= nav_link "Home", root_path %>
 							<li class="divider-vertical"></li>
+							<%= nav_link "Stories", stories_account_path %>
+							<%= nav_link "Your account", edit_account_path %>
 
+							<!--
 							<li><%= link_to "Stories", "#", :class => "dropdown-toggle", 'data-toggle'=>"dropdown" %>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 									<% @stories.each do |story| %>
@@ -47,6 +50,7 @@
 							</li>
 
               <li><%= link_to "Statistics", ""  %></li>
+							-->
             </ul>
 						<div class="pull-right">
 							<ul class="nav">

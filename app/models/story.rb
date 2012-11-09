@@ -3,7 +3,9 @@ class Story < ActiveRecord::Base
   has_many :photos, :order => "position"
   acts_as_list :scope => :user_id
 
-  attr_accessible :title, :description
+  acts_as_taggable
+
+  attr_accessible :title, :description, :tag_list
 
   def max_photo_height
     max_height = photos.sort{|a,b| a.height <=> b.height }.last

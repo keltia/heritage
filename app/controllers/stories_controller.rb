@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :sort]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :sort, :destroy]
+  before_filter :get_story, :only => [:update, :edit, :destroy, :sort]
 
   def index
     @stories = Story.all(:order => 'id DESC')
@@ -19,13 +20,11 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    @story = current_user.stories.find(params[:id])
     @stories = current_user.stories
     render :layout => "adminfixed"
   end
 
   def sort
-    @story = current_user.stories.find(params[:id], :include => [:photos])
 
     Photo.transaction do
       @story.photos.each do |photo|
@@ -37,7 +36,6 @@ class StoriesController < ApplicationController
   end
 
   def update
-    @story = current_user.stories.find(params[:id])
     if @story.update_attributes(params[:story])
       flash[:notice] = "Story was saved"
       redirect_to :action => 'show'
@@ -45,6 +43,11 @@ class StoriesController < ApplicationController
       flash.now[:alert] = "Can't save the story" 
       render :action => 'edit'
     end
+  end
+  
+  def destroy
+    @story.destroy
+    redirect_to stories_account_path
   end
 
   def create
@@ -55,5 +58,11 @@ class StoriesController < ApplicationController
     else
       render :new
     end
+  end
+
+  protected
+
+  def get_story
+    @story = current_user.stories.find(params[:id], :include => [:photos])
   end
 end

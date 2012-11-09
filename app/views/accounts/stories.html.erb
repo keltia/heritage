@@ -1,0 +1,53 @@
+<%= content_for :head_script do %>
+<script type="text/javascript">
+		$(document).ready(function() {
+			// Handler for .ready() called.
+				$("#sortable" ).sortable({ 
+					revert: true,
+					stop: function(e,ui) {
+						$.ajax({
+							data: $('#sortable').sortable('serialize'),
+							type: 'POST',
+							url: '<%= sort_photographer_path(current_user) %>',
+							success: function () {
+							// it worked!  
+							},
+							error: function (response) {
+							// we had an error
+							}
+						});
+						
+					}
+					
+					});
+				$("#sortable").disableSelection();
+
+				$('body').on('hidden', '.modal', function () {
+						$(this).removeData('modal');
+				});
+		});
+</script>
+<% end %>
+
+						<div id="frontstory">
+							<%= image_tag @stories.first.photos.first.image_url(:web) if @stories.first.photos.any? %>
+						</div>
+
+						<div id="photos thumbnails">
+							<ul id="sortable">
+
+								<% @stories.each do |story| %>
+									<li class="ui-state-default" id="sortable_<%= story.id %>">
+									<a href="<%= edit_story_path(story) %>" class="thumbnail">
+										<% if story.photos.any? && story.photos.first.image? %>
+											<%= image_tag story.photos.first.image_url(:thumb) %>
+										<% else %>
+											No Image
+										<% end %>
+									</a>
+									</li>
+								<% end %>
+
+							</ul>
+							<div style="clear: both;"></div>
+						</div>

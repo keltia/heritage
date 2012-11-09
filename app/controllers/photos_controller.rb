@@ -12,7 +12,13 @@ class PhotosController < ApplicationController
   end
 
   def update
-
+    if @photo.update_attributes(params[:photo])
+      flash[:notice] = "Photo was saved"
+      redirect_to :action => 'show'
+    else
+      flash.now[:alert] = "Can't save the photo" 
+      render :action => 'edit'
+    end
   end
 
   def create

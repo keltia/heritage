@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109052953) do
+ActiveRecord::Schema.define(:version => 20121109055636) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -26,12 +26,13 @@ ActiveRecord::Schema.define(:version => 20121109052953) do
     t.integer  "story_id"
     t.integer  "user_id"
     t.string   "image"
-    t.integer  "position",   :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "position",    :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "width"
     t.integer  "height"
     t.string   "title"
+    t.text     "description"
   end
 
   add_index "photos", ["story_id"], :name => "index_photos_on_story_id"

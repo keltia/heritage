@@ -80,6 +80,7 @@ Heritage::Application.routes.draw do
     member do
       get :social_medias
       get :website
+      get :stories
     end
   end
 

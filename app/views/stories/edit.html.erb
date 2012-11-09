@@ -69,11 +69,13 @@
 							<%= f.inputs :name => "Story information" do %>
 								<%= f.input :title, :input_html => { :class => 'input-xxlarge'}  %>
 								<%= f.input :description, :input_html => { :class => 'autogrow input-xxlarge', :rows => 10, :cols => 40 } %>
+								<%= f.input :tag_list, :input_html => { :class => 'input-xxlarge' }, :hint => "Enter, your, tags, with, commas" %>
 							<% end %>
 
 							<%= f.actions do %>
 								<%= f.action :submit, :as => :button, :button_html => { :class => "btn btn-primary" } %>
 								<%= link_to "Cancel", story_path(@story), :class => "btn" %>
+								or <%= link_to "delete this story", story_path(@story), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
 							<% end %>
 					</div>
 

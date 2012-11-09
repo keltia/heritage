@@ -6,6 +6,9 @@ class AccountsController < ApplicationController
   def show
   end
 
+  def stories
+  end
+
   def update
     if current_user.update_attributes(params[:user])
       flash[:notice] = "Info was saved"
