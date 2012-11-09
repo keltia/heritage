@@ -1,8 +1,9 @@
-#require 'app/uploaders/photo_uploader'
-
 class Photo < ActiveRecord::Base
   belongs_to :user
   belongs_to :story
+
+  validates_presence_of :story_id
+  validates_presence_of :user_id
 
   acts_as_taggable
   has_permalink

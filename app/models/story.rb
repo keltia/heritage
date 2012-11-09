@@ -6,6 +6,8 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
+  validates_presence_of :user_id
+
   attr_accessible :title, :description, :tag_list
 
   def max_photo_height
