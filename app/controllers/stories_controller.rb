@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find(params[:id], :include => [:photos])
+    @story = Story.find_by_permalink(params[:id], :include => [:photos])
 
     render :layout => "story"
   end
@@ -63,6 +63,6 @@ class StoriesController < ApplicationController
   protected
 
   def get_story
-    @story = current_user.stories.find(params[:id], :include => [:photos])
+    @story = current_user.stories.find_by_permalink(params[:id], :include => [:photos])
   end
 end

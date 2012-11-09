@@ -3,8 +3,14 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :emails
 
+  has_permalink
+
   def to_label
     self.email
+  end
+
+  def title
+    self.name
   end
 
   # Include default devise modules. Others available are:

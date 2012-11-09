@@ -70,3 +70,5 @@ gem 'formtastic-bootstrap'
 gem 'tabulous'
 
 gem 'acts-as-taggable-on'
+
+gem "has_permalink"

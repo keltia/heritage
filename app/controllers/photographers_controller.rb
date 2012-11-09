@@ -1,7 +1,7 @@
 class PhotographersController < ApplicationController
 
   def show
-    @photographer = User.find(params[:id], :include => [:stories])
+    @photographer = User.find_by_permalink(params[:id], :include => [:stories])
     @stories = @photographer.stories.all(:include => [:photos])
   end
 

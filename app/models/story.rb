@@ -4,6 +4,7 @@ class Story < ActiveRecord::Base
   acts_as_list :scope => :user_id
 
   acts_as_taggable
+  has_permalink
 
   attr_accessible :title, :description, :tag_list
 

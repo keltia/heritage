@@ -8,7 +8,7 @@
 						$.ajax({
 							data: $('#sortable').sortable('serialize'),
 							type: 'POST',
-							url: '<%= sort_photographer_path(current_user) %>',
+							url: '<%= sort_photographer_path(current_user.name) %>',
 							success: function () {
 							// it worked!  
 							},
