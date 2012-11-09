@@ -46,12 +46,12 @@ class PhotosController < ApplicationController
   private
 
   def find_story
-    @story = current_user.stories.find(params[:story_id])
+    @story = current_user.stories.find_by_permalink(params[:story_id])
     raise ActiveRecord::RecordNotFound unless @story
   end
 
   def find_or_build_photo
-    @photo = params[:id] ? @story.photos.find(params[:id]) : @story.photos.build(params[:photo])
+    @photo = params[:id] ? @story.photos.find_by_permalink(params[:id]) : @story.photos.build(params[:photo])
   end
 
 end

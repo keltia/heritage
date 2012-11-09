@@ -5,6 +5,7 @@ class Photo < ActiveRecord::Base
   belongs_to :story
 
   acts_as_taggable
+  has_permalink
 
   attr_accessible :image
   acts_as_list :scope => :story
@@ -24,4 +25,13 @@ class Photo < ActiveRecord::Base
   def resize_ratio
     RESIZE_TO_FIT.first / RESIZE_TO_FIT.last
   end
+
+  protected
+  before_save :generate_permalinkifblank
+  def generate_permalinkifblank
+    if self.permalink.blank?
+      self.permalink = "#{self.id}"
+    end
+  end
+
 end
