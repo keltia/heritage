@@ -14,6 +14,18 @@ describe StoriesController do
       get 'show'
       response.should be_success
     end
+
+    it "block private stories" do
+
+    end
+
+    it "shows public stories" do
+
+    end
+
+    it "shows private stories" do
+
+    end
   end
 
 end

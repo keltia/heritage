@@ -12,6 +12,7 @@ class PhotographersController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update, :sort]
   before_filter :get_photographer, :only => [:edit, :update, :sort]
   def edit
+    render :layout => "adminfixed"
   end
 
   def update
@@ -39,5 +40,6 @@ class PhotographersController < ApplicationController
 
   def get_photographer
     @photographer = current_user
+    @stories = current_user.stories
   end
 end

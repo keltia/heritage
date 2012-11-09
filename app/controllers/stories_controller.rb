@@ -14,10 +14,14 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+    @stories = current_user.stories
+    render :layout => "adminfixed"
   end
 
   def edit
     @story = current_user.stories.find(params[:id])
+    @stories = current_user.stories
+    render :layout => "adminfixed"
   end
 
   def sort

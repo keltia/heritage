@@ -76,6 +76,13 @@ Heritage::Application.routes.draw do
     end
   end
 
+  resource :account do
+    member do
+      get :social_medias
+      get :website
+    end
+  end
+
   constraints :subdomain => "admin" do
     root :to => "admin#index"
   end

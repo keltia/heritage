@@ -12,9 +12,6 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-	gem 'bootstrap-sass'
-	#gem 'less-rails-bootstrap'
-
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
@@ -60,9 +57,14 @@ gem 'rainbow'
 gem 'devise'
 gem "active_scaffold"
 gem 'wirble'
-gem "twitter-bootstrap-rails"
+
+# Bootstrap
 gem 'less-rails'
+gem "twitter-bootstrap-rails"
+
 gem 'acts_as_list'
+
 gem 'formtastic'
 gem 'formtastic-bootstrap'
+
 gem 'tabulous'

@@ -10,8 +10,7 @@
  *
  *= require_self
  *= require_tree .
- *= require active_scaffold
- *= require formtastic
+ *# require formtastic
  */
 
 #sortable {

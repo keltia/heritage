@@ -1,22 +1,40 @@
+        <div class="row">
+          <div class="span9">
+						<div id="frontstory">
+							<%= image_tag @stories.first.photos.first.image_url(:web) %>
+						</div>
 
-<div id="frontstory">
-	<%= image_tag @stories.first.photos.first.image_url(:web) %>
-</div>
+						<div id="photos thumbnails">
+							<ul id="sortable">
+								<% @stories.each do |story| %>
+									<% if story.photos.any? && story.photos.first.image? %>
 
-<div id="photos">
-	<ul id="sortable">
-	<% @stories.each do |story| %>
-		<% if story.photos.any? && story.photos.first.image? %>
+										<li class="ui-state-default" id="sortable_<%= story.id %>">
+										<a href="<%= edit_story_path(story) %>" class="thumbnail">
+											<%= image_tag story.photos.first.image_url(:thumb) %>
+										</a>
+										</li>
 
-			<li class="ui-state-default" id="sortable_<%= story.id %>">
-			<a href="<%= story_path(story) %>">
-				<%= image_tag story.photos.first.image_url(:thumb) %>
-			</a>
-			</li>
+									<% else %>
+									<% end %>
+								<% end %>
 
-		<% end %>
-	<% end %>
+							</ul>
+							<div style="clear: both;"></div>
+						</div>
+          </div>
 
-  </ul>
-  <div style="clear: both;"></div>
-</div>
+					<!--
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Stories</li>
+								<% @stories.each do |story| %>
+									<li><%= link_to story.title, edit_story_path(story) %></li>
+								<% end %>
+
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
+        </div><!--/row-->
+

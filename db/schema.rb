@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107075729) do
+ActiveRecord::Schema.define(:version => 20121107134743) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -40,11 +40,13 @@ ActiveRecord::Schema.define(:version => 20121107075729) do
     t.text     "description"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "position",    :default => 0
+    t.boolean  "is_private",  :default => false
   end
 
+  add_index "stories", ["is_private", "user_id"], :name => "index_stories_on_is_private_and_user_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
   create_table "urls", :force => true do |t|
@@ -75,10 +77,12 @@ ActiveRecord::Schema.define(:version => 20121107075729) do
     t.string   "name"
     t.text     "description"
     t.string   "facebook_url"
+    t.string   "specific_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["specific_url"], :name => "index_users_on_specific_url"
 
 end
