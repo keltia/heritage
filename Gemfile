@@ -68,3 +68,5 @@ gem 'formtastic'
 gem 'formtastic-bootstrap'
 
 gem 'tabulous'
+
+gem 'acts-as-taggable-on'

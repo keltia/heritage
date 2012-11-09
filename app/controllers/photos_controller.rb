@@ -3,9 +3,19 @@ class PhotosController < ApplicationController
   before_filter :find_story
   before_filter :find_or_build_photo
 
-  def create
-    logger.info "User: #{current_user}"
+  def edit
+    respond_to do |format|
+      format.js do
+        render :text => render_to_string(:partial => 'photos/form', :locals => {:photo => @photo})
+      end
+    end
+  end
 
+  def update
+
+  end
+
+  def create
     respond_to do |format|
       unless @photo.save
         flash[:error] = 'Photo could not be uploaded'

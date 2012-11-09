@@ -3,7 +3,6 @@
 <%= content_for :head_script do %>
 <script type="text/javascript">
 		$(document).ready(function() {
-				/*
 			// Handler for .ready() called.
 				$("#sortable" ).sortable({ 
 					revert: true,
@@ -24,7 +23,10 @@
 					
 					});
 				$("#sortable").disableSelection();
-				*/
+
+				$('body').on('hidden', '.modal', function () {
+						$(this).removeData('modal');
+				});
 		});
 </script>
 <% end %>
@@ -63,6 +65,7 @@
 				<div class="tab-content">
 
 					<div id="tab1" class="tab-pane active">
+
 							<%= f.inputs :name => "Story information" do %>
 								<%= f.input :title, :input_html => { :class => 'input-xxlarge'}  %>
 								<%= f.input :description, :input_html => { :class => 'autogrow input-xxlarge', :rows => 10, :cols => 40 } %>
@@ -75,10 +78,32 @@
 					</div>
 
 					<div id="tab2" class="tab-pane">
+						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel">Editing Photo properties</h3>
+							</div>
+							<div class="modal-body">
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+							</div>
+						</div>
+
 						<%= f.inputs :name => "Story Photos" do %>
-							<div id="photos">
+							<div id="photos thumbnails">
 								<ul id="sortable">
-									<%= render :partial => 'photos/photo', :collection => @story.photos %>
+									<% @story.photos.each do |photo| %>
+										<li class="ui-state-default" id="sortable_<%= photo.id %>">
+										<% if photo.image? %>
+											<%= link_to image_tag(photo.image_url(:thumb), :alt => "Photo #{photo.id}"), 
+												edit_story_photo_path(@story, photo), {
+												:class => "thumbnail", 'data-cache' => 'false', 
+												'data-toggle' => 'modal', 'data-target' => '#myModal'
+											}  %>
+										<% end %>
+										</li>
+									<% end %>
 								</ul>
 								<div style="clear: both;"></div>
 							</div>
