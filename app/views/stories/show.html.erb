@@ -19,17 +19,28 @@
 	<p>
 	<%= @story.description %>
 	</p>
-	<div id="example" style="height: <%= @story.max_photo_height + 100 %>px;">
-	<div id="slides">
-		<div class="slides_container" style="height: <%= @story.max_photo_height %>px;">
-			<% @story.photos.each do |photo| %>
-				<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
-			<% end %>
-		</div>
 
-		<a href="#" class="prev" style="top: <%= @story.max_photo_height / 2 - 20 %>px;"><img src="/assets/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-		<a href="#" class="next" style="top: <%= @story.max_photo_height / 2 - 20 %>px;"><img src="/assets/images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+	<div id="example" style="height: <%= @story.max_photo_height + 100 %>px;">
+		<div id="myCarousel" class="carousel slide">
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+
+				<% @story.photos.each_with_index do |photo,i| %>
+					<div class="item <%= "active" if i == 0 %>" style="height: <%= @story.max_photo_height %>px;">
+						<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
+
+						<p class="muted">
+						<%= link_to story_photo_url(@story, photo), story_photo_path(@story, photo) %>
+						</p>
+					</div>
+				<% end %>
+			</div>
+			<!-- Carousel nav -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
 	</div>
+
 </div>
 </div>
 <% end %>

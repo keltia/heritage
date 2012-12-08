@@ -221,7 +221,6 @@ body {
 
 /*
 	Anchors
-*/
 
 a:link,a:visited {
 	color:#599100;
@@ -231,4 +230,14 @@ a:link,a:visited {
 a:hover,a:active {
 	color:#599100;
 	text-decoration:underline;
+}
+*/
+
+#myCarousel p {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#myCarousel a {
+  color: #999;
 }

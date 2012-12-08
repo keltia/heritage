@@ -1,0 +1,98 @@
+<% key = Rails.application.config.session_options[:key] %>
+
+<%= content_for :head_script do %>
+<script type="text/javascript">
+		$(document).ready(function() {
+			// Handler for .ready() called.
+				$("#sortable" ).sortable({ 
+					revert: true,
+					stop: function(e,ui) {
+						$.ajax({
+							data: $('#sortable').sortable('serialize'),
+							type: 'POST',
+							url: '<%= sort_story_path(@story) %>',
+							success: function () {
+							// it worked!  
+							},
+							error: function (response) {
+							// we had an error
+							}
+						});
+						
+					}
+					
+					});
+				$("#sortable").disableSelection();
+
+				$('body').on('hidden', '.modal', function () {
+						$(this).removeData('modal');
+				});
+		});
+</script>
+<% end %>
+<%= content_for :scripts do %>
+<script type="text/javascript">
+    var upload_params = {
+			'<%= key %>' : '<%= cookies[key] %>',
+			'<%= request_forgery_protection_token %>' : '<%= form_authenticity_token %>',
+      '_http_accept': 'application/javascript'
+    };
+    var url = $('input#photo_image').attr('rel');
+    $('input#photo_image').uploadify({
+      'swf'            : '/assets/uploadify.swf',
+      'uploader'       : url,
+      'fileObjName'	   : 'photo[image]',
+      'fileTypeExts'   : '*.png;*.jpg;*.gif',
+      'cancelImg'			 : '/images/cancel.png',
+      'multi'          : true,
+      'formData'       : upload_params,
+      'auto'           : true,
+      'onUploadSuccess' : function(file, data, response) {
+        $('#sortable').append(data);
+      }
+    });
+	</script>
+<% end %>
+
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<li class=""><%= link_to "Story information", edit_story_path(@story) %></li>
+					<li class="active"><a href="#tab2">Story Photos (<%= @story.photos.count %>)</a></li>
+					<li><%= link_to "Public link", story_path(@story) %></li>
+				</ul>
+
+				<div class="tab-content">
+
+					<div id="tab2" class="tab-pane active">
+
+						<div class="row-fluid">
+							<ul class="thumbnails">
+
+								<%= semantic_form_for @story do |story| %>
+									<% @story.photos.each do |photo| %>
+										<li class="ui-state-default thumbnail" style="text-align: center;">
+										
+										<% story.semantic_fields_for :photo do |f| %>
+											<% if photo.image? %>
+												<%= image_tag(photo.image_url(:thumb), :alt => "Photo #{photo.id}") %>
+											<% end %>
+											<div class="caption">
+												yo
+												<%= f.text_field :title, :class => 'input-large' %>
+												<div>
+												<%= f.text_area :description, { :class => 'input-large', :rows => 3, :cols => 3 }  %>
+											</div>
+											<div>
+												<%= f.text_field :tag_list, { :class => 'input-large'} %>
+											</div>
+											or <%= link_to "delete this photo", story_photo_path(@story, photo), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
+										</div>
+										<% end %>
+										</li>
+									<% end %>
+								<% end %>
+							</ul>
+						</div>
+					</div>
+			</div>
+</div>

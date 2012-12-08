@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
-  attr_accessible :image
+  attr_accessible :image, :title, :description, :tag_list
   acts_as_list :scope => :story
   mount_uploader :image, PhotoUploader
 
@@ -25,6 +25,10 @@ class Photo < ActiveRecord::Base
 
   def resize_ratio
     RESIZE_TO_FIT.first / RESIZE_TO_FIT.last
+  end
+
+  def to_s
+    "<Photo:#{self.id}>"
   end
 
   protected

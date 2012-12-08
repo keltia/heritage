@@ -35,7 +35,10 @@
 					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
 						<%= f.inputs :name => "Your social medias" do %>
 							<%= f.input 'facebook_url', :label => "Facebook page", 
-								:hint => "This is used for the like button at the bottom of your stories", 
+								:hint => "This is used for the button at the bottom of your stories", 
+								:input_html => { :class => "input-xxlarge" } %>
+							<%= f.input :twitter_url, :label => "Twitter url", 
+								:hint => "This is used for the button at the bottom of your stories", 
 								:input_html => { :class => "input-xxlarge" } %>
 							<% end %>
 

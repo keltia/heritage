@@ -1,0 +1,22 @@
+									<% @story.photos.each do |photo| %>
+										<li class="ui-state-default thumbnail" style="text-align: center;">
+										
+										<% story.semantic_fields_for :photo do |f| %>
+											<% if photo.image? %>
+												<%= image_tag(photo.image_url(:thumb), :alt => "Photo #{photo.id}") %>
+											<% end %>
+											<div class="caption">
+												yo
+												<%= f.text_field :title, :class => 'input-large' %>
+												<div>
+												<%= f.text_area :description, { :class => 'input-large', :rows => 3, :cols => 3 }  %>
+											</div>
+											<div>
+												<%= f.text_field :tag_list, { :class => 'input-large'} %>
+											</div>
+											or <%= link_to "delete this photo", story_photo_path(@story, photo), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
+										</div>
+										<% end %>
+										</li>
+									<% end %>
+

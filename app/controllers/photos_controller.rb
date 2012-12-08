@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :find_story
   before_filter :find_or_build_photo
 
@@ -38,7 +38,13 @@ class PhotosController < ApplicationController
         flash[:error] = 'Photo could not be deleted'
       end
       format.js
+      format.html {
+        redirect_to editlong_story_path(@story)
+      }
     end
+  end
+
+  def show
   end
 
   protected
@@ -52,6 +58,9 @@ class PhotosController < ApplicationController
 
   def find_or_build_photo
     @photo = params[:id] ? @story.photos.find_by_permalink(params[:id]) : @story.photos.build(params[:photo])
+    @photo.user = current_user if @photo.new_record?
+
+    @photo
   end
 
 end

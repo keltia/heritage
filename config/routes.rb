@@ -64,9 +64,13 @@ Heritage::Application.routes.draw do
   end
 
   resources :stories do
-    resources :photos, :only => [:create, :destroy, :edit, :update]
+    resources :photos, :only => [:create, :destroy, :edit, :update, :show]
     member do
       post :sort
+    end
+    member do 
+      get :editlong
+      put :updatelong
     end
   end
 
