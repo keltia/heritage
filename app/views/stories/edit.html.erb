@@ -92,6 +92,14 @@
 							</div>
 						</div>
 
+						<div class="btn-toolbar">
+							<div class="btn-group pull-right">
+								<button type="button" class="btn"><i class="icon-th-large"><%= link_to "", editlong_story_path(@story) %></i></button>
+								<button type="button" class="btn"><i class="icon-th"></i></button>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
 						<%= f.inputs :name => "Story Photos" do %>
 							<div id="photos thumbnails">
 								<ul id="sortable">
