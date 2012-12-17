@@ -72,6 +72,10 @@ Heritage::Application.routes.draw do
     end
   end
 
+  resources :emails, :only => [:create] do
+
+  end
+
   resources :photographers do
     member do
       post :sort

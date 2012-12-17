@@ -64,24 +64,26 @@
 				<% end %>
 			</div>
 
-			<div class="pull-right" id="">
-				<form class="form-horizontal">
+			<div class="pull-right">
+				<%= form_for Email.new, :remote => true do |f| %>
 					<div class="control-group">
 						<div class="controls">
-							<input type="text" id="inputName" placeholder="Name">
+							<%= f.text_field :name, :placeholder => "Name" %>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<input type="text" id="inputEmail" placeholder="Email Address">
+							<%= f.text_field :email, :placeholder => "Email Address" %>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn">Receive my newsletter</button>
+							<%= f.submit "Receive my newsletter", :class => "btn", :id => "new_email_submit" %>
+							<br/>
+							fa was added
 						</div>
 					</div>
-				</form>
+				<% end %>
 			</div>
 			<div class="clearfix"></div>
 
