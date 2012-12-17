@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: heritage_production
   pool: 5
-  username: root
-  password:
+  username: heritage
+  password: InAN0fnjh7CMVM3HjCc0N3EvhJfyqGgYjSWpUSWYFQrWi4QJJx
   socket: /var/run/mysqld/mysqld.sock
