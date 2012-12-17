@@ -70,11 +70,25 @@ blockquote,q { quotes:"" ""; }
 }
 #story_footer {
   background-color: white;
-  text-align: center;
   font-size: 2.0em;
   margin: auto;
   width: 810px;
   padding: 1em;
+}
+#heritage_footer {
+  margin: auto;
+  width: 820px;
+  font-size: 1.1em;
+  padding: 1em;
+  color: #999;
+}
+#heritage_footer a {
+  color: #999;
+}
+#social_icons {
+  opacity: 0.2;
+  filter:alpha(opacity=20);
+  text-align: left;
 }
 #story_footer .links {
   width: 300px;
