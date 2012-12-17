@@ -57,7 +57,7 @@
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs">
 					<li class=""><%= link_to "Story information", edit_story_path(@story) %></li>
-					<li class="active"><a href="#tab2">Story Photos (<%= @story.photos.count %>)</a></li>
+					<li class="active"><a href="#tab2" data-toggle="tab">Story Photos (<%= @story.photos.count %>)</a></li>
 					<li><%= link_to "Public link", story_path(@story) %></li>
 				</ul>
 
@@ -66,6 +66,15 @@
 					<div id="tab2" class="tab-pane active">
 
 						<%= form_for @story, :url => updatelong_story_path, :html => {:method => :put} do |f| %>
+
+						<div class="btn-toolbar">
+							<div class="btn-group pull-right">
+								<button type="button" class="btn"><i class="icon-th-large"></i></button>
+								<button type="button" class="btn"><a href="<%= edit_story_path(@story, :anchor => "tab2") %>"><i class="icon-th"></i></a></button>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
 						<div class="row-fluid">
 							<ul class="thumbnails">
 									<% @story.photos.each do |photo| %>
