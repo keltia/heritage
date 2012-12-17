@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:penso/capistrano-unicorn.git
+  revision: c4e6528481277563d24b103156d3e3a1c1bd30fc
+  specs:
+    capistrano-unicorn (0.1.6)
+      capistrano
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,6 +232,7 @@ DEPENDENCIES
   acts_as_list
   capistrano
   capistrano-ext
+  capistrano-unicorn!
   carrierwave
   coffee-rails (~> 3.2.1)
   database_cleaner

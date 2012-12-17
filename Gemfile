@@ -40,6 +40,7 @@ gem 'rvm-capistrano'
 # To use debugger
 group :test, :development do
 	gem 'ruby-debug19'
+  gem "capistrano-unicorn", :git => "git@github.com:penso/capistrano-unicorn.git"
 
 	gem "rspec"
 	gem "rspec-rails"

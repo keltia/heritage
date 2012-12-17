@@ -33,3 +33,4 @@ role :db,  "plouf.4push.com", :primary => true # This is where Rails migrations 
 
 require "rvm/capistrano"
 require "bundler/capistrano"
+require 'capistrano-unicorn'
