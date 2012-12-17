@@ -6,4 +6,8 @@ module ApplicationHelper
       link_to link_text, link_path
     end
   end
+
+  def full_image_link(url)
+    request.protocol + request.host_with_port + url
+  end
 end

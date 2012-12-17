@@ -2,6 +2,12 @@
 	<%= stylesheet_link_tag "/stylesheets/global" %>
 <% end %>
 
+<%= content_for :facebook_meta do %>
+	<meta property="og:image" content="<%= full_image_link @photo.image_url(:thumb) %>" />
+	<meta property="og:title" content="<%= @photo.title || @story.title %>" />
+	<meta property="og:site_name" content="<%= @story.user.name %>"/>
+<% end %>
+
 	<div id="photo">
 		<h1><%= @story.title %></h1>
 		<p>
