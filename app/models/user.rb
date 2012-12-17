@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   has_permalink
 
+  def any_for_sale?
+    self.photos.count(:conditions => {:for_sale => true}) > 0
+  end
+
   def to_label
     self.email
   end

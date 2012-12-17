@@ -30,7 +30,9 @@
 						<li><%= link_to "Stories", photographer_path(@story.user) %></li>
 						<li><%= link_to "About", photographer_path(@story.user) %></li>
 						<li><%= link_to "Contact", photographer_path(@story.user) %></li>
-						<li><%= link_to "For Sale", photographer_path(@story.user) %></li>
+						<% if @story.user.any_for_sale? %>
+							<li><%= link_to "For Sale", photographer_path(@story.user) %></li>
+						<% end %>
 						<li><%= link_to "Blog", "" %></li>
 					</ul>
 				</div>

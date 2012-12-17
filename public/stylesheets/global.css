@@ -257,3 +257,10 @@ a:hover,a:active {
 #myCarousel a {
   color: #999;
 }
+
+/*
+ * For the editlong page (admin)
+ */
+.caption {
+  text-align: left;
+}

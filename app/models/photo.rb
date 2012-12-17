@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
-  attr_accessible :image, :title, :description, :tag_list
+  attr_accessible :image, :title, :description, :tag_list, :for_sale
   acts_as_list :scope => :story
   mount_uploader :image, PhotoUploader
 

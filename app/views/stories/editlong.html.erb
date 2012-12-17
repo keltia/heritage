@@ -78,20 +78,24 @@
 						<div class="row-fluid">
 							<ul class="thumbnails">
 									<% @story.photos.each do |photo| %>
-										<li class="ui-state-default thumbnail" style="text-align: center;">
+										<li class="ui-state-default thumbnail">
 											<% if photo.image? %>
 												<%= image_tag(photo.image_url(:thumb), :alt => "Photo #{photo.id}") %>
 											<% end %>
 
 											<div class="caption">
-												<%= text_field "photos_#{photo.id}", :title, :value => photo.title, :class => 'input-large' %>
+												<%= text_field "photos_#{photo.id}", :title, :value => photo.title, :class => 'input-large', :placeholder => "title" %>
 												<div>
-													<%= text_area "photos_#{photo.id}", :description, :value => photo.description, :class => 'input-large', :rows => 3, :cols => 3  %>
+													<%= text_area "photos_#{photo.id}", :description, :value => photo.description, :class => 'input-large', :rows => 3, :cols => 3, :placeholder => "description"  %>
 												</div>
 												<div>
-													<%= text_field "photos_#{photo.id}", :tag_list, :value => photo.tag_list, :class => 'input-large' %>
+													<%= text_field "photos_#{photo.id}", :tag_list, :value => photo.tag_list, :class => 'input-large', :placeholder => "tag1, tag2" %>
 												</div>
-												or <%= link_to "delete this photo", story_photo_path(@story, photo), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
+												<label class="checkbox">
+													<%= check_box "photos_#{photo.id}", :for_sale, :checked => photo.for_sale, :class => 'input-large' %> For sale
+												</label>
+
+												<%= link_to "delete this photo", story_photo_path(@story, photo), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
 											</div>
 										</li>
 									<% end %>
