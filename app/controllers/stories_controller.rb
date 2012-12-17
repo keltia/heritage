@@ -6,6 +6,10 @@ class StoriesController < ApplicationController
 
   def index
     @stories = Story.all(:order => 'id DESC')
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   def show

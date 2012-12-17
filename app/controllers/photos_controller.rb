@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :find_story
-  before_filter :find_or_build_photo
+  before_filter :find_story, :except => [:show]
+  before_filter :find_or_build_photo, :except => [:show]
 
   def edit
     respond_to do |format|
@@ -45,9 +45,10 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @story = Story.find_by_permalink(params[:story_id])
+    @photo = params[:id] ? @story.photos.find_by_permalink(params[:id]) : @story.photos.build(params[:photo])
+    render :layout => "story"
   end
-
-  protected
 
   private
 

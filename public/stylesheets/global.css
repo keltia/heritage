@@ -21,6 +21,22 @@ blockquote,q { quotes:"" ""; }
 #story_header_container a {
   color: #666;
 }
+#main_photo {
+  margin: auto;
+  padding: 1em;
+}
+.minis {
+  padding-bottom: 1em;
+}
+.minis ul {
+  margin: auto;
+  width: 750px;
+}
+.minis ul li {
+  float: left;
+  padding: 1em;
+  width: 130px;
+}
 .story_header {
   width: 900px;
   margin: auto;

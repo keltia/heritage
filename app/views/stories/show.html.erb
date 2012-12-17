@@ -20,13 +20,19 @@
 	<%= @story.description %>
 	</p>
 
-	<div id="example" style="height: <%= @story.max_photo_height + 100 %>px;">
+	<div class="tagslist">
+		<% @story.tags.each do |tag| %>
+			<span class="label"><%= tag.name %></span>
+		<% end %>
+	</div>
+
+	<div id="example" style="height: <%= @story.max_photo_height + 200 %>px;">
 		<div id="myCarousel" class="carousel slide">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
 
 				<% @story.photos.each_with_index do |photo,i| %>
-					<div class="item <%= "active" if i == 0 %>" style="height: <%= @story.max_photo_height %>px;">
+					<div class="item <%= "active" if i == 0 %>" style="height: <%= @story.max_photo_height + 200 %>px;">
 						<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
 
 						<p class="muted">

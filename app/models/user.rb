@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :emails
 
+  validates_uniqueness_of :specific_url
+
   has_permalink
 
   def to_label
@@ -11,6 +13,13 @@ class User < ActiveRecord::Base
 
   def title
     self.name
+  end
+
+  before_create :create_specific_url
+  def create_specific_url
+    if email =~ /^(.*)@/
+      specific_url = $1
+    end
   end
 
   # Include default devise modules. Others available are:

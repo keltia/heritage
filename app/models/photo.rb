@@ -19,6 +19,10 @@ class Photo < ActiveRecord::Base
     [RESIZE_TO_FIT.first, result_height.to_i]
   end
 
+  def all_tags
+    (self.tags + self.story.tags).uniq
+  end
+
   def photo_ratio
     width / height
   end
