@@ -37,6 +37,7 @@
 							<%= nav_link "Your account", edit_account_path %>
 
 							<!--
+							<% if current_user %>
 							<li><%= link_to "Stories", "#", :class => "dropdown-toggle", 'data-toggle'=>"dropdown" %>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 									<% @stories.each do |story| %>
@@ -50,18 +51,22 @@
 							</li>
 
               <li><%= link_to "Statistics", ""  %></li>
+						<% end %>
 							-->
             </ul>
 						<div class="pull-right">
 							<ul class="nav">
-								<li class="dropdown">
-								<%= link_to current_user.email, "#", :class => "dropdown-toggle", 'data-toggle'=>"dropdown" %> 
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-									<li><%= link_to "Edit your account", edit_account_path %></li>
-									<li class="divider"></li>
-									<li><%= link_to "Logout", destroy_user_session_path(:method => :delete) %></li>
-								</ul>
-								</li>
+								<% if current_user %>
+									<li class="dropdown">
+									<%= link_to current_user.email, "#", :class => "dropdown-toggle", 'data-toggle'=>"dropdown" %> 
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										<li><%= link_to "Edit your account", edit_account_path %></li>
+										<li class="divider"></li>
+										<li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+									</ul>
+									</li>
+								<% else %>
+								<% end %>
 							</ul>
 						</div>
           </div><!--/.nav-collapse -->

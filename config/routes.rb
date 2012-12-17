@@ -72,9 +72,7 @@ Heritage::Application.routes.draw do
     end
   end
 
-  resources :emails, :only => [:create] do
-
-  end
+  resources :emails, :only => [:create]
 
   resources :photographers do
     member do
@@ -92,6 +90,10 @@ Heritage::Application.routes.draw do
 
   constraints :subdomain => "admin" do
     root :to => "admin#index"
+  end
+
+  constraints :subdomain => "www" do
+    root :to => "heritage#index"
   end
 
   root :to => "photographers#index"
