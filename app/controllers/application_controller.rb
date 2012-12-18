@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protected
   def set_photographer
     @current_photographer = User.find_by_specific_url(request.server_name, :include => [:stories])
+    # use request.host ? raise ActiveRecord::RecordNotFound ?
   end
 
   def choose_layout

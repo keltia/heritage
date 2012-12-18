@@ -1,7 +1,13 @@
 class PhotographersController < ApplicationController
 
   def show
-    @photographer = User.find_by_permalink(params[:id], :include => [:stories])
+    if params[:id]
+      @photographer = User.find_by_permalink(params[:id], :include => [:stories])
+    end
+    @photographer ||= @current_photographer
+
+    raise ActiveRecord::RecordNotFound unless @photographer
+
     @stories = @photographer.stories.all(:include => [:photos])
   end
 

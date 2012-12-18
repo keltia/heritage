@@ -1,3 +1,6 @@
+require 'main_domain_constraint'
+require 'personalized_domain_constraint'
+
 Heritage::Application.routes.draw do
   get "photos/create"
 
@@ -92,9 +95,15 @@ Heritage::Application.routes.draw do
     root :to => "admin#index"
   end
 
-  root :to => "heritage#index", :constraints => { :domain => "heritage.io", :subdomain => "www"}
+  constraints(MainDomainConstraint) do
+    root :to => "heritage#index"
+  end
+  
+  constraints(PersonalizedDomainConstraint) do
+    root :to => "photographers#show"
+  end
 
-  root :to => "photographers#index"
+  #root :to => "photographers#index"
 
   # See how all your routes lay out with "rake routes"
 
