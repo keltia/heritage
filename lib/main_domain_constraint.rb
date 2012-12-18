@@ -4,6 +4,8 @@ class MainDomainConstraint
   end
 
   def matches?(request)
-    ['www.minideb.local', 'www.heritage.io'].include? request.server_name
+    result = ['www.minideb.local', 'www.heritage.io'].include? request.server_name
+    puts "Does it match the main website?: #{result} host: #{request.server_name}"
+    result
   end
 end
