@@ -9,6 +9,8 @@ class PhotographersController < ApplicationController
     raise ActiveRecord::RecordNotFound unless @photographer
 
     @stories = @photographer.stories.all(:include => [:photos])
+
+    render :layout => "story"
   end
 
   def index

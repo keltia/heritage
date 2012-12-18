@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   before_create :create_specific_url
   def create_specific_url
     if email =~ /^(.*)@/
-      specific_url = $1
+      specific_url = "#{$1}.heritage.io"
     end
   end
 

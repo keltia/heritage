@@ -25,16 +25,16 @@
 		<div id="story_header_container">
 			<div class="story_header">
 				<div class="leftlogo">
-					<%= link_to @story.user.name, root_url %>
+					<%= link_to @photographer.name, root_url %>
 				</div>
 				<div class="navlinks">
 					<ul>
 						<li><%= link_to "Home", root_url %></li>
-						<li><%= link_to "Stories", photographer_path(@story.user) %></li>
-						<li><%= link_to "About", photographer_path(@story.user) %></li>
-						<li><%= link_to "Contact", photographer_path(@story.user) %></li>
-						<% if @story.user.any_for_sale? %>
-							<li><%= link_to "For Sale", photographer_path(@story.user) %></li>
+						<li><%= link_to "Stories", photographer_path(@photographer) %></li>
+						<li><%= link_to "About", photographer_path(@photographer) %></li>
+						<li><%= link_to "Contact", photographer_path(@photographer) %></li>
+						<% if @photographer.any_for_sale? %>
+							<li><%= link_to "For Sale", photographer_path(@photographer) %></li>
 						<% end %>
 						<li><%= link_to "Blog", "" %></li>
 					</ul>
@@ -50,9 +50,9 @@
 			 
 			<div class="links">
 
-				<% if @story.user.facebook_url %>
+				<% if @photographer.facebook_url %>
 					<div style="height: 80px;">
-						<iframe src="http://www.facebook.com/plugins/like.php?href=<%= CGI.escape @story.user.facebook_url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+						<iframe src="http://www.facebook.com/plugins/like.php?href=<%= CGI.escape @photographer.facebook_url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
 					</div>
 				<% end %>
 			</div>
@@ -79,11 +79,11 @@
 			<div class="clearfix"></div>
 
 			<div id="social_icons">
-				<% if @story.user.facebook_url %>
-					<%= link_to image_tag("/assets/images/glyphicons_410_facebook.png"), @story.user.facebook_url %>
+				<% if @photographer.facebook_url %>
+					<%= link_to image_tag("/assets/images/glyphicons_410_facebook.png"), @photographer.facebook_url %>
 				<% end %>
-				<% if @story.user.twitter_url %>
-					<%= link_to image_tag("/assets/images/glyphicons_411_twitter.png"), @story.user.twitter_url %>
+				<% if @photographer.twitter_url %>
+					<%= link_to image_tag("/assets/images/glyphicons_411_twitter.png"), @photographer.twitter_url %>
 				<% end %>
 				<%= link_to(image_tag("/assets/images/glyphicons_417_rss.png"), stories_path(:format => :atom)) %>
 			</div>
