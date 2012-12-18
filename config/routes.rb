@@ -92,9 +92,7 @@ Heritage::Application.routes.draw do
     root :to => "admin#index"
   end
 
-  constraints :subdomain => "www" do
-    root :to => "heritage#index"
-  end
+  root :to => "heritage#index", :constraints => { :domain => "heritage.io", :subdomain => "www"}
 
   root :to => "photographers#index"
 
