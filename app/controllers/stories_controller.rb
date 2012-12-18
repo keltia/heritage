@@ -71,7 +71,7 @@ class StoriesController < ApplicationController
     @story = Story.new(params[:story])
     @story.user = current_user
     if @story.save
-      redirect_to :action => :edit, :id => @story.id
+      redirect_to :action => :edit, :id => @story.permalink
     else
       render :new
     end

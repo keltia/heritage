@@ -4,7 +4,6 @@ class PersonalizedDomainConstraint
   end
 
   def matches?(request)
-
-    false
+    User.count(:conditions => {:specific_url => request.server_name}) > 0
   end
 end
