@@ -110,6 +110,9 @@ GEM
     libv8 (3.3.10.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    lograge (0.1.2)
+      actionpack
+      activesupport
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -246,6 +249,7 @@ DEPENDENCIES
   jquery-rails
   json
   less-rails
+  lograge
   mysql2
   rails (= 3.2.9)
   rainbow
