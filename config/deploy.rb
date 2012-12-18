@@ -31,6 +31,8 @@ role :db,  "plouf.4push.com", :primary => true # This is where Rails migrations 
 #   end
 # end
 
+load 'deploy/assets'
+
 require "rvm/capistrano"
 require "bundler/capistrano"
 require 'capistrano-unicorn'
