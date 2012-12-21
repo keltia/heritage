@@ -78,12 +78,4 @@ class StoriesController < ApplicationController
   end
 
   protected
-
-  def get_story
-    @story = current_user.stories.find_by_permalink(params[:id], :include => [:photos])
-  end
-
-  def get_stories
-    @stories = current_user.stories
-  end
 end

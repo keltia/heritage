@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :find_story, :except => [:show]
+  before_filter :get_story, :except => [:show]
   before_filter :find_or_build_photo, :except => [:show]
 
   def edit
@@ -46,19 +46,14 @@ class PhotosController < ApplicationController
 
   def show
     @story = Story.find_by_permalink(params[:story_id])
-    @photo = params[:id] ? @story.photos.find_by_permalink(params[:id]) : @story.photos.build(params[:photo])
+    @photo = @story.photos.find_by_permalink(params[:id]) || @story.photos.find(params[:id])
     render :layout => "story"
   end
 
   private
 
-  def find_story
-    @story = current_user.stories.find_by_permalink(params[:story_id])
-    raise ActiveRecord::RecordNotFound unless @story
-  end
-
   def find_or_build_photo
-    @photo = params[:id] ? @story.photos.find_by_permalink(params[:id]) : @story.photos.build(params[:photo])
+    @photo = params[:id] ? (@story.photos.find_by_permalink(params[:id]) || @story.photos.find(params[:id])) : @story.photos.build(params[:photo])
     @photo.user = current_user if @photo.new_record?
 
     @photo

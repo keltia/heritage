@@ -6,7 +6,8 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :title
+  validates_uniqueness_of :title, :scope => :user_id
 
   attr_accessible :title, :description, :tag_list
 
@@ -19,4 +20,14 @@ class Story < ActiveRecord::Base
   def max_photo_width
     photos.sort{|a,b| a.width <=> b.width }.last.photo_dimension.first
   end
+
+#  protected
+#  before_save :generate_permalinkifblank
+#  def generate_permalinkifblank
+#    if self.title.blank?
+#      self.permalink = self.id.to_s
+#    end
+#
+#    true
+#  end
 end

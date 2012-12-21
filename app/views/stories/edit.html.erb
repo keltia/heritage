@@ -58,7 +58,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">Story information</a></li>
 					<li class=""><a href="#tab2" data-toggle="tab">Story Photos (<%= @story.photos.count %>)</a></li>
-					<li><%= link_to "Public link", story_path(@story) %></li>
+					<li><%= link_to "Public link", story_url(@story, :host => current_user.specific_url ) %></li>
 				</ul>
 				<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
 
@@ -107,7 +107,7 @@
 										<li class="ui-state-default" id="sortable_<%= photo.id %>">
 										<% if photo.image? %>
 											<%= link_to image_tag(photo.image_url(:thumb), :alt => "Photo #{photo.id}"), 
-												edit_story_photo_path(@story, photo), {
+												edit_story_photo_path(@story, photo.permalink || photo.id), {
 												:class => "thumbnail", 'data-cache' => 'false', 
 												'data-toggle' => 'modal', 'data-target' => '#myModal'
 											}  %>

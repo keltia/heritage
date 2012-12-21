@@ -9,15 +9,10 @@
 <% end %>
 
 	<div id="photo">
-		<h1><%= @story.title %></h1>
-		<p>
-		<%= @story.description %>
-		</p>
-
-		<%= image_tag(@photo.image_url(:web), :width => 800, :height => @photo.photo_dimension.last, :id => "main_photo" ) if @photo.image? %>
+		<% next_photo = @photo.lower_item || @story.photos.first %>
+		<%= link_to(image_tag(@photo.image_url(:web), :width => 800, :height => @photo.photo_dimension.last, :id => "main_photo" ), story_photo_path(@story, next_photo.permalink || next_photo.id)) if @photo.image? %>
 
 		<div class="tagslist">
-
 		<% @photo.all_tags.each do |tag| %>
 			<span class="label"><%= tag.name %></span>
 		<% end %>
@@ -28,8 +23,8 @@
 			<ul>
 				<%= show_thumbs(@story, @photo) %>
 			</ul>
-		<div class="clearfix"></div>
-	</div>
+			<div class="clearfix"></div>
+		</div>
 	<% end %>
 
 </div>

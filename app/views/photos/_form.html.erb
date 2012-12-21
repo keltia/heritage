@@ -1,4 +1,4 @@
-<%= semantic_form_for @photo, :url => story_photo_path(@story, @photo), :html => {:method => :put} do |f| %>
+<%= semantic_form_for @photo, :url => story_photo_path(@story, @photo.permalink || @photo.id), :html => {:method => :put} do |f| %>
 	<%= f.input :title, :input_html => { :class => 'input-xxlarge' } %>
 	<%= f.input :description, :input_html => { :class => 'input-xxlarge', :rows => 10 } %>
 	<%= f.input :tag_list, :input_html => { :class => 'input-xxlarge' }, :hint => "Enter, your, tags, with, commas" %>

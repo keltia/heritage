@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
+  validates_uniqueness_of :title, :scope => :user_id, :allow_nil => true, :allow_blank => true
+
   attr_accessible :image, :title, :description, :tag_list, :for_sale
   acts_as_list :scope => :story
   mount_uploader :image, PhotoUploader
@@ -35,12 +37,15 @@ class Photo < ActiveRecord::Base
     "<Photo:#{self.id}>"
   end
 
-  protected
-  before_save :generate_permalinkifblank
-  def generate_permalinkifblank
-    if self.permalink.blank?
-      self.permalink = "#{self.id}"
-    end
-  end
+#  protected
+#  after_create :generate_permalinkifblank
+#  def generate_permalinkifblank
+#    return unless self.permalink.blank?
+#
+#    self.permalink = "#{self.id}"
+#    self.save
+#
+#    true
+#  end
 
 end

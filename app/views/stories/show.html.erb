@@ -15,16 +15,13 @@
 <% if @story.photos.any? %>
 
 	<div id="story">
-	<h1><%= @story.title %></h1>
-	<p>
-	<%= @story.description %>
-	</p>
-
+		<!--
 	<div class="tagslist">
 		<% @story.tags.each do |tag| %>
 			<span class="label"><%= tag.name %></span>
 		<% end %>
 	</div>
+	-->
 
 	<div id="example" style="height: <%= @story.max_photo_height + 200 %>px;">
 		<div id="myCarousel" class="carousel slide">
@@ -36,7 +33,7 @@
 						<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
 
 						<p class="muted">
-						<%= link_to story_photo_url(@story, photo), story_photo_path(@story, photo) %>
+						<%= link_to story_photo_url(@story, photo.permalink || photo.id), story_photo_path(@story, photo.permalink || photo.id) %>
 						</p>
 					</div>
 				<% end %>

@@ -32,6 +32,6 @@ class AccountsController < ApplicationController
 
   def get_photographer
     @photographer = current_user
-    @stories = current_user.stories
+    get_stories
   end
 end

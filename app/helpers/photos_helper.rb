@@ -9,7 +9,7 @@ module PhotosHelper
       break if p.position > (@photo.position + 2)
 
       result << content_tag(:li, link_to(image_tag(p.image_url(:thumb)), 
-                                story_photo_path(@story, p), 
+                                story_photo_path(@story, p.permalink || p.id), 
                                 :class => "thumbnail"))
     end
 
