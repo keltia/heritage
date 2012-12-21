@@ -20,6 +20,7 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    @photographer.user_avatar ||= @photographer.user_avatar.new
   end
 
   def social_medias

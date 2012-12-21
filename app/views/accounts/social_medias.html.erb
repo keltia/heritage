@@ -34,11 +34,14 @@
 				<div class="tab-content">
 					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
 						<%= f.inputs :name => "Your social medias" do %>
-							<%= f.input 'facebook_url', :label => "Facebook page", 
+							<%= f.input 'facebook_url', :label => "Facebook page URL", 
 								:hint => "This is used for the button at the bottom of your stories", 
 								:input_html => { :class => "input-xxlarge" } %>
-							<%= f.input :twitter_url, :label => "Twitter url", 
+							<%= f.input :twitter_url, :label => "Twitter URL", 
 								:hint => "This is used for the button at the bottom of your stories", 
+								:input_html => { :class => "input-xxlarge" } %>
+							<%= f.input :blog_url, :label => "Blog URL", 
+								:hint => "This is used for the blog link on the top of your website",
 								:input_html => { :class => "input-xxlarge" } %>
 							<% end %>
 

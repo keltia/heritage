@@ -15,7 +15,7 @@ blockquote,q { quotes:"" ""; }
 #story_header_container {
   margin-top: -18px;
   background-color: white;
-  height: 100px;
+  height: 70px;
   font-size: 1.4em;
 }
 #story_header_container a {
@@ -43,7 +43,7 @@ blockquote,q { quotes:"" ""; }
 }
 .navlinks {
   float: right;
-  margin: 35px auto 0px;
+  margin: 25px auto 0px;
   padding: 0 0 0 40px;
   text-align: left;
 }
@@ -60,7 +60,7 @@ blockquote,q { quotes:"" ""; }
 }
 .leftlogo {
   float: left;
-  margin: 22px 0 0 0;
+  margin: 15px 0 0 0;
   padding-bottom: 22px; 
   font-size: 2.0em;
 }
@@ -277,4 +277,21 @@ a:hover,a:active {
  */
 .caption {
   text-align: left;
+}
+
+/*
+ * For the about page (photographers)
+ */
+.about {
+  padding-top: 20px;
+  overflow: hidden;
+}
+.about-heading {
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.about img {
+  margin-right: 40px;
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217193539) do
+ActiveRecord::Schema.define(:version => 20121221195152) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(:version => 20121217193539) do
 
   add_index "urls", ["user_id"], :name => "index_urls_on_user_id"
 
+  create_table "user_avatars", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "image"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -107,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20121217193539) do
     t.string   "specific_url"
     t.string   "permalink"
     t.string   "twitter_url"
+    t.string   "blog_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

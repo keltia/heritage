@@ -2,8 +2,13 @@ class User < ActiveRecord::Base
   has_many :stories, :order => "position", :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :emails
+  has_one :user_avatar, :dependent => :destroy
 
   validates_uniqueness_of :specific_url
+  validates_uniqueness_of :name, :allow_blank => true, :allow_nil => true
+
+  accepts_nested_attributes_for :user_avatar
+  attr_accessible :user_avatar_attributes
 
   has_permalink
 
@@ -13,6 +18,10 @@ class User < ActiveRecord::Base
 
   def to_label
     self.email
+  end
+
+  def gravatar_url(options = {})
+    Gravatar.new(email).image_url(options)
   end
 
   def title
@@ -34,5 +43,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
-    :name, :description, :facebook_url, :specific_url, :twitter_url
+    :name, :description, :facebook_url, :specific_url, :twitter_url,
+    :blog_url, :user_avatar
 end

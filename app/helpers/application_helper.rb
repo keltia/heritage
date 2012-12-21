@@ -10,4 +10,12 @@ module ApplicationHelper
   def full_image_link(url)
     request.protocol + request.host_with_port + url
   end
+
+  def user_avatar_url(user)
+    if user.user_avatar
+      user.user_avatar.image_url(:thumb)
+    else
+      user.gravatar_url(:s => 150)
+    end
+  end
 end

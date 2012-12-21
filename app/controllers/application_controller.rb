@@ -9,10 +9,11 @@ class ApplicationController < ActionController::Base
     if is_admin_interface?
       @current_photographer = @photographer = current_user
     else
-      @current_photographer = User.find_by_specific_url(request.server_name, :include => [:stories])
+      @current_photographer = @photographer = User.find_by_specific_url(request.server_name, 
+                                                                        :include => [:stories])
       # use request.host ? raise ActiveRecord::RecordNotFound ?
-      @photographer ||= @current_photographer
     end
+
   end
 
   def choose_layout

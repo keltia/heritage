@@ -80,6 +80,8 @@ Heritage::Application.routes.draw do
   resources :photographers do
     member do
       post :sort
+      get :about
+      get :contact
     end
   end
 
@@ -93,6 +95,10 @@ Heritage::Application.routes.draw do
 
   constraints :subdomain => "admin" do
     root :to => "admin#index"
+  end
+
+  constraints(PersonalizedDomainConstraint.new) do
+
   end
 
   root :to => "photographers#show", :constraints => PersonalizedDomainConstraint.new

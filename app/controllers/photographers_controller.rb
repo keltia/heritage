@@ -20,6 +20,14 @@ class PhotographersController < ApplicationController
     render :layout => "story"
   end
 
+  def contact
+    render :layout => "story"
+  end
+
+  def about
+    render :layout => "story"
+  end
+
   def index
     @photographers = User.all(:include => [:stories])
   end
@@ -49,12 +57,5 @@ class PhotographersController < ApplicationController
       end
     end
     render :status => '200', :text => "OK"
-  end
-
-  protected
-
-  def get_photographer
-    @photographer = current_user
-    @stories = current_user.stories
   end
 end

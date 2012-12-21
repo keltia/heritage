@@ -92,6 +92,7 @@ GEM
     formtastic-bootstrap (2.0.0)
       formtastic (~> 2.2)
       formtastic-bootstrap
+    gravatar-ultimate (1.0.3)
     has_permalink (0.1.4)
     highline (1.6.15)
     hike (1.2.1)
@@ -245,6 +246,7 @@ DEPENDENCIES
   flash_cookie_session
   formtastic
   formtastic-bootstrap
+  gravatar-ultimate
   has_permalink
   jquery-rails
   json

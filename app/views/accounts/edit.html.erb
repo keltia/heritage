@@ -32,8 +32,20 @@
 					<%= render :partial => 'lefttabs' %>
 				</ul>
 				<div class="tab-content">
-<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
+					<%= semantic_form_for @photographer, 
+						:url => account_path, 
+						:html => {:method => :put, :multipart => true} do |f| %>
+
 	<%= f.inputs :name => "Your information" do %>
+		<div class="string input optional control-group">
+			<label class="control-label" for="avatar">
+				Avatar
+			</label>
+			<%= image_tag(user_avatar_url(@photographer)) %>
+		</div>
+		<%= f.semantic_fields_for :user_avatar do |ff| %>
+			<%= ff.input :image, :as => :file %>
+		<% end %>
 		<%= f.input :name, :input_html => { :size => 40 } %>
 		<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
 	<% end %>

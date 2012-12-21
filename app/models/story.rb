@@ -1,7 +1,10 @@
 class Story < ActiveRecord::Base
   belongs_to :user
-  has_many :photos, :order => "position"
+  has_many :photos, :order => "position", :dependent => :destroy
   acts_as_list :scope => :user_id
+
+  scope :public, where(:is_private => false)
+  scope :private, where(:is_private => true)
 
   acts_as_taggable
   has_permalink
@@ -9,7 +12,7 @@ class Story < ActiveRecord::Base
   validates_presence_of :user_id, :title
   validates_uniqueness_of :title, :scope => :user_id
 
-  attr_accessible :title, :description, :tag_list
+  attr_accessible :title, :description, :tag_list, :is_private
 
   def max_photo_height
     max_height = photos.sort{|a,b| a.height <=> b.height }.last
