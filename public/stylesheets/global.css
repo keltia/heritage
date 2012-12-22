@@ -2,15 +2,8 @@
 	Resets defualt browser settings
 	reset.css
 */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
-:focus { outline:0; }
 a:active { outline:none; }
-body { line-height:1; color:black; background:white; }
 ol,ul { list-style:none; }
-table { border-collapse:separate; border-spacing:0; }
-caption,th,td { text-align:left; font-weight:normal; }
-blockquote:before,blockquote:after,q:before,q:after { content:""; }
-blockquote,q { quotes:"" ""; }
 
 #story_header_container {
   margin-top: -18px;
@@ -56,12 +49,15 @@ blockquote,q { quotes:"" ""; }
   width: 100%;
 }
 .leftlogo a {
-  color: black !important;
+  color: #434343 !important;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: -1px;
+  font-size: 40px;
 }
 .leftlogo {
   float: left;
   margin: 15px 0 0 0;
-  padding-bottom: 22px; 
   font-size: 2.0em;
 }
 #story {
@@ -288,10 +284,13 @@ a:hover,a:active {
 }
 .about-heading {
   font-weight: normal;
-  font-size: 40px;
-  line-height: 1;
+  font-size: 34px;
+  line-height: 1.0em;
   letter-spacing: -1px;
 }
 .about img {
   margin-right: 40px;
+  background-color: white;
+  margin: 1px solid #C3D5E3;
+  padding: 10px;
 }
