@@ -30,8 +30,8 @@
 				<div class="navlinks">
 					<ul>
 						<li><%= link_to "Home", root_url %></li>
-						<li><%= link_to "About", about_photographer_path(@photographer) %></li>
-						<li><%= link_to "Contact", contact_photographer_path(@photographer) %></li>
+						<li><%= link_to "About", about_path %></li>
+						<li><%= link_to "Contact", contact_path %></li>
 						<% if @photographer.any_for_sale? %>
 							<li><%= link_to "For Sale", photographer_path(@photographer) %></li>
 						<% end %>

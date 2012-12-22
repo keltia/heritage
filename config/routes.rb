@@ -98,7 +98,8 @@ Heritage::Application.routes.draw do
   end
 
   constraints(PersonalizedDomainConstraint.new) do
-
+    match 'about' => 'photographers#about'
+    match 'contact' => 'photographers#contact'
   end
 
   root :to => "photographers#show", :constraints => PersonalizedDomainConstraint.new
