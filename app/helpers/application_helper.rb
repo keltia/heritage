@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def user_avatar_url(user)
-    if user.user_avatar
+    if user.user_avatar && !user.user_avatar.new_record?
       user.user_avatar.image_url(:thumb)
     else
       user.gravatar_url(:s => 150)
