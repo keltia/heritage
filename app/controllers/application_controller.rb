@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
     if is_admin_interface?
       @current_photographer = @photographer = current_user
     else
-      @current_photographer = @photographer = User.find_by_specific_url(request.server_name, 
+
+      host_for_query = request.server_name
+      if host_for_query !~ /^www\./
+        host_for_query = "www.#{host_for_query}"
+      end
+
+      @current_photographer = @photographer = User.find_by_specific_url(host_for_query,
                                                                         :include => [:stories])
 
       if @photographer.nil? && request.server_name =~ /heritage\.io$/
