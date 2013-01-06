@@ -1,3 +1,8 @@
+<%= content_for :facebook_meta do %>
+	<meta property="og:image" content="<%= full_image_link @stories.photos.first.image_url(:web) %>" />
+	<meta property="og:title" content="<%= @stories.photos.first.title || @story.title %>" />
+	<meta property="og:site_name" content="<%= @story.user.name %>"/>
+<% end %>
 <%= content_for :head_script do %>
 	<script type="text/javascript">
 		$(document).ready(function() {
