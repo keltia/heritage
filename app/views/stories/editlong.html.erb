@@ -1,5 +1,3 @@
-<% key = Rails.application.config.session_options[:key] %>
-
 <%= content_for :head_script do %>
 <script type="text/javascript">
 		$(document).ready(function() {
@@ -29,29 +27,6 @@
 				});
 		});
 </script>
-<% end %>
-<%= content_for :scripts do %>
-<script type="text/javascript">
-    var upload_params = {
-			'<%= key %>' : '<%= cookies[key] %>',
-			'<%= request_forgery_protection_token %>' : '<%= form_authenticity_token %>',
-      '_http_accept': 'application/javascript'
-    };
-    var url = $('input#photo_image').attr('rel');
-    $('input#photo_image').uploadify({
-      'swf'            : '/assets/uploadify.swf',
-      'uploader'       : url,
-      'fileObjName'	   : 'photo[image]',
-      'fileTypeExts'   : '*.png;*.jpg;*.gif',
-      'cancelImg'			 : '/images/cancel.png',
-      'multi'          : true,
-      'formData'       : upload_params,
-      'auto'           : true,
-      'onUploadSuccess' : function(file, data, response) {
-        $('#sortable').append(data);
-      }
-    });
-	</script>
 <% end %>
 
 			<div class="tabbable tabs-left">
