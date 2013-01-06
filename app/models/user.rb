@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   before_create :create_specific_url
   def create_specific_url
     if email =~ /^(.*)@/
+      internal_url = "#{$1}.heritage.io"
       specific_url = "#{$1}.heritage.io"
     end
   end
