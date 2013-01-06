@@ -75,7 +75,11 @@ Heritage::Application.routes.draw do
     end
   end
 
-  resources :emails, :only => [:create]
+  resources :emails, :only => [:create, :index] do
+    collection do
+      get :export
+    end
+  end
 
   resources :photographers do
     member do

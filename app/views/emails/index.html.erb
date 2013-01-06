@@ -1,0 +1,9 @@
+<h1><%= current_user.emails.count %> emails</h1>
+<p>
+<%= link_to "Text export", export_emails_path %>
+</p>
+<ul>
+	<% current_user.emails.order('id DESC').limit(20).each do |email| %>
+		<li><%= email.email %></li>
+	<% end %>
+</ul>

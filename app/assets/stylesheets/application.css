@@ -17,7 +17,7 @@
  *= require 'admin'
  *= require 'emails'
  *= require 'about'
- *= require 'global'
+ *# require 'global'
  *# require_tree .
  *# require formtastic
  */

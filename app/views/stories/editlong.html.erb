@@ -95,7 +95,7 @@
 													<%= check_box "photos_#{photo.id}", :for_sale, :checked => photo.for_sale, :class => 'input-large' %> For sale
 												</label>
 
-												<%= link_to "delete this photo", story_photo_path(@story, photo), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
+												<%= link_to "delete this photo", story_photo_path(@story.id, photo.id), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
 											</div>
 										</li>
 									<% end %>

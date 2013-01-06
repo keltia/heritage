@@ -50,7 +50,7 @@ class StoriesController < ApplicationController
         photo.save
       end
     end
-    render :status => '200', :text => "OK"
+    render :nothing => true
   end
 
   def update
