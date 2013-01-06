@@ -1,25 +1,29 @@
 <%= content_for :head_script do %>
-	<%= stylesheet_link_tag "/stylesheets/global" %>
 	<script type="text/javascript">
 		$(document).ready(function() {
+				<% if @story.photos.count > 8 %>
 				$('#carousel').flexslider({
 					animation: "slide",
 					controlNav: false,
 					animationLoop: false,
 					slideshow: false,
-					itemWidth: 210,
+					itemWidth: 110,
 					itemMargin: 5,
 					asNavFor: '#slider'
-				});
+					});
+				<% end %>
 				$('#slider').flexslider({
 					animation: "slide",
-					controlNav: false,
+					controlNav: true,
 					animationLoop: false,
 					sync: "#carousel",
 					slideshow: false,
 					start: function(slider){
 					$('body').removeClass('loading');
 					}
+				});
+				$('#slider img').click(function() {
+					$('#slider').flexslider('next');
 				});
 		});
 
@@ -45,15 +49,18 @@
 				<% end %>
 			</ul>
 		</div>
-		<div id="carousel" class="flexslider">
-			<ul class="slides">
-				<% @story.photos.each_with_index do |photo,i| %>
-					<li>
-					<%= image_tag(photo.image_url(:thumb), :width => 300, :height => 300) if photo.image? %>
-					</li>
-				<% end %>
-			</ul>
-		</div>
+
+		<% if @story.photos.count > 8 %>
+			<div id="carousel" class="flexslider">
+				<ul class="slides">
+					<% @story.photos.each_with_index do |photo,i| %>
+						<li>
+						<%= image_tag(photo.image_url(:thumb), :width => 300, :height => 300) if photo.image? %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 
 </div>
 </div>

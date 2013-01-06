@@ -1,4 +1,5 @@
 class PhotographersController < ApplicationController
+  layout 'story'
 
   def show
     if params[:id]
@@ -16,16 +17,13 @@ class PhotographersController < ApplicationController
         break
       end
     end
-
-    render :layout => "story"
   end
 
   def contact
-    render :layout => "story"
   end
 
   def about
-    render :layout => "story"
+    @stories = @photographer.stories
   end
 
   def index
@@ -39,7 +37,6 @@ class PhotographersController < ApplicationController
   end
 
   def update
-    @photographer = current_user
     if @photographer.update_attributes(params[:user])
       flash[:notice] = "Info was saved"
       redirect_to :action => 'edit'
@@ -56,6 +53,12 @@ class PhotographersController < ApplicationController
         story.save
       end
     end
-    render :status => '200', :text => "OK"
+    render :text => "OK"
+  end
+
+  protected
+
+  def get_photographer
+    @photographer = current_user
   end
 end

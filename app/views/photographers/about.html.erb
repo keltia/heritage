@@ -1,8 +1,3 @@
-<%= content_for :head_script do %>
-	<%= stylesheet_link_tag "/stylesheets/global" %>
-<% end %>
-
-
 <div class="about">
 	<%= image_tag(user_avatar_url(@current_photographer), :class => "pull-left") %>
 
@@ -29,19 +24,4 @@
 
 <h2 class="about-heading">Stories</h2>
 
-<div id="photos">
-	<ul id="sortable">
-	<% @photographer.stories.public.each do |story| %>
-		<% if story.photos.any? && story.photos.first.image? %>
-			<% photo = story.photos.first %>
-
-			<li class="ui-state-default" id="sortable_<%= story.id %>">
-			<%= link_to(image_tag(story.photos.first.image_url(:thumb)), story_photo_url(story, photo.permalink || photo.id), :class => "thumbnail") %>
-			</li>
-
-		<% end %>
-	<% end %>
-
-  </ul>
-  <div class="clearfix"></div>
-</div>
+<%= render :partial => 'stories/thumbnails' %>

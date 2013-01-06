@@ -1,30 +1,63 @@
-<%= content_for :head_script do %>
-	<%= stylesheet_link_tag "/stylesheets/global" %>
-<% end %>
-
 <%= content_for :facebook_meta do %>
 	<meta property="og:image" content="<%= full_image_link @photo.image_url(:thumb) %>" />
 	<meta property="og:title" content="<%= @photo.title || @story.title %>" />
 	<meta property="og:site_name" content="<%= @story.user.name %>"/>
 <% end %>
+<%= content_for :head_script do %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				$('#carousel').flexslider({
+					animation: "slide",
+					controlNav: false,
+					animationLoop: false,
+					slideshow: false,
+					itemWidth: 110,
+					itemMargin: 5,
+					asNavFor: '#slider'
+				});
+				$('#slider').flexslider({
+					animation: "slide",
+					controlNav: false,
+					animationLoop: false,
+					sync: "#carousel",
+					slideshow: false,
+					start: function(slider){
+					$('body').removeClass('loading');
+					}
+				});
+		});
 
-	<div id="photo">
+	</script>
+<% end %>
+
 		<% next_photo = @photo.lower_item || @story.photos.first %>
-		<%= link_to(image_tag(@photo.image_url(:web), :width => 800, :height => @photo.photo_dimension.last, :id => "main_photo" ), story_photo_path(@story, next_photo.permalink || next_photo.id)) if @photo.image? %>
 
+		<div id="slider" class="flexslider">
+			<ul class="slides">
+				<% @story.photos.each_with_index do |photo,i| %>
+					<li class="<%= 'flexleft-active-slide' if photo.id == @photo.id %>">
+						<%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+
+									<!--
 		<div class="tagslist">
 		<% @photo.all_tags.each do |tag| %>
 			<span class="label"><%= tag.name %></span>
 		<% end %>
 		</div>
+		-->
 
 	<% if @story.photos.any? %>
-		<div id="photos thumbnails" class="minis">
-			<ul>
-				<%= show_thumbs(@story, @photo) %>
+		<div id="carousel" class="flexslider">
+			<ul class="slides">
+				<% @story.photos.each_with_index do |photo,i| %>
+					<li>
+					<%= image_tag(photo.image_url(:thumb), :width => 300, :height => 300) if photo.image? %>
+					</li>
+				<% end %>
 			</ul>
-			<div class="clearfix"></div>
 		</div>
 	<% end %>
-
-</div>

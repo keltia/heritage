@@ -9,7 +9,16 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require 'bootstrap_and_overrides'
+ *= require 'flexslider'
+ *= require 'flexslider_overrides'
+ *= require 'uploadify'
+ *
+ *= require 'admin'
+ *= require 'emails'
+ *= require 'about'
+ *= require 'global'
+ *# require_tree .
  *# require formtastic
  */
 

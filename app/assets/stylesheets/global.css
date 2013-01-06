@@ -23,6 +23,7 @@ ol,ul { list-style:none; }
   margin: auto;
 }
 .navlinks {
+	font:normal 62.5%/1.5 Helvetica, Arial, sans-serif;
   float: right;
   margin: 25px auto 0px;
   padding: 0 0 0 40px;
@@ -62,7 +63,7 @@ ol,ul { list-style:none; }
 #heritage_footer {
   margin: auto;
   width: 820px;
-  font-size: 1.1em;
+  font-size: 0.8em;
   padding: 1em;
   color: #999;
 }
@@ -90,7 +91,8 @@ ol,ul { list-style:none; }
 */
 
 body { 
-	font:normal 62.5%/1.5 Helvetica, Arial, sans-serif;
+	/*font:normal 62.5%/1.5 Helvetica, Arial, sans-serif;
+   */
 	letter-spacing:0;
 	color:#434343;
 	background:#efefef url(/assets/images/background.png) repeat top center;
