@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
     else
       @current_photographer = @photographer = User.find_by_specific_url(request.server_name, 
                                                                         :include => [:stories])
+
+      if @photographer.nil? && request.server_name =~ /heritage\.io$/
+        @current_photographer = @photographer = User.find_by_internal_url(request.server_name, 
+                                                                          :include => [:stories])
+      end
+
       # use request.host ? raise ActiveRecord::RecordNotFound ?
     end
 

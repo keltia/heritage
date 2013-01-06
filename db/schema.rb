@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221195152) do
+ActiveRecord::Schema.define(:version => 20130106202232) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -117,10 +117,12 @@ ActiveRecord::Schema.define(:version => 20121221195152) do
     t.string   "permalink"
     t.string   "twitter_url"
     t.string   "blog_url"
+    t.string   "internal_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["internal_url"], :name => "index_users_on_internal_url"
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
