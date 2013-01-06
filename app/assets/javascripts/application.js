@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+jQuery(function($) {
+		$("#new_email").bind('ajax:before', function() {
+      $('#new_email_submit').val('Loading...');
+		});
+})
