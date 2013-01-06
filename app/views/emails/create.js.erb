@@ -1,3 +1,9 @@
-$('#new_email_submit').val("Thank you!");
-$('#newsletter_modal').prepend("<p><%= escape_javascript @email.email %></p>");
-$('#newsletter_modal').modal();
+<% if !@email.new_record? %>
+	$('#new_email_submit').val("Thank you!");
+	$('#newsletter_modal').prepend("<p><%= escape_javascript @email.email %></p>");
+	$('#newsletter_modal').modal();
+<% else %>
+	$('#new_email_submit').val("Receive my newsletter");
+	$('#newsletter_modal_error').html('<%= escape_javascript @email.errors.full_messages.to_sentence %> :(');
+	$('#newsletter_modal_error').modal();
+<% end %>
