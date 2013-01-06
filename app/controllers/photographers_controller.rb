@@ -64,6 +64,6 @@ class PhotographersController < ApplicationController
   end
 
   def set_title
-    @title ||= @photographer.name
+    @title ||= @photographer.name if @photographer
   end
 end
