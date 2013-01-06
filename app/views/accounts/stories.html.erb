@@ -30,7 +30,7 @@
 <% end %>
 
 						<div id="frontstory">
-							<%= image_tag @stories.first.photos.first.image_url(:web) if @stories.first.photos.any? %>
+							<%= image_tag @stories.first.photos.first.image_url(:web) if @stories.any? && @stories.first.photos.any? %>
 						</div>
 
 						<div id="photos thumbnails">

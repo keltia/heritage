@@ -59,7 +59,7 @@
 							<%= nav_link "Your account", edit_account_path %>
 							<%= nav_link "Your audience", emails_path %>
 
-            </ul>
+						</ul>
 						<div class="pull-right">
 							<ul class="nav">
 								<% if current_user %>
@@ -75,24 +75,25 @@
 								<% end %>
 							</ul>
 						</div>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
 
-    <div class="container" style="padding-top: 60px;">
+
+		<div class="container" style="padding-top: 60px;">
+			<% flash.each do |name, msg| %>
+				<%= content_tag :div, msg, :class => "alert alert-#{name}" %>
+			<% end %>
+
 			<%= yield %>
 
-      <footer>
-        <p>&copy; Fabien Penso 2012</p>
-      </footer>
+			<footer>
+			<p>&copy; Fabien Penso 2012</p>
+			</footer>
 
-    </div> <!-- /container -->
-
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+		</div> <!-- /container -->
 
 		<%= yield :scripts %>
-  </body>
+	</body>
 </html>

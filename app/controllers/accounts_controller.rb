@@ -7,6 +7,10 @@ class AccountsController < ApplicationController
   end
 
   def stories
+    unless current_user.stories.any?
+      flash[:notice] = "You should first create a story"
+      redirect_to new_story_path
+    end
   end
 
   def update
