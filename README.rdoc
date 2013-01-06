@@ -5,7 +5,10 @@ running the http://www.heritage.io website.
 
 It is developed by Fabien Penso, a Rails & iOS developer, and a photographer.
 
-== Getting Started
+== Trying it live
+
+
+== Installation
 
 1. At the command prompt, create a new Rails application:
        <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
@@ -18,6 +21,3 @@ It is developed by Fabien Penso, a Rails & iOS developer, and a photographer.
 
 4. Follow the guidelines to start developing your application. You can find
 the following resources handy:
-
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
