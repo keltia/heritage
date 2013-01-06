@@ -100,10 +100,12 @@ Heritage::Application.routes.draw do
   constraints(PersonalizedDomainConstraint.new) do
     match 'about' => 'photographers#about'
     match 'contact' => 'photographers#contact'
+    root :to => "photographers#show"
   end
 
-  root :to => "photographers#show", :constraints => PersonalizedDomainConstraint.new
-  root :to => "heritage#index", :constraints =>  MainDomainConstraint.new
+  constraints(MainDomainConstraint.new) do
+    root :to => "heritage#index"
+  end
 
   # See how all your routes lay out with "rake routes"
 

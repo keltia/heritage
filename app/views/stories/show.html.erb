@@ -2,18 +2,31 @@
 	<%= stylesheet_link_tag "/stylesheets/global" %>
 	<script type="text/javascript">
 		$(document).ready(function() {
-				$('#slides').slides({
-					preload: true,
-					preloadImage: '/assets/images/loading.gif',
-					hoverPause: true
-					});
+				$('#carousel').flexslider({
+					animation: "slide",
+					controlNav: false,
+					animationLoop: false,
+					slideshow: false,
+					itemWidth: 210,
+					itemMargin: 5,
+					asNavFor: '#slider'
+				});
+				$('#slider').flexslider({
+					animation: "slide",
+					controlNav: false,
+					animationLoop: false,
+					sync: "#carousel",
+					slideshow: false,
+					start: function(slider){
+					$('body').removeClass('loading');
+					}
+				});
 		});
 
 	</script>
 <% end %>
 
 <% if @story.photos.any? %>
-
 	<div id="story">
 		<!--
 	<div class="tagslist">
@@ -23,26 +36,24 @@
 	</div>
 	-->
 
-	<div id="example" style="height: <%= @story.max_photo_height + 200 %>px;">
-		<div id="myCarousel" class="carousel slide">
-			<!-- Carousel items -->
-			<div class="carousel-inner">
-
+		<div id="slider" class="flexslider">
+			<ul class="slides">
 				<% @story.photos.each_with_index do |photo,i| %>
-					<div class="item <%= "active" if i == 0 %>" style="height: <%= @story.max_photo_height + 200 %>px;">
-						<a href="#"><%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %></a>
-
-						<p class="muted">
-						<%= link_to story_photo_url(@story, photo.permalink || photo.id), story_photo_path(@story, photo.permalink || photo.id) %>
-						</p>
-					</div>
+					<li>
+						<%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %>
+					</li>
 				<% end %>
-			</div>
-			<!-- Carousel nav -->
-			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+			</ul>
 		</div>
-	</div>
+		<div id="carousel" class="flexslider">
+			<ul class="slides">
+				<% @story.photos.each_with_index do |photo,i| %>
+					<li>
+					<%= image_tag(photo.image_url(:thumb), :width => 300, :height => 300) if photo.image? %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
 
 </div>
 </div>
