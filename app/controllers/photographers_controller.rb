@@ -1,5 +1,6 @@
 class PhotographersController < ApplicationController
   layout 'story'
+  before_filter :set_title
 
   def show
     if params[:id]
@@ -60,5 +61,9 @@ class PhotographersController < ApplicationController
 
   def get_photographer
     @photographer = current_user
+  end
+
+  def set_title
+    @title ||= @photographer.name
   end
 end

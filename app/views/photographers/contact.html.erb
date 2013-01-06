@@ -1,6 +1,5 @@
-<%= content_for :head_script do %>
-	<%= stylesheet_link_tag "/stylesheets/global" %>
-<% end %>
+<%= render :partial => 'photographers/about' %>
 
-OK
-
+<p>
+Please reach <%= @photographer.name %> through his social networks.
+</p>

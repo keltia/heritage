@@ -14,6 +14,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find_by_permalink(params[:id], :include => [:photos])
+    @title ||= "#{@story.user.name}: #{@story.title}"
     render :layout => "story"
   end
 

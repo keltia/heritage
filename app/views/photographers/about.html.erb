@@ -1,26 +1,4 @@
-<div class="about">
-	<%= image_tag(user_avatar_url(@current_photographer), :class => "pull-left") %>
-
-	<h2 class="about-heading"><%= @photographer.name %></h2>
-
-	<p class="lead">
-	<%= @photographer.description %>
-	</p>
-
-	<p class="lead">
-	<% if @photographer.facebook_url %>
-		<%= link_to "Facebook", @photographer.facebook_url, :class => "btn" %>
-	<% end %>
-	<% if @photographer.twitter_url %>
-		<%= link_to "Twitter", @photographer.twitter_url, :class => "btn" %>
-	<% end %>
-	<% if @photographer.blog_url %>
-		<%= link_to "Blog", @photographer.blog_url, :class => "btn" %>
-	<% end %>
-	</p>
-
-	<div class="clearfix"></div>
-</div>
+<%= render :partial => 'photographers/about' %>
 
 <h2 class="about-heading">Stories</h2>
 

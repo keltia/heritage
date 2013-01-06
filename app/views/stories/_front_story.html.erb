@@ -1,0 +1,30 @@
+<%= content_for :head_script do %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				$('#slider').flexslider({
+					animation: "slide",
+					controlNav: true,
+					animationLoop: false,
+					sync: "#carousel",
+					slideshow: false,
+					start: function(slider){
+					$('body').removeClass('loading');
+					}
+				});
+				$('#slider img').click(function() {
+					$('#slider').flexslider('next');
+				});
+		});
+
+	</script>
+<% end %>
+
+		<div id="slider" class="flexslider">
+			<ul class="slides">
+				<% front_story.photos.each_with_index do |photo,i| %>
+					<li>
+						<%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %>
+					</li>
+				<% end %>
+			</ul>
+		</div>

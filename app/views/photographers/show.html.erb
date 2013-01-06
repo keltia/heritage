@@ -1,8 +1,3 @@
-<% if @front_story %>
-	<% photo = @front_story.photos.first %>
-	<div id="frontstory">
-		<%= link_to(image_tag(photo.image_url(:web)), story_photo_path(@front_story, photo)) %>
-	</div>
-<% end %>
+<%= render :partial => 'stories/front_story', :object => @front_story if @front_story %>
 
 <%= render :partial => 'stories/thumbnails' %>

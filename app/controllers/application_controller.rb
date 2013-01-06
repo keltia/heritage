@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     @story = current_user.stories.find_by_permalink(story_id, :include => [:photos]) ||
       current_user.stories.find(story_id, :include => [:photos])
 
+    @title ||= "#{@story.user.name}: #{@story.title}"
     raise ActiveRecord::RecordNotFound unless @story
   end
 
