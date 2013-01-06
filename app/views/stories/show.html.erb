@@ -1,4 +1,5 @@
 <%= content_for :facebook_meta do %>
+	<meta property="og:url" content="<%= story_url(@story) %>" />
 	<meta property="og:image" content="<%= full_image_link @story.photos.first.image_url(:web) %>" />
 	<meta property="og:title" content="<%= @story.photos.first.title || @story.title %>" />
 	<meta property="og:site_name" content="<%= @story.user.name %>"/>
