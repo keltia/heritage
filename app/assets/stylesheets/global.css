@@ -189,3 +189,6 @@ a:hover,a:active {
   margin: 1px solid #C3D5E3;
   padding: 10px;
 }
+#newsletter_modal p {
+  line-height: 1.2em;
+}

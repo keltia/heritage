@@ -9,6 +9,24 @@
 				<% end %>
 			</div>
 
+			<div class="modal" id="newsletter_modal">
+				<p>
+				Thank you for following my work. You will be able to unsubscribe
+				anytime when receiving emails.
+				</p>
+
+				<p>
+				Would you like to <%= link_to "see more about me", about_path %>?
+				</p>
+
+				<% if @photographer.facebook_url %>
+					<hr />
+					<div style="height: 80px;">
+						<iframe src="http://www.facebook.com/plugins/like.php?href=<%= CGI.escape @photographer.facebook_url %>&amp;layout=standard&amp;show_faces=true&amp;width=400&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:80px;" allowTransparency="true"></iframe>
+					</div>
+				<% end %>
+			</div>
+
 			<div class="pull-right">
 				<%= form_for Email.new, :remote => true do |f| %>
 					<div class="control-group">

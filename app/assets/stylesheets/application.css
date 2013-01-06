@@ -17,6 +17,7 @@
  *= require 'admin'
  *= require 'emails'
  *= require 'about'
+ *= require 'jquery.modal'
  *# require 'global'
  *# require_tree .
  *# require formtastic

@@ -1,2 +1,3 @@
 $('#new_email_submit').val("Thank you!");
-$('#new_email_submit').parent().append("<br/><%= escape_javascript @email.email %> was added");
+$('#newsletter_modal').prepend("<p><%= escape_javascript @email.email %></p>");
+$('#newsletter_modal').modal();

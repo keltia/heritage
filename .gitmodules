@@ -1,0 +1,3 @@
+[submodule "external/jquery-modal"]
+	path = external/jquery-modal
+	url = git://github.com/kylefox/jquery-modal.git
