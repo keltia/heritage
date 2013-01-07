@@ -49,7 +49,7 @@ class PhotographersController < ApplicationController
 
   def sort
     Story.transaction do
-      @photographer.stories.each do |story|
+      current_user.stories.each do |story|
         story.position = params[:sortable].index(story.id.to_s)
         story.save
       end

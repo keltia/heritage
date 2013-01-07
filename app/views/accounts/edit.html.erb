@@ -1,32 +1,3 @@
-<% key = Rails.application.config.session_options[:key] %>
-
-<%= content_for :head_script do %>
-<script type="text/javascript">
-		$(document).ready(function() {
-			// Handler for .ready() called.
-				$("#sortable" ).sortable({ 
-					revert: true,
-					stop: function(e,ui) {
-						$.ajax({
-							data: $('#sortable').sortable('serialize'),
-							type: 'POST',
-							url: '<%= sort_photographer_path(@photographer) %>',
-							success: function () {
-							// it worked!  
-							},
-							error: function (response) {
-							// we had an error
-							}
-						});
-						
-					}
-					
-					});
-				$("#sortable").disableSelection();
-		});
-</script>
-<% end %>
-
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs">
 					<%= render :partial => 'lefttabs' %>
@@ -36,26 +7,24 @@
 						:url => account_path, 
 						:html => {:method => :put, :multipart => true} do |f| %>
 
-	<%= f.inputs :name => "Your information" do %>
-		<div class="string input optional control-group">
-			<label class="control-label" for="avatar">
-				Avatar
-			</label>
-			<%= image_tag(user_avatar_url(@photographer)) %>
-		</div>
-		<%= f.semantic_fields_for :user_avatar do |ff| %>
-			<%= ff.input :image, :as => :file %>
-		<% end %>
-		<%= f.input :name, :input_html => { :size => 40 } %>
-		<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
-	<% end %>
+							<%= f.inputs :name => "Your information" do %>
+								<div class="string input optional control-group">
+									<label class="control-label" for="avatar">
+										Avatar
+									</label>
+									<%= image_tag(user_avatar_url(@photographer)) %>
+								</div>
+								<%= f.semantic_fields_for :user_avatar do |ff| %>
+									<%= ff.input :image, :as => :file %>
+								<% end %>
+								<%= f.input :name, :input_html => { :size => 40 } %>
+								<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
+							<% end %>
 
-	<%= f.actions do %>
-		<%= f.action :submit, :as => :button, :label => "Save", :button_html => { :class => "btn btn-primary btn-large" } %>
-	<% end %>
+							<%= f.actions do %>
+								<%= f.action :submit, :as => :button, :label => "Save", :button_html => { :class => "btn btn-primary btn-large" } %>
+							<% end %>
 
-<% end %>
-
-	</div>
-</div>
-
+						<% end %>
+					</div>
+				</div>

@@ -1,48 +1,19 @@
-<% key = Rails.application.config.session_options[:key] %>
-
-<%= content_for :head_script do %>
-<script type="text/javascript">
-		$(document).ready(function() {
-			// Handler for .ready() called.
-				$("#sortable" ).sortable({ 
-					revert: true,
-					stop: function(e,ui) {
-						$.ajax({
-							data: $('#sortable').sortable('serialize'),
-							type: 'POST',
-							url: '<%= sort_photographer_path(@photographer) %>',
-							success: function () {
-							// it worked!  
-							},
-							error: function (response) {
-							// we had an error
-							}
-						});
-						
-					}
-					
-					});
-				$("#sortable").disableSelection();
-		});
-</script>
-<% end %>
-
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs">
 					<%= render :partial => 'lefttabs' %>
 				</ul>
 				<div class="tab-content">
-<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
-	<%= f.inputs :name => "Your website" do %>
-		<%= f.input :specific_url, :label => "Your domain name", 
-			:hint => "Example: www.#{current_user.name.downcase.gsub(' ', '')}.com", 
-			:input_html => { :size => 40 } %>
-	<% end %>
+					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
+						<%= f.inputs :name => "Your website" do %>
+							<%= f.input :specific_url, :label => "Your domain name", 
+								:hint => "Example: www.#{current_user.name.downcase.gsub(' ', '')}.com", 
+								:input_html => { :size => 40 } %>
+							<% end %>
 
-	<%= f.actions do %>
-		<%= f.action :submit, :as => :button, :label => "Save", 
-			:button_html => { :class => "btn btn-primary btn-large" }  %>
-	<% end %>
-<% end %>
+							<%= f.actions do %>
+								<%= f.action :submit, :as => :button, :label => "Save", 
+									:button_html => { :class => "btn btn-primary btn-large" }  %>
+								<% end %>
+							<% end %>
 				</div>
 			</div>
