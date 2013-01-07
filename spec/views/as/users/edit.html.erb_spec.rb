@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/users/edit" do
   before(:each) do
-    @as_user = assign(:as_user, stub_model(As::User))
+    @as_user = assign(:as_user, stub_model(User))
   end
 
   it "renders the edit as_user form" do

@@ -21,7 +21,7 @@ require 'spec_helper'
 describe As::UsersController do
 
   # This should return the minimal set of attributes required to create a valid
-  # As::User. As you add validations to As::User, be sure to
+  # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {  }
@@ -29,14 +29,14 @@ describe As::UsersController do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # As::UsersController. Be sure to keep this updated too.
+  # UsersController. Be sure to keep this updated too.
   def valid_session
     {}
   end
 
   describe "GET index" do
     it "assigns all as_users as @as_users" do
-      user = As::User.create! valid_attributes
+      user = User.create! valid_attributes
       get :index, {}, valid_session
       assigns(:as_users).should eq([user])
     end
@@ -44,7 +44,7 @@ describe As::UsersController do
 
   describe "GET show" do
     it "assigns the requested as_user as @as_user" do
-      user = As::User.create! valid_attributes
+      user = User.create! valid_attributes
       get :show, {:id => user.to_param}, valid_session
       assigns(:as_user).should eq(user)
     end
@@ -53,13 +53,13 @@ describe As::UsersController do
   describe "GET new" do
     it "assigns a new as_user as @as_user" do
       get :new, {}, valid_session
-      assigns(:as_user).should be_a_new(As::User)
+      assigns(:as_user).should be_a_new(User)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested as_user as @as_user" do
-      user = As::User.create! valid_attributes
+      user = User.create! valid_attributes
       get :edit, {:id => user.to_param}, valid_session
       assigns(:as_user).should eq(user)
     end
@@ -67,35 +67,35 @@ describe As::UsersController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new As::User" do
+      it "creates a new User" do
         expect {
           post :create, {:as_user => valid_attributes}, valid_session
-        }.to change(As::User, :count).by(1)
+        }.to change(User, :count).by(1)
       end
 
       it "assigns a newly created as_user as @as_user" do
         post :create, {:as_user => valid_attributes}, valid_session
-        assigns(:as_user).should be_a(As::User)
+        assigns(:as_user).should be_a(User)
         assigns(:as_user).should be_persisted
       end
 
       it "redirects to the created as_user" do
         post :create, {:as_user => valid_attributes}, valid_session
-        response.should redirect_to(As::User.last)
+        response.should redirect_to(User.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved as_user as @as_user" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:save).and_return(false)
         post :create, {:as_user => {  }}, valid_session
-        assigns(:as_user).should be_a_new(As::User)
+        assigns(:as_user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:save).and_return(false)
         post :create, {:as_user => {  }}, valid_session
         response.should render_template("new")
       end
@@ -105,23 +105,23 @@ describe As::UsersController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested as_user" do
-        user = As::User.create! valid_attributes
+        user = User.create! valid_attributes
         # Assuming there are no other as_users in the database, this
-        # specifies that the As::User created on the previous line
+        # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        As::User.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        User.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => user.to_param, :as_user => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested as_user as @as_user" do
-        user = As::User.create! valid_attributes
+        user = User.create! valid_attributes
         put :update, {:id => user.to_param, :as_user => valid_attributes}, valid_session
         assigns(:as_user).should eq(user)
       end
 
       it "redirects to the as_user" do
-        user = As::User.create! valid_attributes
+        user = User.create! valid_attributes
         put :update, {:id => user.to_param, :as_user => valid_attributes}, valid_session
         response.should redirect_to(user)
       end
@@ -129,17 +129,17 @@ describe As::UsersController do
 
     describe "with invalid params" do
       it "assigns the as_user as @as_user" do
-        user = As::User.create! valid_attributes
+        user = User.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:save).and_return(false)
         put :update, {:id => user.to_param, :as_user => {  }}, valid_session
         assigns(:as_user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
-        user = As::User.create! valid_attributes
+        user = User.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:save).and_return(false)
         put :update, {:id => user.to_param, :as_user => {  }}, valid_session
         response.should render_template("edit")
       end
@@ -148,14 +148,14 @@ describe As::UsersController do
 
   describe "DELETE destroy" do
     it "destroys the requested as_user" do
-      user = As::User.create! valid_attributes
+      user = User.create! valid_attributes
       expect {
         delete :destroy, {:id => user.to_param}, valid_session
-      }.to change(As::User, :count).by(-1)
+      }.to change(User, :count).by(-1)
     end
 
     it "redirects to the as_users list" do
-      user = As::User.create! valid_attributes
+      user = User.create! valid_attributes
       delete :destroy, {:id => user.to_param}, valid_session
       response.should redirect_to(as_users_url)
     end

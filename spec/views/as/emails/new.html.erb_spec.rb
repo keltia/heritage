@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/emails/new" do
   before(:each) do
-    assign(:as_email, stub_model(As::Email).as_new_record)
+    assign(:as_email, stub_model(Email).as_new_record)
   end
 
   it "renders new as_email form" do

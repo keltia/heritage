@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "as/stories/index" do
   before(:each) do
     assign(:as_stories, [
-      stub_model(As::Story),
-      stub_model(As::Story)
+      stub_model(Story),
+      stub_model(Story)
     ])
   end
 

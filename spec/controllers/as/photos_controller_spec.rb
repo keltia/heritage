@@ -21,7 +21,7 @@ require 'spec_helper'
 describe As::PhotosController do
 
   # This should return the minimal set of attributes required to create a valid
-  # As::Photo. As you add validations to As::Photo, be sure to
+  # Photo. As you add validations to Photo, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {  }
@@ -29,14 +29,14 @@ describe As::PhotosController do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # As::PhotosController. Be sure to keep this updated too.
+  # PhotosController. Be sure to keep this updated too.
   def valid_session
     {}
   end
 
   describe "GET index" do
     it "assigns all as_photos as @as_photos" do
-      photo = As::Photo.create! valid_attributes
+      photo = Photo.create! valid_attributes
       get :index, {}, valid_session
       assigns(:as_photos).should eq([photo])
     end
@@ -44,7 +44,7 @@ describe As::PhotosController do
 
   describe "GET show" do
     it "assigns the requested as_photo as @as_photo" do
-      photo = As::Photo.create! valid_attributes
+      photo = Photo.create! valid_attributes
       get :show, {:id => photo.to_param}, valid_session
       assigns(:as_photo).should eq(photo)
     end
@@ -53,13 +53,13 @@ describe As::PhotosController do
   describe "GET new" do
     it "assigns a new as_photo as @as_photo" do
       get :new, {}, valid_session
-      assigns(:as_photo).should be_a_new(As::Photo)
+      assigns(:as_photo).should be_a_new(Photo)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested as_photo as @as_photo" do
-      photo = As::Photo.create! valid_attributes
+      photo = Photo.create! valid_attributes
       get :edit, {:id => photo.to_param}, valid_session
       assigns(:as_photo).should eq(photo)
     end
@@ -67,35 +67,35 @@ describe As::PhotosController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new As::Photo" do
+      it "creates a new Photo" do
         expect {
           post :create, {:as_photo => valid_attributes}, valid_session
-        }.to change(As::Photo, :count).by(1)
+        }.to change(Photo, :count).by(1)
       end
 
       it "assigns a newly created as_photo as @as_photo" do
         post :create, {:as_photo => valid_attributes}, valid_session
-        assigns(:as_photo).should be_a(As::Photo)
+        assigns(:as_photo).should be_a(Photo)
         assigns(:as_photo).should be_persisted
       end
 
       it "redirects to the created as_photo" do
         post :create, {:as_photo => valid_attributes}, valid_session
-        response.should redirect_to(As::Photo.last)
+        response.should redirect_to(Photo.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved as_photo as @as_photo" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Photo.any_instance.stub(:save).and_return(false)
+        Photo.any_instance.stub(:save).and_return(false)
         post :create, {:as_photo => {  }}, valid_session
-        assigns(:as_photo).should be_a_new(As::Photo)
+        assigns(:as_photo).should be_a_new(Photo)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Photo.any_instance.stub(:save).and_return(false)
+        Photo.any_instance.stub(:save).and_return(false)
         post :create, {:as_photo => {  }}, valid_session
         response.should render_template("new")
       end
@@ -105,23 +105,23 @@ describe As::PhotosController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested as_photo" do
-        photo = As::Photo.create! valid_attributes
+        photo = Photo.create! valid_attributes
         # Assuming there are no other as_photos in the database, this
-        # specifies that the As::Photo created on the previous line
+        # specifies that the Photo created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        As::Photo.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        Photo.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => photo.to_param, :as_photo => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested as_photo as @as_photo" do
-        photo = As::Photo.create! valid_attributes
+        photo = Photo.create! valid_attributes
         put :update, {:id => photo.to_param, :as_photo => valid_attributes}, valid_session
         assigns(:as_photo).should eq(photo)
       end
 
       it "redirects to the as_photo" do
-        photo = As::Photo.create! valid_attributes
+        photo = Photo.create! valid_attributes
         put :update, {:id => photo.to_param, :as_photo => valid_attributes}, valid_session
         response.should redirect_to(photo)
       end
@@ -129,17 +129,17 @@ describe As::PhotosController do
 
     describe "with invalid params" do
       it "assigns the as_photo as @as_photo" do
-        photo = As::Photo.create! valid_attributes
+        photo = Photo.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Photo.any_instance.stub(:save).and_return(false)
+        Photo.any_instance.stub(:save).and_return(false)
         put :update, {:id => photo.to_param, :as_photo => {  }}, valid_session
         assigns(:as_photo).should eq(photo)
       end
 
       it "re-renders the 'edit' template" do
-        photo = As::Photo.create! valid_attributes
+        photo = Photo.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Photo.any_instance.stub(:save).and_return(false)
+        Photo.any_instance.stub(:save).and_return(false)
         put :update, {:id => photo.to_param, :as_photo => {  }}, valid_session
         response.should render_template("edit")
       end
@@ -148,14 +148,14 @@ describe As::PhotosController do
 
   describe "DELETE destroy" do
     it "destroys the requested as_photo" do
-      photo = As::Photo.create! valid_attributes
+      photo = Photo.create! valid_attributes
       expect {
         delete :destroy, {:id => photo.to_param}, valid_session
-      }.to change(As::Photo, :count).by(-1)
+      }.to change(Photo, :count).by(-1)
     end
 
     it "redirects to the as_photos list" do
-      photo = As::Photo.create! valid_attributes
+      photo = Photo.create! valid_attributes
       delete :destroy, {:id => photo.to_param}, valid_session
       response.should redirect_to(as_photos_url)
     end

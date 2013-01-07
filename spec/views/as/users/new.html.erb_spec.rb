@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/users/new" do
   before(:each) do
-    assign(:as_user, stub_model(As::User).as_new_record)
+    assign(:as_user, stub_model(User).as_new_record)
   end
 
   it "renders new as_user form" do

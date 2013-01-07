@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/emails/edit" do
   before(:each) do
-    @as_email = assign(:as_email, stub_model(As::Email))
+    @as_email = assign(:as_email, stub_model(Email))
   end
 
   it "renders the edit as_email form" do

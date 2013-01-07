@@ -48,6 +48,7 @@ group :test, :development do
 	gem 'webmock'
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
+	gem 'capybara'
 end
 
 gem 'mysql2'

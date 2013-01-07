@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/stories/new" do
   before(:each) do
-    assign(:as_story, stub_model(As::Story).as_new_record)
+    assign(:as_story, stub_model(Story).as_new_record)
   end
 
   it "renders new as_story form" do

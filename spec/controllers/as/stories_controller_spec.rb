@@ -21,7 +21,7 @@ require 'spec_helper'
 describe As::StoriesController do
 
   # This should return the minimal set of attributes required to create a valid
-  # As::Story. As you add validations to As::Story, be sure to
+  # Story. As you add validations to Story, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {  }
@@ -36,7 +36,7 @@ describe As::StoriesController do
 
   describe "GET index" do
     it "assigns all as_stories as @as_stories" do
-      story = As::Story.create! valid_attributes
+      story = Story.create! valid_attributes
       get :index, {}, valid_session
       assigns(:as_stories).should eq([story])
     end
@@ -44,7 +44,7 @@ describe As::StoriesController do
 
   describe "GET show" do
     it "assigns the requested as_story as @as_story" do
-      story = As::Story.create! valid_attributes
+      story = Story.create! valid_attributes
       get :show, {:id => story.to_param}, valid_session
       assigns(:as_story).should eq(story)
     end
@@ -53,13 +53,13 @@ describe As::StoriesController do
   describe "GET new" do
     it "assigns a new as_story as @as_story" do
       get :new, {}, valid_session
-      assigns(:as_story).should be_a_new(As::Story)
+      assigns(:as_story).should be_a_new(Story)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested as_story as @as_story" do
-      story = As::Story.create! valid_attributes
+      story = Story.create! valid_attributes
       get :edit, {:id => story.to_param}, valid_session
       assigns(:as_story).should eq(story)
     end
@@ -67,35 +67,35 @@ describe As::StoriesController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new As::Story" do
+      it "creates a new Story" do
         expect {
           post :create, {:as_story => valid_attributes}, valid_session
-        }.to change(As::Story, :count).by(1)
+        }.to change(Story, :count).by(1)
       end
 
       it "assigns a newly created as_story as @as_story" do
         post :create, {:as_story => valid_attributes}, valid_session
-        assigns(:as_story).should be_a(As::Story)
+        assigns(:as_story).should be_a(Story)
         assigns(:as_story).should be_persisted
       end
 
       it "redirects to the created as_story" do
         post :create, {:as_story => valid_attributes}, valid_session
-        response.should redirect_to(As::Story.last)
+        response.should redirect_to(Story.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved as_story as @as_story" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Story.any_instance.stub(:save).and_return(false)
+        Story.any_instance.stub(:save).and_return(false)
         post :create, {:as_story => {  }}, valid_session
-        assigns(:as_story).should be_a_new(As::Story)
+        assigns(:as_story).should be_a_new(Story)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Story.any_instance.stub(:save).and_return(false)
+        Story.any_instance.stub(:save).and_return(false)
         post :create, {:as_story => {  }}, valid_session
         response.should render_template("new")
       end
@@ -105,23 +105,23 @@ describe As::StoriesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested as_story" do
-        story = As::Story.create! valid_attributes
+        story = Story.create! valid_attributes
         # Assuming there are no other as_stories in the database, this
-        # specifies that the As::Story created on the previous line
+        # specifies that the Story created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        As::Story.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        Story.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => story.to_param, :as_story => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested as_story as @as_story" do
-        story = As::Story.create! valid_attributes
+        story = Story.create! valid_attributes
         put :update, {:id => story.to_param, :as_story => valid_attributes}, valid_session
         assigns(:as_story).should eq(story)
       end
 
       it "redirects to the as_story" do
-        story = As::Story.create! valid_attributes
+        story = Story.create! valid_attributes
         put :update, {:id => story.to_param, :as_story => valid_attributes}, valid_session
         response.should redirect_to(story)
       end
@@ -129,17 +129,17 @@ describe As::StoriesController do
 
     describe "with invalid params" do
       it "assigns the as_story as @as_story" do
-        story = As::Story.create! valid_attributes
+        story = Story.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Story.any_instance.stub(:save).and_return(false)
+        Story.any_instance.stub(:save).and_return(false)
         put :update, {:id => story.to_param, :as_story => {  }}, valid_session
         assigns(:as_story).should eq(story)
       end
 
       it "re-renders the 'edit' template" do
-        story = As::Story.create! valid_attributes
+        story = Story.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Story.any_instance.stub(:save).and_return(false)
+        Story.any_instance.stub(:save).and_return(false)
         put :update, {:id => story.to_param, :as_story => {  }}, valid_session
         response.should render_template("edit")
       end
@@ -148,14 +148,14 @@ describe As::StoriesController do
 
   describe "DELETE destroy" do
     it "destroys the requested as_story" do
-      story = As::Story.create! valid_attributes
+      story = Story.create! valid_attributes
       expect {
         delete :destroy, {:id => story.to_param}, valid_session
-      }.to change(As::Story, :count).by(-1)
+      }.to change(Story, :count).by(-1)
     end
 
     it "redirects to the as_stories list" do
-      story = As::Story.create! valid_attributes
+      story = Story.create! valid_attributes
       delete :destroy, {:id => story.to_param}, valid_session
       response.should redirect_to(as_stories_url)
     end

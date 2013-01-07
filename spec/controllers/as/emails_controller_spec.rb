@@ -21,7 +21,7 @@ require 'spec_helper'
 describe As::EmailsController do
 
   # This should return the minimal set of attributes required to create a valid
-  # As::Email. As you add validations to As::Email, be sure to
+  # Email. As you add validations to Email, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {  }
@@ -29,14 +29,14 @@ describe As::EmailsController do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # As::EmailsController. Be sure to keep this updated too.
+  # EmailsController. Be sure to keep this updated too.
   def valid_session
     {}
   end
 
   describe "GET index" do
     it "assigns all as_emails as @as_emails" do
-      email = As::Email.create! valid_attributes
+      email = Email.create! valid_attributes
       get :index, {}, valid_session
       assigns(:as_emails).should eq([email])
     end
@@ -44,7 +44,7 @@ describe As::EmailsController do
 
   describe "GET show" do
     it "assigns the requested as_email as @as_email" do
-      email = As::Email.create! valid_attributes
+      email = Email.create! valid_attributes
       get :show, {:id => email.to_param}, valid_session
       assigns(:as_email).should eq(email)
     end
@@ -53,13 +53,13 @@ describe As::EmailsController do
   describe "GET new" do
     it "assigns a new as_email as @as_email" do
       get :new, {}, valid_session
-      assigns(:as_email).should be_a_new(As::Email)
+      assigns(:as_email).should be_a_new(Email)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested as_email as @as_email" do
-      email = As::Email.create! valid_attributes
+      email = Email.create! valid_attributes
       get :edit, {:id => email.to_param}, valid_session
       assigns(:as_email).should eq(email)
     end
@@ -67,35 +67,35 @@ describe As::EmailsController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new As::Email" do
+      it "creates a new Email" do
         expect {
           post :create, {:as_email => valid_attributes}, valid_session
-        }.to change(As::Email, :count).by(1)
+        }.to change(Email, :count).by(1)
       end
 
       it "assigns a newly created as_email as @as_email" do
         post :create, {:as_email => valid_attributes}, valid_session
-        assigns(:as_email).should be_a(As::Email)
+        assigns(:as_email).should be_a(Email)
         assigns(:as_email).should be_persisted
       end
 
       it "redirects to the created as_email" do
         post :create, {:as_email => valid_attributes}, valid_session
-        response.should redirect_to(As::Email.last)
+        response.should redirect_to(Email.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved as_email as @as_email" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Email.any_instance.stub(:save).and_return(false)
+        Email.any_instance.stub(:save).and_return(false)
         post :create, {:as_email => {  }}, valid_session
-        assigns(:as_email).should be_a_new(As::Email)
+        assigns(:as_email).should be_a_new(Email)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Email.any_instance.stub(:save).and_return(false)
+        Email.any_instance.stub(:save).and_return(false)
         post :create, {:as_email => {  }}, valid_session
         response.should render_template("new")
       end
@@ -105,23 +105,23 @@ describe As::EmailsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested as_email" do
-        email = As::Email.create! valid_attributes
+        email = Email.create! valid_attributes
         # Assuming there are no other as_emails in the database, this
-        # specifies that the As::Email created on the previous line
+        # specifies that the Email created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        As::Email.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        Email.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => email.to_param, :as_email => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested as_email as @as_email" do
-        email = As::Email.create! valid_attributes
+        email = Email.create! valid_attributes
         put :update, {:id => email.to_param, :as_email => valid_attributes}, valid_session
         assigns(:as_email).should eq(email)
       end
 
       it "redirects to the as_email" do
-        email = As::Email.create! valid_attributes
+        email = Email.create! valid_attributes
         put :update, {:id => email.to_param, :as_email => valid_attributes}, valid_session
         response.should redirect_to(email)
       end
@@ -129,17 +129,17 @@ describe As::EmailsController do
 
     describe "with invalid params" do
       it "assigns the as_email as @as_email" do
-        email = As::Email.create! valid_attributes
+        email = Email.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Email.any_instance.stub(:save).and_return(false)
+        Email.any_instance.stub(:save).and_return(false)
         put :update, {:id => email.to_param, :as_email => {  }}, valid_session
         assigns(:as_email).should eq(email)
       end
 
       it "re-renders the 'edit' template" do
-        email = As::Email.create! valid_attributes
+        email = Email.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        As::Email.any_instance.stub(:save).and_return(false)
+        Email.any_instance.stub(:save).and_return(false)
         put :update, {:id => email.to_param, :as_email => {  }}, valid_session
         response.should render_template("edit")
       end
@@ -148,14 +148,14 @@ describe As::EmailsController do
 
   describe "DELETE destroy" do
     it "destroys the requested as_email" do
-      email = As::Email.create! valid_attributes
+      email = Email.create! valid_attributes
       expect {
         delete :destroy, {:id => email.to_param}, valid_session
-      }.to change(As::Email, :count).by(-1)
+      }.to change(Email, :count).by(-1)
     end
 
     it "redirects to the as_emails list" do
-      email = As::Email.create! valid_attributes
+      email = Email.create! valid_attributes
       delete :destroy, {:id => email.to_param}, valid_session
       response.should redirect_to(as_emails_url)
     end

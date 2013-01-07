@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/users/show" do
   before(:each) do
-    @as_user = assign(:as_user, stub_model(As::User))
+    @as_user = assign(:as_user, stub_model(User))
   end
 
   it "renders attributes in <p>" do

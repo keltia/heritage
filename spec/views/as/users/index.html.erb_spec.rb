@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "as/users/index" do
   before(:each) do
     assign(:as_users, [
-      stub_model(As::User),
-      stub_model(As::User)
+      stub_model(User),
+      stub_model(User)
     ])
   end
 

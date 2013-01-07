@@ -31,9 +31,18 @@ class User < ActiveRecord::Base
   before_create :create_specific_url
   def create_specific_url
     if email =~ /^(.*)@/
-      internal_url = "#{$1}.heritage.io"
-      specific_url = "#{$1}.heritage.io"
+      self.internal_url = "#{$1}.heritage.io"
+      self.specific_url = "#{$1}.heritage.io"
     end
+
+    true
+  end
+
+  before_update :generate_permalink
+  def generate_permalink
+    return unless permalink.blank?
+
+    generate_permalink!
   end
 
   # Include default devise modules. Others available are:

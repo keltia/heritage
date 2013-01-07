@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "as/stories/show" do
   before(:each) do
-    @as_story = assign(:as_story, stub_model(As::Story))
+    @as_story = assign(:as_story, stub_model(Story))
   end
 
   it "renders attributes in <p>" do

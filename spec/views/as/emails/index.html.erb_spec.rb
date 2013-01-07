@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "as/emails/index" do
   before(:each) do
     assign(:as_emails, [
-      stub_model(As::Email),
-      stub_model(As::Email)
+      stub_model(Email),
+      stub_model(Email)
     ])
   end
 
