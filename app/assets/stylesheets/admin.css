@@ -5,3 +5,7 @@
 #photos {
   text-align: center;
 }
+.centered {
+  width: 500px;
+  margin: auto;
+}
