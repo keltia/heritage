@@ -11,11 +11,13 @@ class ApplicationController < ActionController::Base
     else
 
       host_for_query = request.server_name
-      if host_for_query !~ /^www\./
-        host_for_query = "www.#{host_for_query}"
-      end
+      host_for_query = "www.#{host_for_query}" if host_for_query !~ /^www\./
 
-      @current_photographer = @photographer = User.find_by_specific_url(host_for_query,
+      host_for_query_without_www = request.server_name
+      host_for_query_without_www.gsub!(/^www\./, '')
+
+      @current_photographer = @photographer = User.find(:conditions => ['specific_url = ? OR specific_url = ?  OR internal_url = ? OR internal_url = ?',
+                                                        host_for_query, host_for_query_without_www, host_for_query, host_for_query_without_www],
                                                                         :include => [:stories])
 
       if @photographer.nil? && request.server_name =~ /heritage\.io$/
