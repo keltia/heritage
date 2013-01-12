@@ -1,3 +1,10 @@
+<%= content_for :facebook_meta do %>
+	<meta property="og:url" content="<%= contact_url %>" />
+	<meta property="og:image" content="<%= full_image_link @photographer.user_avatar.image_url(:thumb) %>" />
+	<meta property="og:title" content="<%= @photographer.name %> - Photography" />
+	<meta property="og:description" content="<%= @photographer.description %>" />
+	<meta property="og:site_name" content="<%= @photographer.name %>"/>
+<% end %>
 <%= render :partial => 'photographers/about' %>
 
 <p>
