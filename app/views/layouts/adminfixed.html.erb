@@ -58,6 +58,9 @@
 
 							<%= nav_link "Your account", edit_account_path %>
 							<%= nav_link "Your audience", emails_path %>
+							<% if @photographer.specific_url %>
+								<%= nav_link "Your Public Website", "http://#{@photographer.specific_url}" %>
+							<% end %>
 
 						</ul>
 						<div class="pull-right">
