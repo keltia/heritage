@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
       @current_photographer = @photographer = current_user
     else
 
-      host_for_query = request.server_name
+      host_for_query = "#{request.server_name}"
       host_for_query = "www.#{host_for_query}" if host_for_query !~ /^www\./
 
-      host_for_query_without_www = request.server_name
+      host_for_query_without_www = "#{request.server_name}"
       host_for_query_without_www.gsub!(/^www\./, '')
 
       @current_photographer = @photographer = User.first(:conditions => ['specific_url = ? OR specific_url = ?  OR internal_url = ? OR internal_url = ?',
