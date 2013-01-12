@@ -2,7 +2,8 @@
 <%= content_for :facebook_meta do %>
 	<meta property="og:url" content="<%= root_url %>" />
 	<meta property="og:image" content="<%= full_image_link @photographer.stories.first.photos.first.image_url(:web) %>" />
-	<meta property="og:title" content="<%= @photographer.name %>" />
+	<meta property="og:title" content="<%= @photographer.name %> - Photography" />
+	<meta property="og:description" content="<%= @photographer.description %>" />
 	<meta property="og:site_name" content="<%= @photographer.name %>"/>
 <% end %>
 <% end %>

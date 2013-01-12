@@ -40,10 +40,14 @@
 						<div class="controls">
 							<%= f.text_field :email, :placeholder => "Email Address" %>
 						</div>
+						<div class="controls">
+							<small>A single email a month at most</small>
+						</div>
+
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<%= f.submit "Receive my newsletter", :class => "btn", :id => "new_email_submit" %>
+							<%= f.submit "Stay in touch", :class => "btn", :id => "new_email_submit" %>
 						</div>
 					</div>
 				<% end %>

@@ -3,7 +3,7 @@
 	$('#newsletter_modal').prepend("<p><%= escape_javascript @email.email %></p>");
 	$('#newsletter_modal').modal();
 <% else %>
-	$('#new_email_submit').val("Receive my newsletter");
+	$('#new_email_submit').val("Stay in touch");
 	$('#newsletter_modal_error').html('<%= escape_javascript @email.errors.full_messages.to_sentence %> :(');
 	$('#newsletter_modal_error').modal();
 <% end %>
