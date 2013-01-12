@@ -4,7 +4,7 @@
 	<h2 class="about-heading"><%= @photographer.name %></h2>
 
 	<p class="lead">
-	<%= @photographer.description %>
+	<%= @markdown.render(@photographer.description).html_safe %>
 	</p>
 
 	<p class="lead">

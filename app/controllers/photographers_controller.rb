@@ -64,6 +64,9 @@ class PhotographersController < ApplicationController
   end
 
   def set_title
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                                        :autolink => true, 
+                                        :space_after_headers => true)
     @title ||= @photographer.name if @photographer
   end
 end
