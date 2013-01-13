@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106202232) do
+ActiveRecord::Schema.define(:version => 20130112235607) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130106202232) do
     t.string   "twitter_url"
     t.string   "blog_url"
     t.string   "internal_url"
+    t.string   "google_tracking_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

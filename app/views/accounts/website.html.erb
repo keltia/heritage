@@ -7,16 +7,22 @@
 						<%= f.inputs :name => "Your website" do %>
 							<%= f.input :specific_url, :label => "Your domain name", 
 								:input_html => { :size => 40 } %>
-								<span class="help-block">
-									Want to use your own domain like www.<%= current_user.name.downcase.gsub(' ', '') %>.com? 
 
+							<span class="help-block">
+									Want to use your own domain like www.<%= current_user.name.downcase.gsub(' ', '') %>.com? 
 									<ul>
 										<li>point your DNS to 91.194.60.228</li>
 										<li>Fill it up here</li>
 									</ul>
+							</span>
+						<% end %>
 
-								</span>
-							<% end %>
+						<%= f.inputs :name => "Your Analytics" do %>
+							<%= f.input :google_tracking_id, :label => "Google Analytics" %>
+							<span class="help-block">
+								Example: UA-299804-4, you can get codes at <a href="https://www.google.com/analytics/">Google</a>.
+							</span>
+						<% end %>
 
 							<%= f.actions do %>
 								<%= f.action :submit, :as => :button, :label => "Save", 

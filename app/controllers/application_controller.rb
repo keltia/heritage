@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
       host_for_query_without_www = "#{request.server_name}"
       host_for_query_without_www.gsub!(/^www\./, '')
 
-      logger.info request.server_name
-      logger.info host_for_query
-      logger.info host_for_query_without_www
-
       @current_photographer = @photographer = User.first(:conditions => ['specific_url = ? OR specific_url = ?  OR internal_url = ? OR internal_url = ?',
                                                         host_for_query, host_for_query_without_www, host_for_query, host_for_query_without_www],
                                                                         :include => [:stories])
