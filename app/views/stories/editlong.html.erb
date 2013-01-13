@@ -61,7 +61,11 @@
 											<div class="caption">
 												<%= text_field "photos_#{photo.id}", :title, :value => photo.title, :class => 'input-large', :placeholder => "title" %>
 												<div>
-													<%= text_area "photos_#{photo.id}", :description, :value => photo.description, :class => 'input-large', :rows => 3, :cols => 3, :placeholder => "description"  %>
+													<%= text_area "photos_#{photo.id}", :description, 
+														:value => photo.description, 
+														:class => 'input-large', 
+														:rows => 3, 
+														:placeholder => "description" %>
 												</div>
 												<div>
 													<%= text_field "photos_#{photo.id}", :tag_list, :value => photo.tag_list, :class => 'input-large', :placeholder => "tag1, tag2" %>

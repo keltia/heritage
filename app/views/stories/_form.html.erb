@@ -1,7 +1,10 @@
 <%= semantic_form_for @story do |f| %>
 	<%= f.inputs :name => "Basic" do %>
 		<%= f.input :title %>
-		<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
+		<%= f.input :description, :input_html => { :class => 'input-xlarge', :rows => 10 } %>
+		<span class="help-block">
+			You can change all this later, after you uploaded your photos.
+		</span>
 	<% end %>
 
 	<%= f.actions do %>

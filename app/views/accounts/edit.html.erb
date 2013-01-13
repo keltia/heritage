@@ -17,8 +17,8 @@
 								<%= f.semantic_fields_for :user_avatar do |ff| %>
 									<%= ff.input :image, :as => :file %>
 								<% end %>
-								<%= f.input :name, :input_html => { :size => 40 } %>
-								<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 40 } %>
+								<%= f.input :name, :input_html => { :class => 'input-xlarge' } %>
+								<%= f.input :description, :input_html => { :class => 'input-xxlarge' } %>
 								Use <%= link_to "the markdown", "http://daringfireball.net/projects/markdown/basics" %> syntax.
 							<% end %>
 
