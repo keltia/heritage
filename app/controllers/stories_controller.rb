@@ -5,7 +5,9 @@ class StoriesController < ApplicationController
   before_filter :get_stories, :only => [:edit, :sort, :editlong, :new, :updatelong]
 
   def index
-    @stories = Story.all(:order => 'id DESC')
+    raise ActiveRecord::RecordNotFound unless @photographer
+
+    @stories = @photographer.stories.all(:order => 'id DESC')
     respond_to do |format|
       format.html
       format.atom
