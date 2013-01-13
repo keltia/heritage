@@ -1,0 +1,18 @@
+Hey,
+
+You can put your photos online in a few steps:
+
+1. Fill up your name at <%= edit_account_url(:host => Settings[:admin_domain]) %> just so it looks
+   nicer while visiting your website.
+
+2. Create a story at <%= new_story_url(:host => Settings[:admin_domain]) %>, upload photos (you
+   can batch upload using shift)
+
+3. Change your website url at <%= website_account_url(:host => Settings[:admin_domain]) %> if you
+   already own a DNS. Right now you'll be able to access your website at http://<%= @user.specific_url %>
+ 
+Let me know if I can help.
+
+-- 
+<%= Settings[:admin_name] %>
+<%= root_url(:host => Settings[:admin_domain]) %>

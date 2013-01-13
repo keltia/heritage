@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+		<h1>Hey,</h1>
+
+		<p>
+		You can put your photos online in a few steps:
+		</p>
+
+		<ol>
+			<li>
+			Fill up your name at <%= link_to edit_account_url(:host => Settings[:admin_domain]),
+				edit_account_url(:host => Settings[:admin_domain]) %> just so it looks
+			nicer while visiting your website.
+			</li>
+
+			<li>
+			Create a story at <%= link_to new_story_url(:host => Settings[:admin_domain]), 
+				new_story_url(:host => Settings[:admin_domain]) %>, upload photos (you
+			can batch upload using shift)
+			</li>
+
+			<li>
+			Change your website url at 
+			<%= link_to website_account_url(:host => Settings[:admin_domain]), 
+				website_account_url(:host => Settings[:admin_domain]) %> if you
+			already own a DNS. Right now you'll be able to access your website at 
+			<%= link_to @user.specific_url, "http://#{@user.specific_url}" %>
+			</li>
+		</ol>
+
+		<p>
+		Let me know if I can help.
+		</p>
+
+<pre>
+-- 
+<%= Settings[:admin_name] %>
+<%= root_url(:host => Settings[:admin_domain]) %>
+</pre>
+
+  </body>
+</html>

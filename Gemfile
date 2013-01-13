@@ -81,3 +81,4 @@ gem "has_permalink"
 gem "lograge"
 gem 'gravatar-ultimate'
 gem 'redcarpet'
+gem 'rails_config'
