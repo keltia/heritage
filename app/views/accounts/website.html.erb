@@ -6,7 +6,7 @@
 					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
 						<%= f.inputs :name => "Your website" do %>
 							<%= f.input :specific_url, :label => "Your domain name", 
-								:input_html => { :size => 40 } %>
+								:input_html => { :class => 'input-xlarge', :type => 'text' } %>
 
 							<span class="help-block">
 									Want to use your own domain like www.<%= current_user.name.downcase.gsub(' ', '') %>.com? 
