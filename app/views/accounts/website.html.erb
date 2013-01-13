@@ -9,7 +9,7 @@
 								:input_html => { :class => 'input-xlarge', :type => 'text' } %>
 
 							<span class="help-block">
-									Want to use your own domain like www.<%= current_user.name.downcase.gsub(' ', '') %>.com? 
+									Want to use your own domain like www.<%= current_user.name ? current_user.name.downcase.gsub(' ', '') : 'domain' %>.com? 
 									<ul>
 										<li>point your DNS to 91.194.60.228</li>
 										<li>Fill it up here</li>
