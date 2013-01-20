@@ -5,9 +5,13 @@
 			<% photo = story.photos.first %>
 
 			<li>
+			<h3><%= story.title %></h3>
 			<%= link_to(image_tag(photo.image_url(:thumb), :width => 180, :height => 180), 
 									story_photo_url(story, photo.permalink || photo.id), 
 									:class => "thumbnail") %>
+			<p>
+			<%# story.description %>
+			</p>
 			</li>
 
 		<% end %>

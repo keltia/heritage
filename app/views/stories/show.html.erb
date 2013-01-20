@@ -28,6 +28,10 @@
 					slideshow: false,
 					start: function(slider){
 					$('body').removeClass('loading');
+					$('#photos_counter').html((slider.currentSlide + 1)+'/'+slider.count);
+					},
+					after: function(slider){
+					$('#photos_counter').html((slider.currentSlide + 1)+'/'+slider.count);
 					}
 				});
 				$('#slider img').click(function() {
@@ -69,6 +73,10 @@
 				</ul>
 			</div>
 		<% end %>
+
+		<div id="photos_counter">
+			1/<%= @story.photos.count %>
+		</div>
 
 </div>
 </div>
