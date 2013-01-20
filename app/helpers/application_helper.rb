@@ -11,6 +11,12 @@ module ApplicationHelper
     request.protocol + request.host_with_port + url
   end
 
+  def user_description_text(user)
+    return unless user.description
+
+    @markdown.render(user.description)
+  end
+
   def user_avatar_url(user)
     if user.user_avatar && !user.user_avatar.new_record?
       user.user_avatar.image_url(:thumb)

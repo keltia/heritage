@@ -1,5 +1,5 @@
 #slider {margin: 0 0 10px!important; overflow: hidden;}
-#carousel {overflow:hidden;}
+#carousel {overflow:hidden; margin-bottom: 10px;}
 #carousel li {margin-right: 5px;}
 #carousel img {display: block; opacity: .8; cursor: pointer;}
 #carousel img:hover {opacity: 1;}

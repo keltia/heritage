@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
                                                                           :include => [:stories])
       end
 
+      @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                                          :autolink => true, 
+                                          :space_after_headers => true)
+
       # use request.host ? raise ActiveRecord::RecordNotFound ?
     end
 

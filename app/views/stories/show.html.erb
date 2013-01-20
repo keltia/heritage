@@ -9,7 +9,7 @@
 <%= content_for :head_script do %>
 	<script type="text/javascript">
 		$(document).ready(function() {
-				<% if @story.photos.count > 8 %>
+				<% if @story.photos.count > 80 %>
 				$('#carousel').flexslider({
 					animation: "slide",
 					controlNav: false,
@@ -17,12 +17,14 @@
 					slideshow: false,
 					itemWidth: 110,
 					itemMargin: 5,
+					keyboard: false,
 					asNavFor: '#slider'
 					});
 				<% end %>
 				$('#slider').flexslider({
 					animation: "slide",
 					controlNav: true,
+					keyboard: true,
 					animationLoop: false,
 					sync: "#carousel",
 					slideshow: false,
@@ -62,12 +64,12 @@
 			</ul>
 		</div>
 
-		<% if @story.photos.count > 8 %>
+		<% if @story.photos.count > 80 %>
 			<div id="carousel" class="flexslider">
 				<ul class="slides">
 					<% @story.photos.each_with_index do |photo,i| %>
 						<li>
-						<%= image_tag(photo.image_url(:thumb), :width => 300, :height => 300) if photo.image? %>
+						<%= image_tag(photo.image_url(:thumb), :width => 200, :height => 200) if photo.image? %>
 						</li>
 					<% end %>
 				</ul>
@@ -76,6 +78,11 @@
 
 		<div id="photos_counter">
 			1/<%= @story.photos.count %>
+		</div>
+
+		<div id="story_description">
+			<h3><%= @story.title %></h3>
+			<%= @story.description %>
 		</div>
 
 </div>
