@@ -51,6 +51,8 @@ group :test, :development do
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 	gem 'capybara'
+	gem "better_errors"
+	gem "binding_of_caller"
 end
 
 gem 'mysql2'
