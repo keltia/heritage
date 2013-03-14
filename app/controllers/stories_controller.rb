@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :get_story, :only => [:update, :edit, :destroy, :sort, :editlong, :updatelong]
-  before_filter :get_stories, :only => [:edit, :sort, :editlong, :new, :updatelong]
+  before_filter :get_stories, :only => [:edit, :sort, :editlong, :new, :updatelong, :create]
 
   def index
     raise ActiveRecord::RecordNotFound unless @photographer
