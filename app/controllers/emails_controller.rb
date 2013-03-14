@@ -1,4 +1,5 @@
 class EmailsController < ApplicationController
+  set_tab :audience
   before_filter :authenticate_user!, :except => [:create]
 
   def index

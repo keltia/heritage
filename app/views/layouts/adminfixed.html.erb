@@ -32,34 +32,38 @@
           <a class="brand" href="/">Heritage</a>
           <div class="container nav-collapse">
             <ul class="nav">
-							<%= nav_link "Home", root_path %>
-							<li class="divider-vertical"></li>
+							<%= tabs_tag(:builder => BoostrapTabs, 
+													 :open_tabs => { :class => "nav" }) do |tab| %>
+								<%= tab.home 'Home', root_path %>
 
-							<% if current_user %>
-								<li class="dropdown">
-								
-								<%= link_to "Stories <b class='caret'></b>".html_safe, "#", 
-									:class => "dropdown-toggle", 
-									'data-toggle'=>"dropdown" %>
+								<li class="divider-vertical"></li>
 
-								<ul class="dropdown-menu">
-									<li><%= link_to "Create a story", new_story_path %></li>
-									<li>
-									<%= link_to "All Stories", stories_account_path %>
-									</li>
-									<li class="divider"></li>
-									<% @stories.each do |story| %>
-										<li><%= link_to "#{story.title} (#{story.photos.count})", edit_story_path(story) %></li>
+								<% if current_user %>
+									<li class="dropdown">
+
+									<%= link_to "Stories <b class='caret'></b>".html_safe, "#", 
+										:class => "dropdown-toggle", 
+										'data-toggle'=>"dropdown" %>
+
+										<ul class="dropdown-menu">
+											<li><%= link_to "Create a story", new_story_path %></li>
+											<li>
+											<%= link_to "All Stories", stories_account_path %>
+											</li>
+											<li class="divider"></li>
+											<% @stories.each do |story| %>
+												<li><%= link_to "#{story.title} (#{story.photos.count})", edit_story_path(story) %></li>
+											<% end %>
+										</ul>
+
+										</li>
 									<% end %>
-								</ul>
 
-							</li>
-						<% end %>
-
-							<%= nav_link "Your account", edit_account_path %>
-							<%= nav_link "Your audience", emails_path %>
-							<% if @photographer && @photographer.specific_url %>
-								<%= nav_link "Your Public Website", "http://#{@photographer.specific_url}" %>
+								<%= tab.account "Your Account", edit_account_path %>
+								<%= tab.audience "Your Audience", emails_path %>
+								<% if @photographer && @photographer.specific_url %>
+									<%= tab.public_website "Your Public Website", "http://#{@photographer.specific_url}" %>
+								<% end %>
 							<% end %>
 
 						</ul>

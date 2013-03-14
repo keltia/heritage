@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  set_tab :account
   layout "adminfixed"
   before_filter :authenticate_user!
   before_filter :get_photographer

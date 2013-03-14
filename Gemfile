@@ -75,7 +75,8 @@ gem 'acts_as_list'
 gem 'formtastic'
 gem 'formtastic-bootstrap'
 
-gem 'tabulous'
+gem 'tabs_on_rails'
+gem 'simple_form'
 
 gem 'acts-as-taggable-on'
 
@@ -84,3 +85,5 @@ gem "lograge"
 gem 'gravatar-ultimate'
 gem 'redcarpet'
 gem 'rails_config'
+gem 'oauth-plugin'
+gem 'brice'
