@@ -82,7 +82,6 @@ gem 'simple_form'
 gem 'acts-as-taggable-on'
 
 gem "has_permalink"
-gem "lograge"
 gem 'gravatar-ultimate'
 gem 'redcarpet'
 gem 'rails_config'
