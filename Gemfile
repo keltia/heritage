@@ -61,6 +61,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'flash_cookie_session'
 gem "will_paginate"
+gem 'will_paginate-bootstrap'
 gem 'aasm'
 gem 'rainbow'
 gem 'devise'

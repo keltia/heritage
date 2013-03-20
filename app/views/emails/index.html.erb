@@ -2,8 +2,21 @@
 <p>
 <%= link_to "Text export", export_emails_path %>
 </p>
-<ul>
-	<% current_user.emails.order('id DESC').limit(20).each do |email| %>
-		<li><%= email.email %></li>
-	<% end %>
-</ul>
+<%= will_paginate @emails, :renderer => BootstrapPagination::Rails %>
+<table class="table table-striped">
+  <% @emails.each do |email| %>
+  <% next if email.email.strip.blank? %>
+  <tr>
+    <td>
+      <%= email.email %>
+    </td>
+    <td>
+      <%= link_to "delete", email_path(email),
+        method: :delete,
+        confirm: "Are you sure?",
+        class: "btn pull-right",
+        remote: true %>
+    </td>
+  </tr>
+  <% end %>
+</table>

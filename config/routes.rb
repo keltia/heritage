@@ -24,7 +24,7 @@ Heritage::Application.routes.draw do
     end
   end
 
-  resources :emails, :only => [:create, :index] do
+  resources :emails, :only => [:create, :index, :destroy] do
     collection do
       get :export
     end
