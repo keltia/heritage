@@ -9,6 +9,9 @@
   <tr>
     <td>
       <%= email.email %>
+      <div class="helper muted">
+        added <%= time_ago_in_words(email.created_at) %> ago
+      </div>
     </td>
     <td>
       <%= link_to "delete", email_path(email),
