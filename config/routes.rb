@@ -44,6 +44,7 @@ Heritage::Application.routes.draw do
       get :website
       get :stories
     end
+    put :update_avatar
   end
 
   constraints :subdomain => "admin" do

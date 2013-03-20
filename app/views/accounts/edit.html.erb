@@ -12,11 +12,9 @@
 									<label class="control-label" for="avatar">
 										Avatar
 									</label>
-									<%= image_tag(user_avatar_url(@photographer)) %>
+                  <%= image_tag(user_avatar(@photographer), :id => 'avatar', :width => 150) %>
 								</div>
-								<%= f.semantic_fields_for :user_avatar do |ff| %>
-									<%= ff.input :image, :as => :file %>
-								<% end %>
+                <%= f.input :avatar, :as => :file %>
 								<%= f.input :name, :input_html => { :class => 'input-xlarge' } %>
 								<%= f.input :description, :input_html => { :class => 'input-xxlarge' } %>
 								Use <%= link_to "the markdown", "http://daringfireball.net/projects/markdown/basics" %> syntax.
@@ -29,3 +27,14 @@
 						<% end %>
 					</div>
 				</div>
+        <script type="text/javascript">
+$(function() {
+  $('#user_avatar').fileupload({
+    dataType: 'json',
+    url: '<%= update_avatar_account_path %>',
+    done: function(e, data) {
+      $('#avatar').attr("src", data.result.image_url);
+    }
+  });
+});
+        </script>

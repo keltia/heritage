@@ -24,8 +24,17 @@ class AccountsController < ApplicationController
     end
   end
 
+  def update_avatar
+    if current_user.update_attributes(params[:user])
+      respond_to do |format|
+        format.json {
+          render :json => {:image_url => current_user.avatar_url}.to_json
+        }
+      end
+    end
+  end
+
   def edit
-    @photographer.user_avatar ||= @photographer.build_user_avatar
   end
 
   def social_medias

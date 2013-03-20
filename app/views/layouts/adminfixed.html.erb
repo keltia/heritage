@@ -39,8 +39,7 @@
 								<li class="divider-vertical"></li>
 
 								<% if current_user %>
-									<li class="dropdown">
-
+									<li class="dropdown" class="name">
 									<%= link_to "Stories <b class='caret'></b>".html_safe, "#", 
 										:class => "dropdown-toggle", 
 										'data-toggle'=>"dropdown" %>
@@ -70,7 +69,9 @@
 						<div class="pull-right">
 							<ul class="nav">
 								<% if current_user %>
-									<li class="dropdown">
+                  <li class="dropdown name">
+                  <%= image_tag(user_avatar(current_user, :thumb), 
+                      :width => 20, :height => 20, :class => 'small-avatar pull-left') %>
 									<%= link_to "#{current_user.email} <b class='caret'></b>".html_safe, "#", :class => "dropdown-toggle", 'data-toggle'=>"dropdown" %> 
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 										<li><%= link_to "Edit your account", edit_account_path %></li>

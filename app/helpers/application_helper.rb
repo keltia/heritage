@@ -17,9 +17,9 @@ module ApplicationHelper
     @markdown.render(user.description)
   end
 
-  def user_avatar_url(user)
-    if user.user_avatar && !user.user_avatar.new_record?
-      user.user_avatar.image_url(:thumb)
+  def user_avatar(user, size = :thumb)
+    if user.avatar?
+      user.avatar_url(size)
     else
       user.gravatar_url(:s => 150)
     end

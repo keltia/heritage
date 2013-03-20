@@ -24,9 +24,26 @@
 					});
 				$("#sortable").disableSelection();
 
+				var $modal = $('#ajax-modal');
+
+				$('.ajax .demo').on('click', function(){
+						// create the backdrop and wait for next modal to be triggered
+						$('body').modalmanager('loading');
+
+						setTimeout(function(){
+							$modal.load('modal_ajax_test.html', '', function(){
+								$modal.modal();
+								});
+							}, 1000);
+						});
+
+
+
+				/*
 				$('body').on('hidden', '.modal', function () {
 						$(this).removeData('modal');
-				});
+						});
+						*/
 		});
 </script>
 <% end %>
@@ -80,7 +97,10 @@
 					</div>
 
 					<div id="tab2" class="tab-pane">
-						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+						<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
+
+						<div id="responsive" class="modal hide fade" tabindex="-1">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 								<h3 id="myModalLabel">Editing Photo properties</h3>
@@ -91,6 +111,8 @@
 								<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 							</div>
 						</div>
+
+						<button class="demo btn btn-primary btn-large" data-toggle="modal" href="#responsive">View Demo</button>
 
 						<div class="btn-toolbar">
 							<div class="btn-group pull-right">
