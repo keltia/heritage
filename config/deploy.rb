@@ -17,6 +17,7 @@ role :app, "plouf.4push.com"                          # This may be the same as 
 role :db,  "plouf.4push.com", :primary => true # This is where Rails migrations will run
 
 set :shared_children, shared_children + %w{public/uploads}
+after "deploy:update_code", "deploy:migrate"
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"

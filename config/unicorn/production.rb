@@ -1,4 +1,4 @@
-worker_processes 5
+worker_processes 3
 
 app_directory = '/data/www/heritage'
 
