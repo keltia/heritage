@@ -29,17 +29,11 @@
 </script>
 <% end %>
 
-			<div class="tabbable tabs-left">
-				<ul class="nav nav-tabs">
-					<li class=""><%= link_to "Story information", edit_story_path(@story) %></li>
-					<li class="active"><a href="#tab2" data-toggle="tab">Story Photos (<%= @story.photos.count %>)</a></li>
-					<li><%= link_to "Public link", story_path(@story) %></li>
-				</ul>
-
-				<div class="tab-content">
-
-					<div id="tab2" class="tab-pane active">
-
+     <div class="row">
+        <div class="span2 well">
+          <%= render partial: "stories/left" %>
+        </div>
+        <div class="span8">
 						<%= form_for @story, :url => updatelong_story_path, :html => {:method => :put} do |f| %>
 
 						<div class="btn-toolbar">
@@ -85,6 +79,5 @@
 							<a href="/stories/2nd" class="btn">Cancel</a>
 						</fieldset>
 					<% end %>
-					</div>
-			</div>
-</div>
+        </div>
+      </div>

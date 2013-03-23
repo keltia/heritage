@@ -1,0 +1,20 @@
+<ul class="nav nav-list">
+
+  <% if @photographer.stories.public.any? %>
+  <li class="nav-header">Public Stories</li>
+  <% @photographer.stories.public.each do |story| %>
+  <li class="<%= 'active' if story == @story %>">
+  <%= link_to story.title, edit_story_path(story) %>
+  </li>
+  <% end %>
+  <% end %>
+
+  <% if @photographer.stories.private.any? %>
+  <li class="nav-header">Private Stories</li>
+  <% @photographer.stories.private.each do |story| %>
+  <li class="<%= 'active' if story == @story %>">
+  <%= link_to story.title, edit_story_path(story) %>
+  </li>
+  <% end %>
+  <% end %>
+</ul>

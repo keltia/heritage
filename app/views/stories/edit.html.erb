@@ -70,23 +70,17 @@
 	</script>
 <% end %>
 
-			<div class="tabbable tabs-left">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">Story information</a></li>
-					<li class=""><a href="#tab2" data-toggle="tab">Story Photos (<%= @story.photos.count %>)</a></li>
-					<li><%= link_to "Public link", story_url(@story, :host => current_user.specific_url ) %></li>
-				</ul>
+     <div class="row">
+        <div class="span2 well">
+          <%= render partial: "stories/left" %>
+        </div>
+        <div class="span6">
 				<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
-
-				<div class="tab-content">
-
-					<div id="tab1" class="tab-pane active">
-
 							<%= f.inputs :name => "Story information" do %>
 								<%= f.input :title, :input_html => { :class => 'input-xxlarge'}  %>
 								<%= f.input :description, :input_html => { :class => 'autogrow input-xxlarge', :rows => 10, :cols => 40 } %>
 								<%= f.input :tag_list, :input_html => { :class => 'input-xxlarge' }, :hint => "Enter, your, tags, with, commas" %>
-								<%= f.input :is_private, :hint => "foobar" %>
+                <%= f.input :is_private, hint: "foobar", label: "Private" %>
 							<% end %>
 
 							<%= f.actions do %>
@@ -94,10 +88,6 @@
 								<%= link_to "Cancel", story_path(@story), :class => "btn" %>
 								or <%= link_to "delete this story", story_path(@story), :data => { :confirm => "Are you sure?" }, :method => :delete  %>
 							<% end %>
-					</div>
-
-					<div id="tab2" class="tab-pane">
-
 						<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 
 						<div id="responsive" class="modal hide fade" tabindex="-1">
@@ -143,8 +133,6 @@
 								<% end %>
 							<% end %>
 						<% end %>
-					</div>
-			</div>
-
 		<% end %>
+</div>
 </div>
