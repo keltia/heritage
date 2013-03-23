@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
   acts_as_taggable
   has_permalink
 
+  scope :for_sale, where(for_sale: true)
+
   validates_uniqueness_of :title, :scope => :user_id, :allow_nil => true, :allow_blank => true
 
   attr_accessible :image, :title, :description, :tag_list, :for_sale

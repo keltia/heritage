@@ -20,6 +20,9 @@ class PhotographersController < ApplicationController
     end
   end
 
+  set_tab :contact, only: [:contact]
+  set_tab :about, only: [:about]
+  set_tab :home, only: [:show]
   def contact
   end
 

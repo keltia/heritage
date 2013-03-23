@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def any_for_sale?
-    self.photos.count(:conditions => {:for_sale => true}) > 0
+    self.allow_sale && self.photos.for_sale.any?
   end
 
   def to_label

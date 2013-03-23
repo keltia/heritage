@@ -7,6 +7,7 @@
 
 		<meta property="fb:app_id" content="143622885792396" />
 		<meta property="fb:admins" content="689541045" />
+
     <%= yield :facebook_meta %>
 
     <title><%= @title ? @title : "Heritage" %></title>
@@ -32,17 +33,20 @@
 					<%= link_to @photographer.name || "", root_url %>
 				</div>
 				<div class="navlinks">
-					<ul>
-						<li><%= link_to "Home", root_url %></li>
-						<li><%= link_to "About", about_path %></li>
-						<li><%= link_to "Contact", contact_path %></li>
-						<% if @photographer.any_for_sale? %>
-							<li><%= link_to "For Sale", photographer_path(@photographer) %></li>
-						<% end %>
+
+          <%= tabs_tag(builder: BoostrapTabs,
+            open_tabs: { :class => "nav nav-pills" }) do |tab| %>
+            <%= tab.home 'Home', root_url %>
+            <%= tab.about 'About', about_path %>
+            <%= tab.contact 'Contact', contact_path %>
+            <% if @photographer.any_for_sale? %>
+              <%= tab.for_sale "For Sale", photographer_path(@photographer) %>
+            <% end %>
 						<% if !@photographer.blog_url.blank? %>
-							<li><%= link_to "Blog", @photographer.blog_url %></li>
+							<%= tab.blog "Blog", @photographer.blog_url %>
 						<% end %>
-					</ul>
+          <% end %>
+
 				</div>
 			</div>
 		</div>
