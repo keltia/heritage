@@ -3,8 +3,8 @@ class Story < ActiveRecord::Base
   has_many :photos, :order => "position", :dependent => :destroy
   acts_as_list :scope => :user_id
 
-  scope :public, where(:is_private => false)
-  scope :private, where(:is_private => true)
+  scope :public, where(is_private: false)
+  scope :private, where(is_private: true)
 
   acts_as_taggable
   has_permalink
@@ -22,6 +22,11 @@ class Story < ActiveRecord::Base
 
   def max_photo_width
     photos.sort{|a,b| a.width <=> b.width }.last.photo_dimension.first
+  end
+
+  before_create :set_private
+  def set_private
+    self.is_private = true
   end
 
 #  protected

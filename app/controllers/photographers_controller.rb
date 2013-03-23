@@ -4,14 +4,14 @@ class PhotographersController < ApplicationController
 
   def show
     if params[:id]
-      @photographer = User.find_by_permalink(params[:id], :include => [:stories]) || 
+      @photographer = User.find_by_permalink(params[:id], :include => [:stories]) ||
         User.find(params[:id], :include => [:stories])
     end
     @photographer ||= @current_photographer
 
     raise ActiveRecord::RecordNotFound unless @photographer
 
-    @stories = @photographer.stories.all(:include => [:photos])
+    @stories = @photographer.stories.public(include: [:photos])
     @stories.each do |story|
       if story.photos.any?
         @front_story = story
@@ -42,7 +42,7 @@ class PhotographersController < ApplicationController
       flash[:notice] = "Info was saved"
       redirect_to :action => 'edit'
     else
-      flash.now[:alert] = "Can't save the story" 
+      flash.now[:alert] = "Can't save the story"
       render :action => 'edit'
     end
   end
