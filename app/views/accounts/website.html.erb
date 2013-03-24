@@ -3,25 +3,46 @@
 					<%= render :partial => 'lefttabs' %>
 				</ul>
 				<div class="tab-content">
-					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
+					<%= semantic_form_for @photographer, 
+          :url => account_path, 
+          :html => {:class => 'form form-horizontal', :multipart => true, :method => :put} do |f| %>
 						<%= f.inputs :name => "Your website" do %>
+
+            <div class="string input optional control-group">
+              <label class="control-label" for="avatar"></label>
+              <div class="controls control-group">
+              <% if @photographer.main_photo? %>
+                <%= image_tag(@photographer.main_photo_url(:thumb),
+                  :id => 'main_photo', :width => 150) %>
+                </div>
+                <div class="controls control-group">
+                  <%= link_to 'remove the main photo?', 
+                      delete_main_photo_account_path,
+                      :confirm => "Are you sure?", 
+                      :method => :delete %>
+              <% end %>
+              </div>
+            </div>
+
+              <%= f.input :main_photo, as: :file, hint: "Used for your front page" %>
+
 							<%= f.input :specific_url, :label => "Your domain name", 
 								:input_html => { :class => 'input-xlarge', :type => 'text' } %>
 
-							<span class="help-block">
+							<div class="controls">
 									Want to use your own domain like www.<%= current_user.name ? current_user.name.downcase.gsub(' ', '') : 'domain' %>.com? 
-									<ul>
+                  <ol>
 										<li>point your DNS to 91.194.60.228</li>
 										<li>Fill it up here</li>
-									</ul>
-							</span>
+									</ol>
+							</div>
 						<% end %>
 
 						<%= f.inputs :name => "Your Analytics" do %>
 							<%= f.input :google_tracking_id, :label => "Google Analytics" %>
-							<span class="help-block">
+              <div class="controls">
 								Example: UA-299804-4, you can get codes at <a href="https://www.google.com/analytics/">Google</a>.
-							</span>
+							</div>
 						<% end %>
 
 							<%= f.actions do %>
@@ -31,3 +52,14 @@
 							<% end %>
 				</div>
 			</div>
+        <script type="text/javascript">
+$(function() {
+  $('#user_main_photo').fileupload({
+    dataType: 'json',
+    url: '<%= update_main_photo_account_path %>',
+    done: function(e, data) {
+      $('#main_photo').attr("src", data.result.image_url);
+    }
+  });
+});
+        </script>

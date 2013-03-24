@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323220408) do
+ActiveRecord::Schema.define(:version => 20130323235309) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -112,6 +112,9 @@ ActiveRecord::Schema.define(:version => 20130323220408) do
     t.string   "google_tracking_id"
     t.string   "avatar"
     t.boolean  "allow_sale",             :default => false
+    t.string   "main_photo"
+    t.integer  "main_photo_width"
+    t.integer  "main_photo_height"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -8,6 +8,11 @@
 <% end %>
 <% end %>
 
-<%= render :partial => 'stories/front_story', :object => @front_story if @front_story %>
+<% if @photographer.main_photo? %>
+  <%= image_tag(@photographer.main_photo_url(:web)) %>
+<% else %>
+  <%= render :partial => 'stories/front_story',
+   object: @front_story if @front_story %>
+<% end %>
 
 <%= render :partial => 'stories/thumbnails' %>

@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require jquery.ui.widget
 //= require jquery.uploadify-3.1.min.js
+//= require jquery.fileupload.js
 //= require_tree .
 jQuery(function($) {
 		$("#new_email").bind('ajax:before', function() {

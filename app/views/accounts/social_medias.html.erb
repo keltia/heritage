@@ -3,7 +3,7 @@
 					<%= render :partial => 'lefttabs' %>
 				</ul>
 				<div class="tab-content">
-					<%= semantic_form_for @photographer, :url => account_path, :html => {:method => :put} do |f| %>
+          <%= semantic_form_for @photographer, :url => account_path, :html => {:class => 'form form-horizontal', :method => :put} do |f| %>
 						<%= f.inputs :name => "Your social medias" do %>
 							<%= f.input 'facebook_url', :label => "Facebook page URL", 
 								:hint => "This is used for the button at the bottom of your stories", 

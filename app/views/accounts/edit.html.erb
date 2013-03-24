@@ -5,19 +5,21 @@
 				<div class="tab-content">
 					<%= semantic_form_for @photographer, 
 						:url => account_path, 
-						:html => {:method => :put, :multipart => true} do |f| %>
+            :html => {:class => 'form form-horizontal', :method => :put, :multipart => true} do |f| %>
 
 							<%= f.inputs :name => "Your information" do %>
 								<div class="string input optional control-group">
-									<label class="control-label" for="avatar">
-										Avatar
-									</label>
+									<label class="control-label" for="avatar"></label>
+                  <div class="controls">
                   <%= image_tag(user_avatar(@photographer), :id => 'avatar', :width => 150) %>
+								  </div>
 								</div>
                 <%= f.input :avatar, :as => :file %>
 								<%= f.input :name, :input_html => { :class => 'input-xlarge' } %>
 								<%= f.input :description, :input_html => { :class => 'input-xxlarge' } %>
-								Use <%= link_to "the markdown", "http://daringfireball.net/projects/markdown/basics" %> syntax.
+                <div class="controls">
+                  Use <%= link_to "the markdown", "http://daringfireball.net/projects/markdown/basics" %> syntax.
+                </div>
 							<% end %>
 
 							<%= f.actions do %>
