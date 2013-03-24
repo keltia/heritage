@@ -3,11 +3,12 @@ class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :get_story, :only => [:update, :edit, :destroy, :sort, :editlong, :updatelong]
   before_filter :get_stories, :only => [:edit, :sort, :editlong, :new, :updatelong, :create]
+  before_filter :set_title
 
   def index
     raise ActiveRecord::RecordNotFound unless @photographer
 
-    @stories = @photographer.stories.all(:order => 'id DESC')
+    @stories = @photographer.stories.public(:order => 'id DESC')
     respond_to do |format|
       format.html
       format.atom

@@ -9,7 +9,7 @@
 <% end %>
 
 <% if @photographer.main_photo? %>
-  <%= image_tag(@photographer.main_photo_url(:web)) %>
+<%= image_tag(@photographer.main_photo_url(:web), :width => 960, :height => 960) %>
 <% else %>
   <%= render :partial => 'stories/front_story',
    object: @front_story if @front_story %>

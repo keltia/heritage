@@ -16,7 +16,7 @@ class Photo < ActiveRecord::Base
   acts_as_list :scope => :story
   mount_uploader :image, PhotoUploader
 
-  RESIZE_TO_FIT = [800, 800]
+  RESIZE_TO_FIT = [960, 960]
   def photo_dimension(max=RESIZE_TO_FIT)
     result_height = (RESIZE_TO_FIT.first.to_f / width) * height
 

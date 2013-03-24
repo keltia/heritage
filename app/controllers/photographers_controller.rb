@@ -27,7 +27,7 @@ class PhotographersController < ApplicationController
   end
 
   def about
-    @stories = @photographer.stories
+    @stories = @photographer.stories.public(include: [:photos])
   end
 
   def index
@@ -64,9 +64,5 @@ class PhotographersController < ApplicationController
 
   def get_photographer
     @photographer = current_user
-  end
-
-  def set_title
-    @title ||= @photographer.name if @photographer
   end
 end

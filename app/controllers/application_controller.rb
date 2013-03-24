@@ -57,4 +57,8 @@ class ApplicationController < ActionController::Base
   def is_admin_interface?
     ['admin.minideb.local', 'admin.heritage.io'].include? request.server_name
   end
+
+  def set_title
+    @title ||= @photographer.name if @photographer
+  end
 end

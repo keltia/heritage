@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title("My great blog!")
+  feed.title(@title ? @title : "Heritage")
   feed.updated(@stories.first.created_at) if @stories.any?
   @stories.each do |story|
     feed.entry(story) do |entry|
