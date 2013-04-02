@@ -37,7 +37,9 @@
           <%= tabs_tag(builder: BoostrapTabs,
             open_tabs: { :class => "nav nav-pills" }) do |tab| %>
             <%= tab.home 'Home', root_url %>
-            <%= tab.about 'About', about_path %>
+            <% if !@photographer.description.blank? %>
+              <%= tab.about 'About', about_path %>
+            <% end %>
             <%= tab.contact 'Contact', contact_path %>
             <% if @photographer.any_for_sale? %>
               <%= tab.for_sale "For Sale", photographer_path(@photographer) %>
