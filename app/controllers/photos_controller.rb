@@ -47,7 +47,6 @@ class PhotosController < ApplicationController
   def show
     @story = Story.find_by_permalink(params[:story_id])
     @photo = @story.photos.find_by_permalink(params[:id]) || @story.photos.find(params[:id])
-    redirect_to story_path(@story)
   end
 
   private

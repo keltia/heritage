@@ -1,93 +1,74 @@
 <% if @story.photos.any? %>
-<%= content_for :facebook_meta do %>
+ <%= content_for :facebook_meta do %>
 	<meta property="og:url" content="<%= story_url(@story) %>" />
 	<meta property="og:image" content="<%= full_image_link @story.photos.first.image_url(:web) %>" />
 	<meta property="og:title" content="<%= @story.photos.first.title || @story.title %>" />
 	<meta property="og:site_name" content="<%= @story.user.name %>"/>
-<% end %>
+ <% end %>
 <% end %>
 <%= content_for :head_script do %>
 	<script type="text/javascript">
 		$(document).ready(function() {
-				<% if @story.photos.count > 80 %>
-				$('#carousel').flexslider({
-					animation: "slide",
-					controlNav: false,
-					animationLoop: false,
-					slideshow: false,
-					itemWidth: 110,
-					itemMargin: 5,
-					keyboard: false,
-					asNavFor: '#slider'
-					});
-				<% end %>
-        $('#slider').flexslider({
-          animation: "slide",
-          controlNav: true,
-          keyboard: true,
-          animationLoop: false,
-          sync: "#carousel",
-          slideshow: false,
-          start: function(slider) {
-            $('body').removeClass('loading');
-            $('#photos_counter').html((slider.currentSlide + 1)+'/'+slider.count);
-          },
-          after: function(slider){
-            $('#photos_counter').html((slider.currentSlide + 1)+'/'+slider.count);
-          }
-        });
-				$('#slider img').click(function() {
-					$('#slider').flexslider('next');
-				});
-		});
+      var slider = $('.carousel').carousel('pause')
+        .bind('slid', function() {
+        var index = $(this).find(".active").index();
+        $('#photos_index').html(index + 1);
+      });
 
+      jQuery(document).bind('keyup', function(e) {
+        if(e.which==39){
+          jQuery('a.navigationright').trigger('click');
+        } else if(e.which==37){
+          jQuery('a.navigationleft').trigger('click');
+        }
+      });
+		});
 	</script>
 <% end %>
 
+<div id="story">
 <% if @story.photos.any? %>
-	<div id="story">
-		<!--
-	<div class="tagslist">
-		<% @story.tags.each do |tag| %>
-			<span class="label"><%= tag.name %></span>
-		<% end %>
-	</div>
-	-->
 
-		<div id="slider" class="flexslider">
-			<ul class="slides">
-				<% @story.photos.each_with_index do |photo,i| %>
-					<li>
-						<%= image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last) if photo.image? %>
-            <p class="flex-caption">
-            <a href="http://google.com">Purchase a print</a>
-            </p>
-					</li>
-				<% end %>
-			</ul>
-		</div>
+  <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <% @story.photos.each_with_index do |photo,i| %>
+      <li data-target="#myCarousel" data-slide-to="<%= i %>" class=""></li>
+      <% end %>
+    </ol>
 
-		<% if @story.photos.count > 80 %>
-			<div id="carousel" class="flexslider">
-				<ul class="slides">
-					<% @story.photos.each_with_index do |photo,i| %>
-						<li>
-						<%= image_tag(photo.image_url(:thumb), :width => 200, :height => 200) if photo.image? %>
-						</li>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+    <div class="carousel-inner">
+      <% @story.photos.each_with_index do |photo,i| %>
+      <div class="item <%= 'active' if i == 0 %>">
+        <%= link_to(image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last),
+        "#myCarousel", 'data-slide' => 'next', :class => "") %>
 
-		<div id="photos_counter">
-			1/<%= @story.photos.count %>
-		</div>
+        <div class="carousel-caption">
+          <p>
+          <a href="http://www.google.com">Purchase</a>
+          <a href="http://www.google.com">Share</a>
+          <%= link_to "Direct Link", story_photo_url(@story, photo.permalink || photo.id) %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 
-		<div id="story_description">
-			<h3><%= @story.title %></h3>
-			<%= @story.description %>
-		</div>
+  <div class="bottomnav">
+    <div class="pull-right navigation">
+      <a class="navigationleft" href="#myCarousel" data-slide="prev"></a>
+      <a class="navigationright" href="#myCarousel" data-slide="next"></a>
+    </div>
+    <div id="photos_counter">
+      <span id="photos_index">1</span>/<%= @story.photos.count %>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 
-</div>
-</div>
+  <div id="story_description">
+    <h3><%= @story.title %></h3>
+    <%= @story.description %>
+  </div>
+
 <% end %>
+</div>

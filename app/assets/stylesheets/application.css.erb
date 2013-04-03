@@ -1,0 +1,134 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require 'bootstrap_and_overrides'
+ *= require 'flexslider'
+ *= require 'flexslider_overrides'
+ *= require 'uploadify'
+ *
+ *= require 'admin'
+ *= require 'emails'
+ *= require 'about'
+ *= require 'jquery.modal'
+ *# require 'global'
+ *# require_tree .
+ *# require formtastic
+ */
+
+#sortable {
+  float: left;
+  width: 100%;
+  margin: border 1px black;
+}
+#sortable li {
+  list-style-type: none;
+  float: left;
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  width: 100px;
+}
+.topmargin {
+  margin-top: 50px;
+}
+.small-avatar {
+  margin-right: 10px;
+  margin-top: 10px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+}
+.name {
+  white-space: nowrap;
+}
+.imgHover {
+  display: inline;
+  position: relative;
+}
+.imgHover .hover {
+  position: absolute;
+  bottom: 0px;
+  z-index: 2;
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+}
+.flex-caption {
+  color: #fff;
+  font-size: 16px;
+  opacity: 0.5;
+  background-color: #333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  bottom: -8px;
+  width: 100%;
+  text-align: left;
+}
+.flex-caption a {
+  color: #fff;
+  text-shadow: 0px 0px #ddd;
+}
+.flex-caption a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.about {
+  min-height: 500px;
+}
+
+/*
+.navigation a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(<%= asset_path "arrows.png" %>) no-repeat;
+  border: 0;
+  top: auto;
+  bottom: -36px;
+  z-index: 11;
+  text-indent: -9999px;
+}
+*/
+.navigationleft {
+  left: auto;
+  right: 35px;
+  display: block;
+  width: 30px;
+  background: url(<%= asset_path "arrows.png" %>) no-repeat;
+  background-position: -60% 50%;
+  border: 0;
+  top: auto;
+  bottom: -36px;
+  height: 30px;
+}
+.navigationright {
+  right: 0px;
+  display: block;
+  width: 30px;
+  background: url(<%= asset_path "arrows.png" %>) no-repeat;
+  background-position: 160% 50%;
+  border: 0;
+  top: -30px;
+  left: 30px;
+  bottom: -36px;
+  height: 30px;
+  position: relative;
+}
+.navigation {
+  width: 60px;
+  height: 30px;
+}
+.bottomnav {
+  margin-top: 8px;
+}
