@@ -77,7 +77,9 @@
         <div class="span6">
 				<%= semantic_form_for @story, :url => story_path, :html => {:method => :put} do |f| %>
 							<%= f.inputs :name => "Story information" do %>
-								<%= f.input :title, :input_html => { :class => 'input-xxlarge'}  %>
+								<%= f.input :title, :input_html => { :class => 'input-xxlarge'},
+                  :hint => "Your story public link is #{link_to(story_url(@story, host: @photographer.specific_url),
+                    story_url(@story, host: @photographer.specific_url))}".html_safe %>
 								<%= f.input :description, :input_html => { :class => 'autogrow input-xxlarge', :rows => 10, :cols => 40 } %>
 								<%= f.input :tag_list, :input_html => { :class => 'input-xxlarge' }, :hint => "Enter, your, tags, with, commas" %>
                 <%= f.input :is_private, hint: "foobar", label: "Private" %>
