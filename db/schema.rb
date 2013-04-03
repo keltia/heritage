@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323235309) do
+ActiveRecord::Schema.define(:version => 20130403131735) do
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130323235309) do
     t.string   "main_photo"
     t.integer  "main_photo_width"
     t.integer  "main_photo_height"
+    t.text     "contact"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

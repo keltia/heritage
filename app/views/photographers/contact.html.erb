@@ -7,8 +7,26 @@
 	<meta property="og:description" content="<%= @photographer.description %>" />
 	<meta property="og:site_name" content="<%= @photographer.name %>"/>
 <% end %>
-<%= render :partial => 'photographers/about' %>
 
-<p>
-Please reach <%= @photographer.name %> through his social networks.
-</p>
+<div class="about">
+  <%= image_tag(user_avatar(@current_photographer), :class => "pull-left") %>
+  <h2 class="about-heading"><%= @photographer.name %></h2>
+  <p class="lead">
+  <% if @photographer.contact %>
+  <%= @markdown.render(@photographer.contact).html_safe %>
+  <% end %>
+  </p>
+
+	<p class="lead">
+	<% if @photographer.facebook_url %>
+		<%= link_to "Facebook", @photographer.facebook_url, :class => "btn" %>
+	<% end %>
+	<% if @photographer.twitter_url %>
+		<%= link_to "Twitter", @photographer.twitter_url, :class => "btn" %>
+	<% end %>
+	<% if @photographer.blog_url %>
+		<%= link_to "Blog", @photographer.blog_url, :class => "btn" %>
+	<% end %>
+	</p>
+	<div class="clearfix"></div>
+</div>

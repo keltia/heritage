@@ -8,18 +8,5 @@
 		<%= @markdown.render(@photographer.description).html_safe %>
 	<% end %>
 	</p>
-
-	<p class="lead">
-	<% if @photographer.facebook_url %>
-		<%= link_to "Facebook", @photographer.facebook_url, :class => "btn" %>
-	<% end %>
-	<% if @photographer.twitter_url %>
-		<%= link_to "Twitter", @photographer.twitter_url, :class => "btn" %>
-	<% end %>
-	<% if @photographer.blog_url %>
-		<%= link_to "Blog", @photographer.blog_url, :class => "btn" %>
-	<% end %>
-	</p>
-
 	<div class="clearfix"></div>
 </div>
