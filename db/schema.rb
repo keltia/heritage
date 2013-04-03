@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403131735) do
+ActiveRecord::Schema.define(:version => 20130403221141) do
+
+  create_table "available_sizes", :force => true do |t|
+    t.integer "user_id"
+    t.string  "size"
+    t.string  "price"
+    t.string  "shipping_price"
+    t.text    "description"
+  end
+
+  add_index "available_sizes", ["user_id"], :name => "index_available_sizes_on_user_id"
 
   create_table "emails", :force => true do |t|
     t.integer  "user_id"

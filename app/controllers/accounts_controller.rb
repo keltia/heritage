@@ -58,10 +58,4 @@ class AccountsController < ApplicationController
   def website
   end
 
-  protected
-
-  def get_photographer
-    @photographer = current_user
-    get_stories
-  end
 end

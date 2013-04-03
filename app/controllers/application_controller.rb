@@ -61,4 +61,9 @@ class ApplicationController < ActionController::Base
   def set_title
     @title ||= @photographer.name if @photographer
   end
+
+  def get_photographer
+    @photographer = current_user
+    get_stories
+  end
 end

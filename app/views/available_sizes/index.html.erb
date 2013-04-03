@@ -1,0 +1,42 @@
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs">
+					<%= render :partial => 'accounts/lefttabs' %>
+				</ul>
+				<div class="tab-content">
+          <table class="table table-striped">
+            <tr>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Shipping</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+
+            <% current_user.available_sizes.each do |size| %>
+            <tr>
+              <td><%= size.size %></td>
+              <td><%= size.price %></td>
+              <td><%= size.shipping_price %></td>
+              <td><%= size.description %></td>
+              <td><%= link_to "delete", account_available_size_path(size), :method => :delete, :confirm => "Are you sure?", :class => "btn pull-right" %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+
+          <h1>Add a new size</h1>
+          <%= simple_form_for AvailableSize.new, url: account_available_sizes_path, html: { class: "form form-horizontal" } do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :size, as: :string, input_html: { class: "input-mini" } %>
+            <%= f.input :price, as: :string, input_html: {class: "input-mini" } %>
+            <%= f.input :shipping_price, as: :string, input_html: { class: "input-mini" } %>
+            <%= f.input :description, as: :text, input_html: { class: "input-xlarge", rows: 5 } %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, class: "btn btn-primary" %>
+          </div>
+          <% end %>
+
+				</div>
+      </div>
