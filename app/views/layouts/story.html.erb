@@ -61,7 +61,7 @@
 			<%= yield %>
 		</div> <!-- /container -->
 
-		<%= render :partial => 'shared/footer' unless params[:controller] == 'stories' %>
+		<%= render :partial => 'shared/footer' unless params[:controller] == 'stories' || params[:controller] == 'photos' %>
 
 		<%= yield :scripts %>
 

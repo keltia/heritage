@@ -38,7 +38,8 @@
 
     <div class="carousel-inner">
       <% @story.photos.each_with_index do |photo,i| %>
-      <div class="item <%= 'active' if i == 0 %>">
+      <% @photo_index = (i+1) if @photo == photo %>
+      <div class="item <%= 'active' if @photo == photo %>">
         <%= link_to(image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last),
         "#myCarousel", 'data-slide' => 'next', :class => "") %>
 
@@ -60,7 +61,7 @@
       <a class="navigationright" href="#myCarousel" data-slide="next"></a>
     </div>
     <div id="photos_counter">
-      <span id="photos_index">1</span>/<%= @story.photos.count %>
+      <span id="photos_index"><%= @photo_index %></span>/<%= @story.photos.count %>
     </div>
     <div class="clearfix"></div>
   </div>
