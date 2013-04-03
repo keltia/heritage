@@ -58,12 +58,12 @@ ol,ul { list-style:none; }
   background-color: white;
   font-size: 2.0em;
   margin: auto;
-  width: 810px;
+  width: <%= Photo::RESIZE_TO_FIT.first %>px;
   padding: 1em;
 }
 #heritage_footer {
   margin: auto;
-  width: 820px;
+  width: <%= Photo::RESIZE_TO_FIT.first %>px;
   font-size: 0.8em;
   padding: 1em;
   color: #999;
@@ -104,7 +104,7 @@ body {
 }
 
 #container {
-	width:810px;
+  width: <%= Photo::RESIZE_TO_FIT.first %>px;
 	padding:10px;
 	margin:0 auto;
 	position:relative;

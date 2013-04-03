@@ -68,21 +68,23 @@ img {
 .carousel:hover .carousel-control { visibility: visible; opacity: 0.5;}
 
 
-#myCarousel { width: 800px; margin: auto; }
+#myCarousel { width: <%= Photo::RESIZE_TO_FIT.first %>px; margin: auto; }
 .carousel:hover .carousel-caption { visibility: visible; }
 .carousel .carousel-caption { visibility: hidden; }
 
 .carousel .carousel-caption {
   padding: 5px;
+  background: rgba(0,0,0,0.55);
 }
 #myCarousel .carousel-caption p {
   font-size: 14px;
-  text-align: right;
+  text-align: left;
   text-shadow: none;
+  font-weight: bold;
 }
 #myCarousel .carousel-caption a {
   line-height: 22px;
-  color: #B3B3B3;
+  color: #DDD;
   margin-right: 5px;
   padding: 3px 5px;
   font-weight: bold;
@@ -108,9 +110,18 @@ img {
   -o-border-radius: 4px;
   -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   -o-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   zoom: 1;
+}
+.carousel .item {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 legend {
   margin-bottom: 0px;
 }
+
+.carousel-inner { text-align: center; }
+.carousel .item > img { display: inline-block; }

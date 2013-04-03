@@ -29,20 +29,24 @@
 <div id="story">
 <% if @story.photos.any? %>
 
-    <div id="myCarousel" class="carousel slide" style="height: <%= @story.max_photo_height(800) %>px">
+    <div id="myCarousel" class="carousel slide" style="height: <%= @story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px">
 
     <div class="carousel-inner">
       <% @story.photos.each_with_index do |photo,i| %>
       <% @photo_index = (i+1) if @photo == photo %>
       <div class="item <%= 'active' if @photo == photo %>">
-        <%= link_to(image_tag(photo.image_url(:web), :width => 800, :height => photo.photo_dimension.last),
+        <%= link_to(image_tag(photo.image_url(:web), 
+          :width => Photo::RESIZE_TO_FIT.first,
+          :style => "margin-top: #{(@story.max_photo_height(Photo::RESIZE_TO_FIT.first) - photo.photo_dimension(Photo::RESIZE_TO_FIT).last) / 2}px; padding-bottom: #{(@story.max_photo_height(Photo::RESIZE_TO_FIT.first) - photo.photo_dimension(Photo::RESIZE_TO_FIT).last) / 2}px",
+          :height => photo.photo_dimension.last),
         "#myCarousel", 'data-slide' => 'next', :class => "") %>
 
         <div class="carousel-caption">
+          <p class="pull-right"> | 
+            <%= link_to "Direct Link", story_photo_url(@story, photo.permalink || photo.id) %>
+          </p>
           <p>
-          <a href="http://www.google.com">Purchase</a>
-          <a href="http://www.google.com">Share</a>
-          <%= link_to "Direct Link", story_photo_url(@story, photo.permalink || photo.id) %>
+            <%= photo.description %>
           </p>
         </div>
       </div>
