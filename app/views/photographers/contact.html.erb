@@ -18,13 +18,13 @@
   </p>
 
 	<p class="lead">
-	<% if @photographer.facebook_url %>
+	<% if !@photographer.facebook_url.blank? %>
 		<%= link_to "Facebook", @photographer.facebook_url, :class => "btn" %>
 	<% end %>
-	<% if @photographer.twitter_url %>
+	<% if !@photographer.twitter_url.blank? %>
 		<%= link_to "Twitter", @photographer.twitter_url, :class => "btn" %>
 	<% end %>
-	<% if @photographer.blog_url %>
+	<% if !@photographer.blog_url.blank? %>
 		<%= link_to "Blog", @photographer.blog_url, :class => "btn" %>
 	<% end %>
 	</p>
