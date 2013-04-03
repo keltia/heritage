@@ -28,7 +28,6 @@
 
 <div id="story">
 <% if @story.photos.any? %>
-
     <div id="myCarousel" class="carousel slide" style="height: <%= @story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px">
 
     <div class="carousel-inner">
