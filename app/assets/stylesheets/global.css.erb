@@ -58,8 +58,8 @@ ol,ul { list-style:none; }
   background-color: white;
   font-size: 2.0em;
   margin: auto;
-  width: <%= Photo::RESIZE_TO_FIT.first %>px;
-  padding: 1em;
+  width: <%= Photo::RESIZE_TO_FIT.first - 40 %>px;
+  padding: 20px;
 }
 #heritage_footer {
   margin: auto;
@@ -180,7 +180,8 @@ a:hover,a:active {
   letter-spacing: -1px;
 }
 .about img {
-  margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 40px;
   background-color: white;
   margin: 1px solid #C3D5E3;
   padding: 10px;
