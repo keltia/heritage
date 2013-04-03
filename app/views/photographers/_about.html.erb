@@ -1,8 +1,6 @@
 <div class="about">
 	<%= image_tag(user_avatar(@current_photographer), :class => "pull-right") %>
 
-	<h2 class="about-heading"><%= @photographer.name %></h2>
-
 	<p class="lead">
 	<% if @photographer.description %>
 		<%= @markdown.render(@photographer.description).html_safe %>
