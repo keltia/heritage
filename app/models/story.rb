@@ -14,10 +14,14 @@ class Story < ActiveRecord::Base
 
   attr_accessible :title, :description, :tag_list, :is_private
 
-  def max_photo_height
+  def max_photo_height(width=nil)
     max_height = photos.sort{|a,b| a.height <=> b.height }.last
 
-    max_height.photo_dimension.last
+    if width
+      max_height.photo_dimension([width, width]).last
+    else
+      max_height.photo_dimension.last
+    end
   end
 
   def max_photo_width

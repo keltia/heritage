@@ -29,12 +29,7 @@
 <div id="story">
 <% if @story.photos.any? %>
 
-  <div id="myCarousel" class="carousel slide">
-    <ol class="carousel-indicators">
-      <% @story.photos.each_with_index do |photo,i| %>
-      <li data-target="#myCarousel" data-slide-to="<%= i %>" class=""></li>
-      <% end %>
-    </ol>
+    <div id="myCarousel" class="carousel slide" style="height: <%= @story.max_photo_height(800) %>px">
 
     <div class="carousel-inner">
       <% @story.photos.each_with_index do |photo,i| %>

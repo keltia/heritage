@@ -18,9 +18,9 @@ class Photo < ActiveRecord::Base
 
   RESIZE_TO_FIT = [960, 960]
   def photo_dimension(max=RESIZE_TO_FIT)
-    result_height = (RESIZE_TO_FIT.first.to_f / width) * height
+    result_height = (max.first.to_f / width) * height
 
-    [RESIZE_TO_FIT.first, result_height.to_i]
+    [max.first, result_height.to_i]
   end
 
   def all_tags
