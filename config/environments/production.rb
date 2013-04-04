@@ -69,3 +69,8 @@ Heritage::Application.configure do
     enable_starttls_auto: false
   }
 end
+
+Heritage::Application.middleware.use ExceptionNotifier,
+  :email_prefix => "[Heritage] ",
+  :sender_address => %{"notifier" <notifier@heritage.io>},
+  :exception_recipients => %w{fabienpenso@gmail.com}
