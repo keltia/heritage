@@ -34,11 +34,10 @@
 				</div>
 				<div class="navlinks">
 
-          <%= tabs_tag(builder: BoostrapTabs,
+          <% if !@photographer.description.blank? || !@photographer.contact.blank? || @photographer.any_for_sale? || !@photographer.blog_url.blank? %>
+           <%= tabs_tag(builder: BoostrapTabs,
             open_tabs: { :class => "nav nav-pills" }) do |tab| %>
-            <% if !@photographer.description.blank? || !@photographer.contact.blank? || @photographer.any_for_sale? || !@photographer.blog_url.blank? %>
               <%= tab.home 'Home', root_url %>
-            <% end %>
             <% if !@photographer.description.blank? %>
               <%= tab.about 'About', about_path %>
             <% end %>
@@ -51,6 +50,7 @@
 						<% if !@photographer.blog_url.blank? %>
 							<%= tab.blog "Blog", @photographer.blog_url %>
 						<% end %>
+           <% end %>
           <% end %>
 
 				</div>
