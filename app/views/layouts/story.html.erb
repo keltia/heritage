@@ -34,18 +34,21 @@
 				</div>
 				<div class="navlinks">
 
-          <% if !@photographer.description.blank? || !@photographer.contact.blank? || @photographer.any_for_sale? || !@photographer.blog_url.blank? %>
+          <% if !@photographer.description.blank? ||
+            !@photographer.contact.blank? ||
+            @photographer.any_for_sale? ||
+            !@photographer.blog_url.blank? %>
+
            <%= tabs_tag(builder: BoostrapTabs,
             open_tabs: { :class => "nav nav-pills" }) do |tab| %>
-              <%= tab.home 'Home', root_url %>
+            <% if @photographer.any_for_sale? %>
+              <%= tab.for_sale "Shop", photographer_path(@photographer) %>
+            <% end %>
             <% if !@photographer.description.blank? %>
               <%= tab.about 'About', about_path %>
             <% end %>
             <% if !@photographer.contact.blank? %>
               <%= tab.contact 'Contact', contact_path %>
-            <% end %>
-            <% if @photographer.any_for_sale? %>
-              <%= tab.for_sale "For Sale", photographer_path(@photographer) %>
             <% end %>
 						<% if !@photographer.blog_url.blank? %>
 							<%= tab.blog "Blog", @photographer.blog_url %>
