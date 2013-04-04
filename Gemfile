@@ -90,3 +90,6 @@ gem 'oauth-plugin'
 gem 'brice'
 gem 'gon'
 gem 'exception_notification'
+gem 'added_methods'
+gem "what_methods"
+gem 'backports'
