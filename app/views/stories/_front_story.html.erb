@@ -1,4 +1,4 @@
-    <div id="slider" class="carousel slide" style="height: <%= front_story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px">
+    <div id="slider" class="carousel slide" style="height: <%= front_story.photos.first.photo_dimension.last %>px">
       <div class="carousel-inner">
           <%= link_to(image_tag(front_story.photos.first.image_url(:web),
             :width => 800,
