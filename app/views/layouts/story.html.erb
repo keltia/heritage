@@ -62,9 +62,20 @@
 
 		<div id="container">
 			<%= yield %>
+    <% if params[:controller] == 'stories' || params[:controller] == 'photos' %>
+      <div class="copyright">
+        <h1>
+          © <%= @photographer.name %>. All Rights Reserved.
+        </h1>
+      </div>
+    <% end %>
 		</div> <!-- /container -->
 
-		<%= render :partial => 'shared/footer' unless params[:controller] == 'stories' || params[:controller] == 'photos' %>
+
+    <% if params[:controller] == 'stories' || params[:controller] == 'photos' %>
+    <% else %>
+    <%= render :partial => 'shared/footer' %>
+    <% end %>
 
 		<%= yield :scripts %>
 
