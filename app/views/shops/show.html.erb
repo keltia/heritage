@@ -1,0 +1,56 @@
+<%= content_for :facebook_meta do %>
+	<meta property="og:url" content="<%= about_url %>" />
+  <% if @photographer.avatar? %>
+    <meta property="og:image" content="<%= full_image_link @photographer.avatar_url(:thumb) %>" />
+  <% end %>
+	<meta property="og:title" content="<%= @photographer.name %> - Photography" />
+	<meta property="og:description" content="<%= @photographer.description %>" />
+	<meta property="og:site_name" content="<%= @photographer.name %>"/>
+<% end %>
+
+<div class="about">
+  <%= image_tag(user_avatar(@current_photographer), :class => "pull-right") %>
+
+  <p class="lead">
+  <% if @photographer.sale_description %>
+    <%= @markdown.render(@photographer.sale_description).html_safe %>
+  <% end %>
+  </p>
+
+  <table class="table available_sizes table-striped">
+    <tr>
+      <th colspan="3">
+        Sizes available
+      </th>
+      </tr>
+  <% @photographer.available_sizes.each do |size| %>
+  <tr>
+    <td>
+      <%= size.size %>
+    </td>
+    <td>
+      <%= size.description %>
+    </td>
+    <td>
+      <div class="pull-right">
+        <%= size.price %> euros
+      </div>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td colspan="2">
+      <span class="label label-info">Heads up!</span> You can purchase photos
+      while browsing this website, a purchase link is available on every photos
+      when your mouse cursor goes hover the photo.
+    </td>
+  </tr>
+  </table>
+
+  <% @photographer.photos.for_sale.all.each do |photo| %>
+  <%= link_to(image_tag(photo.image_url(:thumb), :width => 100), purchase_story_photo_path(photo.story, photo.permalink || photo.id)) %>
+  <% end %>
+
+	<div class="clearfix"></div>
+</div>

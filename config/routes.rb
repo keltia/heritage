@@ -16,7 +16,11 @@ Heritage::Application.routes.draw do
   end
 
   resources :stories do
-    resources :photos, :only => [:create, :destroy, :edit, :update, :show]
+    resources :photos, :only => [:create, :destroy, :edit, :update, :show] do
+      member do
+        get :purchase
+      end
+    end
     member do
       post :sort
       get :editlong
@@ -37,6 +41,8 @@ Heritage::Application.routes.draw do
       get :contact
     end
   end
+
+  resource :shop
 
   resource :account do
     member do

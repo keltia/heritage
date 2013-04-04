@@ -34,7 +34,7 @@
       <% @story.photos.each_with_index do |photo,i| %>
       <% @photo_index = (i+1) if @photo == photo %>
       <div class="item <%= 'active' if @photo == photo %>">
-        <%= link_to(image_tag(photo.image_url(:web), 
+        <%= link_to(image_tag(photo.image_url(:web),
           :width => Photo::RESIZE_TO_FIT.first,
           :style => "margin-top: #{(@story.max_photo_height(Photo::RESIZE_TO_FIT.first) - photo.photo_dimension(Photo::RESIZE_TO_FIT).last) / 2}px; padding-bottom: #{(@story.max_photo_height(Photo::RESIZE_TO_FIT.first) - photo.photo_dimension(Photo::RESIZE_TO_FIT).last) / 2}px",
           :height => photo.photo_dimension.last),

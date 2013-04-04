@@ -62,7 +62,7 @@ class StoriesController < ApplicationController
   def update
     if @story.update_attributes(params[:story])
       flash[:notice] = "Story was saved"
-      redirect_to :action => 'show'
+      redirect_to :action => 'edit'
     else
       flash.now[:alert] = "Can't save the story" 
       render :action => 'edit'

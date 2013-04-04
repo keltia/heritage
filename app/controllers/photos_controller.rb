@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
-  before_filter :get_story, :except => [:show]
-  before_filter :find_or_build_photo, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show, :purchase]
+  before_filter :get_story, :except => [:show, :purchase]
+  before_filter :find_or_build_photo, :except => [:show, :purchase]
+  before_filter :set_title
 
   def edit
     respond_to do |format|
@@ -9,6 +10,14 @@ class PhotosController < ApplicationController
         render :text => render_to_string(:partial => 'photos/form', :locals => {:photo => @photo})
       end
     end
+  end
+
+  def purchase
+    set_tab :shop
+    @story = Story.find_by_permalink(params[:story_id])
+    @photo = @story.photos.find_by_permalink(params[:id]) || @story.photos.find(params[:id])
+
+    render 'purchase', :layout => 'story'
   end
 
   def update

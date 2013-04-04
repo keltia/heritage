@@ -59,5 +59,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :name, :description, :facebook_url, :specific_url, :twitter_url,
-    :blog_url, :avatar, :google_tracking_id, :main_photo, :contact
+    :blog_url, :avatar, :google_tracking_id, :main_photo, :contact,
+    :sale_description
 end
