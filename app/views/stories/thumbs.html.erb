@@ -3,7 +3,7 @@
   <%= tag(:meta, property: 'og:url', content: story_url(@story)) %>
   <% if @story.photos.any? %>
     <%= tag(:meta, property: 'og:image',
-                  content: full_image_link(@story.photos.first.image_url(:thumb))) %>
+                  content: full_image_link(@story.photos.first.image_url(:web))) %>
   <% end %>
   <%= tag(:meta, property: 'og:title', content: "#{@story.title} - #{@photographer.name}" ) %>
   <%= tag(:meta, property: 'og:description', content: @story.description) %>
