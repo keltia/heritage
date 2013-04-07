@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :thumbs]
   before_filter :get_story, :only => [:update, :edit, :destroy, :sort, :editlong, :updatelong]
   before_filter :get_stories, :only => [:edit, :sort, :editlong, :new, :updatelong, :create]
   before_filter :set_title
@@ -15,6 +15,13 @@ class StoriesController < ApplicationController
     end
   end
 
+  def thumbs 
+    @story = Story.find_by_permalink(params[:id], :include => [:photos])
+    raise ActiveRecord::RecordNotFound unless @story
+
+    @title ||= "#{@story.user.name}: #{@story.title}"
+    render :layout => "story"
+  end
   def show
     @story = Story.find_by_permalink(params[:id], :include => [:photos])
     raise ActiveRecord::RecordNotFound unless @story

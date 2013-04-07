@@ -1,0 +1,10 @@
+
+<div id="photos">
+  <ul class="thumbs">
+    <% @story.photos.each do |photo| %>
+    <li class="ui-state-default">
+    <%= link_to image_tag(photo.image_url(:thumb)), story_photo_path(@story, photo.permalink || photo.id) %>
+    </li>
+    <% end %>
+</ul>
+</div>

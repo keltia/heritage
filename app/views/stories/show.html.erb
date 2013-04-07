@@ -27,6 +27,7 @@
 <% end %>
 
 <div id="story">
+
 <% if @story.photos.any? %>
     <div id="myCarousel" class="carousel slide" style="height: <%= @story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px">
 
@@ -58,6 +59,10 @@
       <a class="navigationleft" href="#myCarousel" data-slide="prev"></a>
       <a class="navigationright" href="#myCarousel" data-slide="next"></a>
     </div>
+    <div class="thumbs_link pull-right">
+      <%= link_to content_tag(:i, '', :class => "icon-th-large", :title => "Thumbnails"), 
+      thumbs_story_path(@story) %>
+    </div>
     <div id="photos_counter">
       <span id="photos_index"><%= @photo_index %></span>/<%= @story.photos.count %>
     </div>
@@ -68,6 +73,5 @@
     <h3><%= @story.title %></h3>
     <%= @story.description %>
   </div>
-
 <% end %>
 </div>

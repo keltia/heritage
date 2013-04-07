@@ -22,7 +22,9 @@
  *# require_tree .
  *# require formtastic
  */
-
+ html {
+  overflow-y:scroll;
+ }
 #sortable {
   float: left;
   width: 100%;
@@ -152,4 +154,30 @@
 }
 .available_sizes td {
   background-color: #fff;
+}
+.thumbs_link {
+  font-size: 14px;
+  margin-bottom: 1em;
+  padding-top: 5px;
+  margin-right: 10px;
+}
+.thumbs_link a {
+  color: #bbb;
+}
+.thumbs_link a:hover {
+  text-decoration: none;
+}
+.thumbs {
+  float: left;
+  width: 100%;
+  margin: 0px;
+}
+.thumbs li {
+  list-style-type: none;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 5px;
+  width: 145px;
+}
+.thumbs ul {
 }

@@ -24,6 +24,7 @@ Heritage::Application.routes.draw do
     member do
       post :sort
       get :editlong
+      get :thumbs
       put :updatelong
     end
   end
