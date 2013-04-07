@@ -1,3 +1,15 @@
+<%= content_for :facebook_meta do %>
+
+  <%= tag(:meta, property: 'og:url', content: story_url(@story)) %>
+  <% if @story.photos.any? %>
+    <%= tag(:meta, property: 'og:image',
+                  content: full_image_link(@story.photos.first.image_url(:thumb))) %>
+  <% end %>
+  <%= tag(:meta, property: 'og:title', content: "#{@story.title} - #{@photographer.name}" ) %>
+  <%= tag(:meta, property: 'og:description', content: @story.description) %>
+  <%= tag(:meta, property: 'og:site_name', content: @photographer.name) %>
+
+<% end %>
 
 <div id="photos">
   <ul class="thumbs">
@@ -28,14 +40,3 @@
     <%= @story.description %>
   </div>
 </div>
-
-<script type="text/javascript">
-$('.thumbs_image').hover(function() {
-    $($(this).parent().find('.thumbs_background')).show();
-    $($(this).parent().find('.thumbs_info')).show();
-  },
-  function() {
-    $($(this).parent().find('.thumbs_background')).hide();
-    $($(this).parent().find('.thumbs_info')).hide();
-  });
-</script>

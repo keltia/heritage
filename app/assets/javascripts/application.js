@@ -18,6 +18,15 @@
 //= require jquery.fileupload.js
 //= require_tree .
 jQuery(function($) {
+  $('.thumbs_image').hover(function() {
+    $($(this).parent().find('.thumbs_background')).show();
+    $($(this).parent().find('.thumbs_info')).show();
+  },
+  function() {
+    $($(this).parent().find('.thumbs_background')).hide();
+    $($(this).parent().find('.thumbs_info')).hide();
+  });
+
 		$("#new_email").bind('ajax:before', function() {
       $('#new_email_submit').val('Loading...');
 		});
