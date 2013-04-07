@@ -15,19 +15,20 @@ class StoriesController < ApplicationController
     end
   end
 
-  def thumbs 
+  def thumbs
     @story = Story.find_by_permalink(params[:id], :include => [:photos])
     raise ActiveRecord::RecordNotFound unless @story
 
-    @title ||= "#{@story.user.name}: #{@story.title}"
+    @title = "#{@story.user.name}: #{@story.title}"
     render :layout => "story"
   end
+
   def show
     @story = Story.find_by_permalink(params[:id], :include => [:photos])
     raise ActiveRecord::RecordNotFound unless @story
 
     @photo = @story.photos.first if @story.photos.any?
-    @title ||= "#{@story.user.name}: #{@story.title}"
+    @title = "#{@story.user.name}: #{@story.title}"
     render :layout => "story"
   end
 
