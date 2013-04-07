@@ -55,13 +55,13 @@
   </div>
 
   <div class="bottomnav">
-    <div class="pull-right navigation">
-      <a class="navigationleft" href="#myCarousel" data-slide="prev"></a>
-      <a class="navigationright" href="#myCarousel" data-slide="next"></a>
-    </div>
     <div class="thumbs_link pull-right">
-      <%= link_to content_tag(:i, '', :class => "icon-th-large", :title => "Thumbnails"), 
+      <%= link_to content_tag(:i, '', :class => "icon-th-large", :title => "Thumbnails"),
       thumbs_story_path(@story) %>
+      <%= link_to content_tag(:i, '', :class => "icon-chevron-left", :title => "Previous"),
+        "#myCarousel", 'data-slide' => 'prev' %>
+      <%= link_to content_tag(:i, '', :class => "icon-chevron-right", :title => "Next"),
+        "#myCarousel", 'data-slide' => 'next' %>
     </div>
     <div id="photos_counter">
       <span id="photos_index"><%= @photo_index %></span>/<%= @story.photos.count %>
