@@ -19,9 +19,9 @@
 
       jQuery(document).bind('keyup', function(e) {
         if(e.which==39){
-          jQuery('a.navigationright').trigger('click');
+          jQuery('.icon-chevron-right').trigger('click');
         } else if(e.which==37){
-          jQuery('a.navigationleft').trigger('click');
+          jQuery('.icon-chevron-left').trigger('click');
         }
       });
 		});
@@ -65,7 +65,7 @@
 
   <div class="bottomnav">
     <div class="thumbs_link pull-right">
-      <%= link_to image_tag("cart.png", width: 25) << "Purchase a print", story_photo_path(@story) %>
+      <%= link_to image_tag("cart.png", width: 25) << "Purchase a print", story_photo_path(@story), id: "purchase_link" %>
       <%= link_to content_tag(:i, '', :class => "icon-th-large", :title => "Thumbnails"),
       thumbs_story_path(@story) %>
       <%= link_to content_tag(:i, '', :class => "icon-chevron-left", :title => "Previous"),
