@@ -24,6 +24,10 @@ class Story < ActiveRecord::Base
     end
   end
 
+  def any_for_sale?
+    self.user.allow_sale && self.photos.for_sale.any?
+  end
+
   def max_photo_width
     photos.sort{|a,b| a.width <=> b.width }.last.photo_dimension.first
   end

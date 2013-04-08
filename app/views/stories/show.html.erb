@@ -43,14 +43,13 @@
           :height => photo.photo_dimension.last),
         "#myCarousel", 'data-slide' => 'next', :class => "") %>
 
-        <div class="carousel-caption" style="height: <%= @story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px;">
-          <div class="photo_cart" style="height: <%= @story.max_photo_height(Photo::RESIZE_TO_FIT.first) %>px; top: <%= (@story.max_photo_height(Photo::RESIZE_TO_FIT.first) - 200) / 2 %>px;">
-            <%= link_to image_tag("cart.png", width: 200), purchase_story_photo_path(@story, photo.permalink || photo.id), title: "Purchase a print" %>
-          </div>
-
+        <div class="carousel-caption">
           <div class="photo_description">
-            <p class="pull-right"> 
-            <%= link_to image_tag("cart.png", width: 25) << "Purchase a print", purchase_story_photo_path(@story, photo.permalink || photo.id) %> | 
+            <p class="pull-right">
+            <% if @story.any_for_sale? %>
+              <%= link_to "Purchase a print",
+                purchase_story_photo_path(@story, photo.permalink || photo.id) %> | 
+            <% end %>
             <%= link_to "Direct Link", story_photo_url(@story, photo.permalink || photo.id) %>
             </p>
             <p>
@@ -65,7 +64,10 @@
 
   <div class="bottomnav">
     <div class="thumbs_link pull-right">
-      <%= link_to image_tag("cart.png", width: 25) << "Purchase a print", story_photo_path(@story), id: "purchase_link" %>
+      <% if @story.any_for_sale? %>
+        <%= link_to image_tag("cart.png", width: 25), 
+          story_photo_path(@story), id: "purchase_link" %>
+      <% end %>
       <%= link_to content_tag(:i, '', :class => "icon-th-large", :title => "Thumbnails"),
       thumbs_story_path(@story) %>
       <%= link_to content_tag(:i, '', :class => "icon-chevron-left", :title => "Previous"),
