@@ -301,6 +301,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_list
   added_methods
+  addressable
   backports
   better_errors
   binding_of_caller

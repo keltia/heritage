@@ -1,8 +1,4 @@
 					
-<%= semantic_form_for @photo,
-  :url => "external",
-  :html => {:class => 'form form-horizontal'} do |f| %>
-
 <table class="table available_sizes table-bordered">
   <tr>
     <td>
@@ -11,6 +7,10 @@
     <td>
       <%= select_tag "size", options_for_select(@photographer.available_sizes.collect(&:size)), class: "pull-right" %>
       <table class="table table-striped table-bordered">
+        <%= semantic_form_for @photo,
+        :url => "external",
+        :html => {:class => 'form form-horizontal'} do |f| %>
+
         <% @photographer.available_sizes.each do |size| %>
         <tr>
           <td>
@@ -26,16 +26,30 @@
           </td>
         </tr>
         <% end %>
+        <% end %>
       </table>
     </td>
     <td>
-      <%= f.submit "Purchase", class: "btn-large btn btn-primary pull-right" %>
+      yo
+      <%# f.submit "Purchase", class: "btn-large btn btn-primary pull-right" %>
     </td>
   </tr>
   <tr>
     <td colspan="3">
-      <%= image_tag "paypal_logo.jpg", width: 80, class: "pull-right" %>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <%= hidden_field_tag :item_name, "Photo #{@photo.id}" %>
+        <%= hidden_field_tag :item_number, @photo.id %>
+        <%= hidden_field_tag :amount, 103.40 %>
+        <%= hidden_field_tag :shipping, 10 %>
+        <%= hidden_field_tag :shipping2, 2 %>
+        <%= hidden_field_tag :handling, 3 %>
+        <%= hidden_field_tag :cmd, '_xclick' %>
+        <%= hidden_field_tag :return, root_url %>
+        <%= hidden_field_tag :currency_code, "EUR" %>
+        <%= hidden_field_tag :business, @photo.user.email %>
+        <input type="image" src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Purchase with Paypal.">
+      </form>
     </td>
   </tr>
 </table>
-<% end %>
+

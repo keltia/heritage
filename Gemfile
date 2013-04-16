@@ -93,3 +93,4 @@ gem 'exception_notification'
 gem 'added_methods'
 gem "what_methods"
 gem 'backports'
+gem 'addressable'
