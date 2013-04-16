@@ -3,9 +3,9 @@
   <%= tag(:meta, property: 'og:url', content: story_url(@story)) %>
   <%= tag(:meta, property: 'og:image',
                   content: full_image_link(@story.photos.first.image_url(:web))) %>
-  <%= tag(:meta, property: 'og:title', content: "#{@story.title} - #{@photographer.name}" ) %>
+  <%= tag(:meta, property: 'og:title', content: "#{@story.title} - #{@story.user.name}" ) %>
   <%= tag(:meta, property: 'og:description', content: @story.description) %>
-  <%= tag(:meta, property: 'og:site_name', content: @photographer.name) %>
+  <%= tag(:meta, property: 'og:site_name', content: @story.user.name) %>
  <% end %>
 <% end %>
 <%= content_for :head_script do %>
