@@ -45,6 +45,13 @@ Heritage::Application.routes.draw do
 
   resource :shop
 
+  resource :cart do
+    member do
+      post :add
+      put :add
+    end
+  end
+
   resource :account do
     member do
       get :social_medias

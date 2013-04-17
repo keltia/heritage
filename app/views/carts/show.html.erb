@@ -1,0 +1,62 @@
+<div class="purchase">
+  <table class="table available_sizes table-bordered table-cart">
+    <tr>
+      <th colspan="3">
+        Your cart
+      </th>
+    </tr>
+    <% session[:cart].each do |photo_id, value| %>
+    <% value.each do |key, val| %>
+    <tr>
+      <td>
+        <%= val %>
+      </td>
+      <td>
+        <strong>
+          <%= @available_sizes[key.to_i].first.description %>
+        </strong>
+      </td>
+      <td class="borderless">
+        <%= @available_sizes[key.to_i].first.price %> EUR
+      </td>
+      <td class="tableimg">
+        <%= image_tag(Photo.find(photo_id).image_url(:thumb), :width => 50) %>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+
+    <tr>
+      <td colspan="3">
+        <div class="pull-right">
+          Total: <b><%= cart_total %> EUR</b>
+        </div>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <div class="pull-right">
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <%= paypal_button_items %>
+        <input type="hidden" name="upload" value="1">
+        <%= hidden_field_tag :cmd, '_cart' %>
+        <%= hidden_field_tag :return, root_url %>
+        <%= hidden_field_tag :currency_code, "EUR" %>
+        <%= hidden_field_tag :business, @photographer.email %>
+        <input type="submit" name="Checkout" alt="Purchase with Paypal" class="btn btn-primary">
+      </form>
+    </div>
+    <%= link_to "Continue browsing", root_path %>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="delivery muted">
+    <small>
+      Note: I do my best to deliver the prints as soon as possible, and I thank
+      you for your trust. Contact me for any question.
+    </small>
+  </div>
+</div>
