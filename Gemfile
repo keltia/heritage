@@ -94,3 +94,4 @@ gem 'added_methods'
 gem "what_methods"
 gem 'backports'
 gem 'addressable'
+gem "select2-rails"

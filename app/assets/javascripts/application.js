@@ -16,6 +16,7 @@
 //= require jquery.ui.widget
 //= require jquery.uploadify-3.1.min.js
 //= require jquery.fileupload.js
+//= require select2
 //= require_tree .
 jQuery(function($) {
   $('.thumbs_image').hover(function() {
