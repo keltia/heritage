@@ -39,7 +39,7 @@
            <%= tabs_tag(builder: BoostrapTabs,
             open_tabs: { :class => "nav nav-pills" }) do |tab| %>
             <% if @photographer.any_for_sale? %>
-              <% if session[:cart] %>
+              <% if @cart.count > 0 %>
               <%= tab.cart "Your Cart (#{@cart.count})", cart_path %>
               <% end %>
               <%= tab.shop "Shop", shop_path %>
