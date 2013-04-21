@@ -59,6 +59,7 @@ Heritage::Application.routes.draw do
       get :stories
     end
     resources :available_sizes
+    resources :coupons
     put :update_avatar
     put :update_main_photo
     delete :delete_main_photo

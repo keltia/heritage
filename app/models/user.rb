@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   has_many :stories, :order => "position", :dependent => :destroy
   has_many :photos, :dependent => :destroy
-  has_many :emails
-  has_many :available_sizes
+  has_many :emails, :dependent => :destroy
+  has_many :available_sizes, :dependent => :destroy
+  has_many :coupons, :dependent => :destroy
 
   validates_uniqueness_of :specific_url
   validates_uniqueness_of :name, :allow_blank => true, :allow_nil => true
