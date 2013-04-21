@@ -3,7 +3,7 @@
 
     <% if @cart.count > 0 %>
     <tr>
-      <th colspan="3">
+      <th colspan="4">
         Your cart: <%= pluralize(@cart.count, 'item') %>
       </th>
     </tr>
@@ -23,7 +23,7 @@
         <%= item.available_size.price %> EUR
       </td>
       <td class="tableimg">
-        <%= link_to(image_tag(item.photo.image_url(:thumb), :width => 50),
+        <%= link_to(image_tag(item.photo.image_url(:thumb), :width => 50, :class => "thumb"),
         story_photo_path(item.photo.story.permalink || item.photo.story.id,
           item.photo.permalink || item.photo.id)) %>
       </td>
@@ -35,6 +35,7 @@
         <div class="pull-right">
           Total: <b><%= @cart.total %> EUR</b>
         </div>
+        <input type="text" class="input-large" placeholder="Enter your coupon" />
       </td>
       <td>
       </td>
