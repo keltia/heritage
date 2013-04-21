@@ -46,44 +46,22 @@ module ApplicationHelper
       ["#{size.description} (#{size.size}): #{size.price} EUR", size.id]
     }
   end
-  def cart_count
-    count = 0
-    session[:cart].each do |photo_id, value|
-      value.each do |key, val|
-        count += val
-      end
-    end
-    count
-  end
-
-  def cart_total
-    @available_sizes = @photographer.available_sizes.group_by(&:id)
-    count = 0
-    session[:cart].each do |photo_id, value|
-      value.each do |key, val|
-        count += @available_sizes[key.to_i].first.price.to_i
-      end
-    end
-    count
-  end
 
   def paypal_button_items
     i = 1
     result = ""
     @available_sizes = @photographer.available_sizes.group_by(&:id)
-    session[:cart].each do |photo_id, value|
-      value.each do |key, val|
-        photo_description = Photo.find(photo_id).title
-        if photo_description.blank?
-          photo_description = "Photo #{photo_id}"
-        end
-        photo_description << ": " << @available_sizes[key.to_i].first.description
-        result << hidden_field_tag("item_name_#{i}", photo_description) << "\n"
-        result << hidden_field_tag("item_number_#{i}", val) << "\n"
-        result << hidden_field_tag("amount_#{i}", @available_sizes[key.to_i].first.price) << "\n"
-        result << hidden_field_tag("shipping_#{i}", @available_sizes[key.to_i].first.shipping_price) << "\n"
-        i+=1
+    @cart.cart_items.each do |item|
+      photo_description = item.photo.title
+      if photo_description.blank?
+        photo_description = "Photo #{item.photo.id}"
       end
+      photo_description << ": " << item.photo.description
+      result << hidden_field_tag("item_name_#{i}", photo_description) << "\n"
+      result << hidden_field_tag("item_number_#{i}", item.count) << "\n"
+      result << hidden_field_tag("amount_#{i}", item.available_size.price) << "\n"
+      result << hidden_field_tag("shipping_#{i}", item.available_size.shipping_price) << "\n"
+      i+=1
     end
 
     result.html_safe

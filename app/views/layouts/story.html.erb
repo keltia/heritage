@@ -40,7 +40,7 @@
             open_tabs: { :class => "nav nav-pills" }) do |tab| %>
             <% if @photographer.any_for_sale? %>
               <% if session[:cart] %>
-              <%= tab.cart "Your Cart (#{cart_count})", cart_path %>
+              <%= tab.cart "Your Cart (#{@cart.count})", cart_path %>
               <% end %>
               <%= tab.shop "Shop", shop_path %>
             <% end %>

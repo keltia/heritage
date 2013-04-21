@@ -7,10 +7,9 @@ class CartsController < ApplicationController
     photo_id = params[:photo_id]
     size = params[:size]
 
-    session[:cart] ||= {}
-    session[:cart][photo_id] ||= {}
-    session[:cart][photo_id][params[:size]] ||= 0
-    session[:cart][photo_id][params[:size]] += 1
+    @photo = Photo.find(photo_id)
+    @size = AvailableSize.find(params[:size])
+    @cart.add_photo(@photo, @size)
 
     redirect_to :action => :show
   end
@@ -19,9 +18,4 @@ class CartsController < ApplicationController
     @available_sizes = @photographer.available_sizes.group_by(&:id)
   end
 
-  protected
-
-  def get_cart
-
-  end
 end

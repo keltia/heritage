@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421183250) do
+ActiveRecord::Schema.define(:version => 20130421195427) do
 
   create_table "available_sizes", :force => true do |t|
     t.integer "user_id"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(:version => 20130421183250) do
   end
 
   add_index "available_sizes", ["user_id"], :name => "index_available_sizes_on_user_id"
+
+  create_table "cart_items", :force => true do |t|
+    t.integer "count"
+    t.integer "photo_id"
+    t.integer "available_size_id"
+    t.integer "cart_id"
+  end
+
+  add_index "cart_items", ["cart_id"], :name => "index_cart_items_on_cart_id"
+
+  create_table "carts", :force => true do |t|
+    t.string   "session_id"
+    t.integer  "coupon_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "carts", ["session_id"], :name => "index_carts_on_session_id"
 
   create_table "coupons", :force => true do |t|
     t.integer  "user_id"

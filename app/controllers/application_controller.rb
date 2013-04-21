@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_photographer
+  before_filter :get_cart
 
   protected
   def set_photographer
@@ -65,5 +66,15 @@ class ApplicationController < ActionController::Base
   def get_photographer
     @photographer = current_user
     get_stories
+  end
+
+  def get_cart(create=false)
+    @cart ||= Cart.find_by_session_id(request.session_options[:id])
+
+    unless @cart
+      @cart = Cart.new
+      @cart.session_id = request.session_options[:id]
+      @cart.save
+    end
   end
 end
