@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
   has_many :cart_items, :dependent => :destroy
+  belongs_to :coupon
 
   def add_photo(photo, size)
     item = cart_items.where(:available_size_id => size.id, :photo_id => photo.id).first ||
@@ -11,12 +12,22 @@ class Cart < ActiveRecord::Base
   end
 
   def total
-    cart_items.collect{|item|
+    @total ||= cart_items.collect{|item|
       item.available_size.price.to_f * item.count
     }.sum
   end
 
   def count
     cart_items.collect(&:count).sum
+  end
+
+  include AASM
+  aasm do
+    state :passive, :initial => true
+    state :paid
+
+    event :pay do
+      transitions :from => :passive, :to => :paid
+    end
   end
 end

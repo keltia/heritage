@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery-ui
 //= require jquery.ui.widget
 //= require jquery.uploadify-3.1.min.js
 //= require jquery.fileupload.js

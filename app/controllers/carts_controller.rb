@@ -18,4 +18,12 @@ class CartsController < ApplicationController
     @available_sizes = @photographer.available_sizes.group_by(&:id)
   end
 
+  def update_item
+    @cart.cart_items.find(params[:cart_item_id]).update_attribute(:count, params[:value])
+    respond_to do |format|
+      format.js {
+        render :json => {:total => @cart.total}
+      }
+    end
+  end
 end

@@ -49,6 +49,7 @@ Heritage::Application.routes.draw do
     member do
       post :add
       put :add
+      post :update_item
     end
   end
 

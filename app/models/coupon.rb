@@ -1,5 +1,7 @@
 class Coupon < ActiveRecord::Base
   belongs_to :user
+  has_many :carts
+
   attr_accessible :description, :expires_at, :max_number, :num_available, :purcent_reduction, :number_reduction
 
   validates_inclusion_of :purcent_reduction, :in => 1..100, :allow_nil => true

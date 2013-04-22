@@ -1,0 +1,23 @@
+jQuery(function($) {
+  $('.cart_item_select').select2({
+    minimumResultsForSearch: 100,
+    width: '50'
+  });
+  $('.cart_item_select').on("change", function(e) {
+    var cart_item_id = e.target.id.split('_')[1];
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "<%= Rails.application.routes.url_helpers.update_item_cart_path %>",
+      data: {cart_item_id: cart_item_id, value: e.val},
+      success: function (data, textStatus, jqXHR) {
+        $('#cart_total').html(data['total'] + " EUR");
+        $('#cart_total').effect("highlight", {}, 1000);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+      },
+      complete: function(jqhr, textStatus) {
+      }
+    });
+  });
+});
