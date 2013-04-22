@@ -9,7 +9,7 @@
         <%= image_tag(@photo.image_url(:thumb), :width => 50) %>
       </td>
       <td>
-        <%= select_tag "size", options_for_select(photos_size_options(@photographer)), class: "pull-right" %>
+        <%= select_tag "size", options_for_select(photos_size_options(@photographer)), class: "pull-right purchase_photo_select" %>
       </td>
       <td>
         <%= hidden_field_tag :photo_id, @photo.id %>
@@ -29,6 +29,7 @@
       <%= size.size %>
     </td>
     <td>
+      <%= size.title %>
       <%= size.description %>
     </td>
     <td>

@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def photos_size_options(photographer)
     photographer.available_sizes.collect{|size|
-      ["#{size.description} (#{size.size}): #{size.price} EUR", size.id]
+      ["#{size.title} (#{size.size}): #{size.price} EUR", size.id]
     }
   end
 
