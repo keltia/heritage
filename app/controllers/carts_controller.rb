@@ -27,6 +27,12 @@ class CartsController < ApplicationController
     end
   end
 
+  def remove_item
+    @item = @cart.cart_items.find(params[:cart_item_id])
+    @item.destroy
+    redirect_to cart_path
+  end
+
   def set_coupon
     coupon = Coupon.find_by_coupon(params[:coupon])
     if coupon

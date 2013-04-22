@@ -21,4 +21,13 @@ class Coupon < ActiveRecord::Base
 
     result
   end
+
+  def apply_item(cart_item, price)
+    result = price
+    if purcent_reduction
+      result -= (price * purcent_reduction) / 100
+    end
+
+    result
+  end
 end

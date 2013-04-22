@@ -13,6 +13,7 @@ jQuery(function($) {
       data: { coupon: $('#coupon').val() },
       success: function (data, textStatus, jqXHR) {
         $('#coupon-success').show();
+        location.reload();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         $('#coupon-error').show();

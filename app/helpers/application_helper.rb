@@ -59,7 +59,7 @@ module ApplicationHelper
       photo_description << ": " << item.photo.description
       result << hidden_field_tag("item_name_#{i}", photo_description) << "\n"
       result << hidden_field_tag("item_number_#{i}", item.photo_id) << "\n"
-      result << hidden_field_tag("amount_#{i}", item.available_size.price) << "\n"
+      result << hidden_field_tag("amount_#{i}", item.item_price) << "\n"
       result << hidden_field_tag("quantity_#{i}", item.count, id: "paypal_item_cart_#{item.id}") << "\n"
       result << hidden_field_tag("shipping_#{i}", item.available_size.shipping_price) << "\n"
       i+=1

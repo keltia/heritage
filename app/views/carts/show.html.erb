@@ -14,13 +14,14 @@
         <%= select_tag "item_#{item.id}_count", options_for_select(1..10, item.count), class: "cart_item_select" %>
       </td>
       <td>
-        <%= link_to content_tag(:i, "", class: "icon-remove-sign").html_safe, "" %>
+        <%= link_to content_tag(:i, "", class: "icon-remove-sign").html_safe,
+          remove_item_cart_path(cart_item_id: item.id) %>
         <strong>
           <%= item.available_size.description %>
         </strong>
       </td>
       <td class="borderless">
-        <%= item.available_size.price %> EUR
+        <%= item.item_price %> EUR
       </td>
       <td class="tableimg">
         <%= link_to(image_tag(item.photo.image_url(:thumb), :width => 50, :class => "thumb"),
