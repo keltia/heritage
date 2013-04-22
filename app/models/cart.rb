@@ -15,6 +15,8 @@ class Cart < ActiveRecord::Base
     @total ||= cart_items.collect{|item|
       item.available_size.price.to_f * item.count
     }.sum
+
+    @total
   end
 
   def count

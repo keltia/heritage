@@ -26,4 +26,16 @@ class CartsController < ApplicationController
       }
     end
   end
+
+  def set_coupon
+    coupon = Coupon.find(params[:coupon])
+    if coupon
+      @cart.coupon = coupon
+      respond_to do |format|
+        format.js {
+          render :json => {:total => @cart.total}
+        }
+      end
+    end
+  end
 end

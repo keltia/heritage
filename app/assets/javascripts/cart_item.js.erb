@@ -1,10 +1,11 @@
 jQuery(function($) {
   $('.cart_item_select').select2({
     minimumResultsForSearch: 100,
-    width: '50'
+    width: '52'
   });
   $('.cart_item_select').on("change", function(e) {
     var cart_item_id = e.target.id.split('_')[1];
+    $('#paypal_item_cart_'+cart_item_id).attr('value', e.val)
     $.ajax({
       type: "POST",
       dataType: "json",

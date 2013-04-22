@@ -50,6 +50,7 @@ Heritage::Application.routes.draw do
       post :add
       put :add
       post :update_item
+      post :set_coupon
     end
   end
 
