@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421195427) do
+ActiveRecord::Schema.define(:version => 20130422174156) do
 
   create_table "available_sizes", :force => true do |t|
     t.integer "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130421195427) do
     t.integer  "coupon_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "status"
   end
 
   add_index "carts", ["session_id"], :name => "index_carts_on_session_id"

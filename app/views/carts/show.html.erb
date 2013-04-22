@@ -11,9 +11,10 @@
     <% @cart.cart_items.each do |item| %>
     <tr>
       <td>
-        <%= select_tag "item_#{item.id}_count", options_for_select(0..10, item.count), class: "cart_item_select" %>
+        <%= select_tag "item_#{item.id}_count", options_for_select(1..10, item.count), class: "cart_item_select" %>
       </td>
       <td>
+        <%= link_to content_tag(:i, "", class: "icon-remove-sign").html_safe, "" %>
         <strong>
           <%= item.available_size.description %>
         </strong>
@@ -34,7 +35,13 @@
         <div class="pull-right">
           Total: <b id="cart_total"><%= @cart.total %> EUR</b>
         </div>
-        <input type="text" class="input-large" placeholder="Enter your coupon" />
+        <input type="text" class="input-large" placeholder="Enter your coupon" id="coupon" value="<%= @cart.coupon.coupon if @cart.coupon %>" />
+        <div class="text-error text-mini hide" id="coupon-error">
+          This coupon isn't working
+        </div>
+        <div class="text-success text-mini hide" id="coupon-success">
+          This coupon is working
+        </div>
       </td>
       <td>
       </td>

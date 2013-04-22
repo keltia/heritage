@@ -3,6 +3,23 @@ jQuery(function($) {
     minimumResultsForSearch: 100,
     width: '52'
   });
+  $('#coupon').change(function() {
+    $('#coupon-success').hide();
+    $('#coupon-error').hide();
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "<%= Rails.application.routes.url_helpers.set_coupon_cart_path %>",
+      data: { coupon: $('#coupon').val() },
+      success: function (data, textStatus, jqXHR) {
+        $('#coupon-success').show();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        $('#coupon-error').show();
+      }
+    });
+  });
+
   $('.cart_item_select').on("change", function(e) {
     var cart_item_id = e.target.id.split('_')[1];
     $('#paypal_item_cart_'+cart_item_id).attr('value', e.val)

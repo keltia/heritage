@@ -16,6 +16,7 @@ class Cart < ActiveRecord::Base
       item.available_size.price.to_f * item.count
     }.sum
 
+    @total = coupon.apply(self, @total)
     @total
   end
 

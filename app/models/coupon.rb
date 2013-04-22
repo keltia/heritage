@@ -12,4 +12,13 @@ class Coupon < ActiveRecord::Base
   before_save do
     self.coupon ||= SecureRandom.hex(8).upcase
   end
+
+  def apply(cart, total)
+    result = total
+    if purcent_reduction
+      result -= (total * purcent_reduction) / 100
+    end
+
+    result
+  end
 end
